@@ -8,6 +8,9 @@ import sqlite3
 from msp2db.msp2db import LibraryData, create_db
 
 from sqlite3 import OperationalError
+import tempfile
+import shutil
+
 
 
 def check_table_exists_sqlite(cursor, tablename):
@@ -32,9 +35,10 @@ def sql_column_names(cursor):
 class TestSqlite(unittest.TestCase):
 
     def test_create_db(self,):
+        dirpath = tempfile.mkdtemp()
         # Parse all example files
         db_pth = os.path.join(os.path.dirname(__file__),
-                     'original_results',
+                              dirpath,
                      'test_sqlite_db_create.db')
 
         create_db(file_pth=db_pth,
@@ -53,8 +57,9 @@ class TestSqlite(unittest.TestCase):
 
     def _test_example_single_file(self, example_file_pth, name):
         # Parse all example files
+        dirpath = tempfile.mkdtemp()
         db_pth = os.path.join(os.path.dirname(__file__),
-                     'original_results', name + '.db')
+                              dirpath, name + '.db')
 
         create_db(file_pth=db_pth, db_type='sqlite', db_name=name)
 
@@ -77,20 +82,40 @@ class TestSqlite(unittest.TestCase):
         conn = sqlite3.connect(db_pth)
         cursor = conn.cursor()
 
-        # qry = cursor.execute("SELECT * FROM library_spectra_meta")
-        # names = sql_column_names(qry)
-        # print(names)
-        #
-        # names = ['polarity', 'instrument_type','name', 'copyright', 'collision_energy','column',  'accession',
-        # 'precursor_mz', 'fragmentation_type', 'instrument', 'library_spectra_source_id', 'ms_level', 'inchikey_id',
-        # 'mass_error', 'mass_accuracy', 'precursor_type', 'resolution', 'id', 'origin']
-        # for row in cursor:
-        #     print(row)
-        print(libdata)
+        qry = cursor.execute("SELECT * FROM library_spectra_meta")
+        names = sql_column_names(qry)
 
-    # def test_example_single_file_BS(self):
-    #     libdata = self._test_example_single_file(os.path.join(os.path.dirname(__file__), "msp_files", "BS001001.txt"), 'BS')
-    #     print(libdata)
+        for row in cursor:
+            print(row)
+            self.assertEquals(row[names['name']], 'Mellein; LC-ESI-ITFT; MS2; CE: 10; R=17500; [M+H]+')
+            self.assertEquals(row[names['collision_energy']], '10(NCE)')
+            self.assertEquals(row[names['ms_level']], 2)
+            self.assertEquals(row[names['accession']], 'AC000001')
+            self.assertEquals(row[names['resolution']], '17500')
+            self.assertEquals(row[names['polarity']], 'POSITIVE')
+            self.assertEquals(row[names['fragmentation_type']], 'HCD')
+            self.assertEquals(row[names['precursor_mz']], 179.0697)
+            self.assertEquals(row[names['precursor_type']], '[M+H]+')
+            self.assertEquals(row[names['instrument_type']], 'LC-ESI-ITFT')
+            self.assertEquals(row[names['instrument']],'Q-Exactive Orbitrap Thermo Scientific')
+            self.assertEquals(row[names['copyright']], 'Copyright (C) 2017')
+            self.assertEquals(row[names['inchikey_id']], 'KWILGNNWGSNMPA-UHFFFAOYSA-N')
 
+        qry = cursor.execute("SELECT * FROM library_spectra_meta")
+        names = sql_column_names(qry)
 
-
+        for row in cursor:
+            print(row)
+            self.assertEquals(row[names['name']], 'Mellein; LC-ESI-ITFT; MS2; CE: 10; R=17500; [M+H]+')
+            self.assertEquals(row[names['collision_energy']], '10(NCE)')
+            self.assertEquals(row[names['ms_level']], 2)
+            self.assertEquals(row[names['accession']], 'AC000001')
+            self.assertEquals(row[names['resolution']], '17500')
+            self.assertEquals(row[names['polarity']], 'POSITIVE')
+            self.assertEquals(row[names['fragmentation_type']], 'HCD')
+            self.assertEquals(row[names['precursor_mz']], 179.0697)
+            self.assertEquals(row[names['precursor_type']], '[M+H]+')
+            self.assertEquals(row[names['instrument_type']], 'LC-ESI-ITFT')
+            self.assertEquals(row[names['instrument']], 'Q-Exactive Orbitrap Thermo Scientific')
+            self.assertEquals(row[names['copyright']], 'Copyright (C) 2017')
+            self.assertEquals(row[names['inchikey_id']], 'KWILGNNWGSNMPA-UHFFFAOYSA-N')
