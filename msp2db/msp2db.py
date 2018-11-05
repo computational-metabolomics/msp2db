@@ -120,21 +120,21 @@ def get_meta_regex(schema='massbank'):
 
     elif schema == 'massbank':
         meta_parse['collision_energy'] = ['^AC\$MASS_SPECTROMETRY:\s+COLLISION_ENERGY\s+(.*)$']
-        meta_parse['ms_level'] = ['^AC$MASS_SPECTROMETRY:\s+MS_TYPE\s+\D*(\d*)$']
+        meta_parse['ms_level'] = ['^AC\$MASS_SPECTROMETRY:\s+MS_TYPE\s+\D*(\d*)$']
         meta_parse['accession'] = ['^ACCESSION:(.*)$']
-        meta_parse['resolution'] = ['^AC$MASS_SPECTROMETRY:\s+RESOLUTION\s+(.*)$']
-        meta_parse['polarity'] = ['^ion.*mode(?:=|:)(.*)$', '^ionization.*mode(?:=|:)(.*)$', '^polarity(?:=|:)(.*)$']
-        meta_parse['fragmentation_type'] = ['^fragmentation.*mode(?:=|:)(.*)$', '^fragmentation.*type(?:=|:)(.*)$']
-        meta_parse['precursor_mz'] = ['^precursor m/z(?:=|:)(\d*[.,]?\d*)$', '^precursor.*mz(?:=|:)(\d*[.,]?\d*)$']
-        meta_parse['precursor_type'] = ['^precursor.*type(?:=|:)(.*)$', '^adduct(?:=|:)(.*)$']
-        meta_parse['instrument_type'] = ['^instrument.*type(?:=|:)(.*)$']
-        meta_parse['instrument'] = ['^instrument(?:=|:)(.*)$']
-        meta_parse['copyright'] = ['^copyright(?:=|:)(.*)$']
+        meta_parse['resolution'] = ['^AC\$MASS_SPECTROMETRY:\s+RESOLUTION\s+(.*)$']
+        meta_parse['polarity'] = ['^AC\$MASS_SPECTROMETRY:\s+ION_MODE\s+(.*)$']
+        meta_parse['fragmentation_type'] = ['^AC\$MASS_SPECTROMETRY:\s+FRAGMENTATION_MODE\s+(.*)$']
+        meta_parse['precursor_mz'] = ['^MS\$FOCUSED_ION:\s+PRECURSOR_M/Z\s+(\d*[.,]?\d*)$']
+        meta_parse['precursor_type'] = ['^MS\$FOCUSED_ION:\s+PRECURSOR_TYPE\s+(.*)$']
+        meta_parse['instrument_type'] = ['^AC\$INSTRUMENT_TYPE:\s+(.*)$']
+        meta_parse['instrument'] = ['^AC\$INSTRUMENT:\s+(.*)$']
+        meta_parse['copyright'] = ['^COPYRIGHT:\s+(.*)']
         # meta_parse['column'] = ['^column(?:=|:)(.*)$']
-        meta_parse['mass_accuracy'] = ['^mass.*accuracy(?:=|:)(\d*[.,]?\d*)$']
-        meta_parse['mass_error'] = ['^mass.*error(?:=|:)(\d*[.,]?\d*)$']
+        meta_parse['mass_accuracy'] = ['^AC\$MASS_SPECTROMETRY:\s+ACCURACY\s+(.*)$']  # need to check
+        meta_parse['mass_error'] = ['^AC\$MASS_SPECTROMETRY:\s+ERROR\s+(.*)$']  # need to check
         meta_parse['origin'] = ['^origin(?:=|:)(.*)$']
-        meta_parse['name'] = ['^Name(?:=|:)(.*)$']
+        meta_parse['name'] = ['^RECORD_TITLE:\s+(.*)$']
 
 
 
@@ -145,7 +145,7 @@ def get_compound_regex(schema='mona'):
     # NOTE: will just ignore cases, to avoid repetition here
     meta_parse = collections.OrderedDict()
 
-    if schema=='mona':
+    if schema == 'mona':
         meta_parse['name'] = ['^Name(?:=|:)(.*)$']
         meta_parse['inchikey_id'] = ['^inchikey(?:=|:)(.*)$']
         meta_parse['molecular_formula'] = ['^molecular formula(?:=|:)(.*)$', '^formula:(.*)$']
@@ -155,16 +155,19 @@ def get_compound_regex(schema='mona'):
         meta_parse['compound_class'] = ['^compound.*class(?:=|:)(.*)$']
         meta_parse['exact_mass'] = ['^exact.*mass(?:=|:)(\d*[.,]?\d*)$']
         meta_parse['smiles'] = ['^SMILES(?:=|:)(.*)$']
-    elif schema=='massbank':
-        meta_parse['name'] = ['^Name(?:=|:)(.*)$']
-        meta_parse['inchikey_id'] = ['^inchikey(?:=|:)(.*)$']
-        meta_parse['molecular_formula'] = ['^molecular formula(?:=|:)(.*)$', '^formula:(.*)$']
-        meta_parse['molecular_weight'] = ['^MW(?:=|:)(\d*[.,]?\d*)$']
-        meta_parse['pubchem_id'] = ['^pubchem.*cid(?:=|:)(\d*)".*$']
-        meta_parse['chemspider_id'] = ['^chemspider(?:=|:)(\d*)".*$']
-        meta_parse['compound_class'] = ['^compound.*class(?:=|:)(.*)$']
-        meta_parse['exact_mass'] = ['^exact.*mass(?:=|:)(\d*[.,]?\d*)$']
-        meta_parse['smiles'] = ['^SMILES(?:=|:)(.*)$']
+        meta_parse['other_names'] = ['^Synonym(?:=|:)(.*)$']
+    elif schema == 'massbank':
+        meta_parse['name'] = ['^CH\$NAME:\s+(.*)$']
+        meta_parse['other_names'] = ['^CH\$NAME:\s+(.*)$']
+
+        meta_parse['inchikey_id'] = ['^CH\$LINK:\s+INCHIKEY\s+(.*)$']
+        meta_parse['molecular_formula'] = ['^CH\$FORMULA:\s+(.*)$']
+        meta_parse['molecular_weight'] = ['^CH\$MOLECULAR_WEIGHT:\s+(.*)$']
+        meta_parse['pubchem_id'] = ['^CH\$LINK:\s+PUBCHEM\s+CID:(.*)$']
+        meta_parse['chemspider_id'] = ['^CH\$LINK:\s+CHEMSPIDER\s+(.*)$']
+        meta_parse['compound_class'] = ['^CH\$COMPOUND_CLASS:\s+(.*)$']
+        meta_parse['exact_mass'] = ['^CH\$EXACT_MASS:\s+(.*)$']
+        meta_parse['smiles'] = ['^CH\$SMILES:\s+(.*)$']
 
 
     return meta_parse
@@ -348,7 +351,9 @@ class LibraryData(object):
 
 
             other_name_l = [name for name in self.other_names if name != self.compound_info['name']]
-            other_name_s = ' #<::::># '.join(other_name_l)
+            self.compound_info['other_names'] = ' <#> '.join(other_name_l)
+
+
 
             if not self.compound_info['inchikey_id']:
                 self.set_inchi_pcc(self.compound_info['pubchem_id'], 'cid', 0)
@@ -372,7 +377,8 @@ class LibraryData(object):
                 self.compound_info['name'] = 'unknown name'
 
             if not self.compound_info['inchikey_id'] in self.compound_ids:
-                self.compound_info_all.append(tuple(self.compound_info.values()) + (other_name_s,
+
+                self.compound_info_all.append(tuple(self.compound_info.values()) + (
                                                                                     str(datetime.datetime.now()),
                                                                                     str(datetime.datetime.now()),
                                                                                     ))
@@ -454,9 +460,11 @@ class LibraryData(object):
                 print('WARNING, multiple compounds for ', self.compound_info)
 
     def get_other_names(self, line):
-        m = re.search('^Synonym(?:=|:)(.*)$', line, re.IGNORECASE)
+        m = re.search(self.compound_regex['other_names'][0], line, re.IGNORECASE)
         if m:
+
             self.other_names.append(m.group(1).strip())
+            print('OTHER NAMES!!!!!!!!!!!!!!!!!!!!!!', self.other_names)
 
     def parse_meta_info(self, line):
 
@@ -470,6 +478,8 @@ class LibraryData(object):
 
         for k, regexes in six.iteritems(self.compound_regex):
             for reg in regexes:
+                if self.compound_info[k]:
+                    continue
                 m = re.search(reg, line, re.IGNORECASE)
                 if m:
                     self.compound_info[k] = m.group(1).strip()
@@ -487,7 +497,7 @@ class LibraryData(object):
         if self.compound_info_all:
             self.compound_info_all = make_sql_compatible(self.compound_info_all)
 
-            cn = ', '.join(self.compound_info.keys()) + ',other_names,created_at,updated_at'
+            cn = ', '.join(self.compound_info.keys()) + ',created_at,updated_at'
 
             insert_query_m(self.compound_info_all, columns=cn, conn=self.conn, table='metab_compound',
                            db_type=db_type)

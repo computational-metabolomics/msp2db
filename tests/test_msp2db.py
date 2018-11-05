@@ -77,20 +77,20 @@ class TestSqlite(unittest.TestCase):
         conn = sqlite3.connect(db_pth)
         cursor = conn.cursor()
 
-        qry = cursor.execute("SELECT * FROM library_spectra_meta")
-        names = sql_column_names(qry)
-        print(names)
-
-        names = ['polarity', 'instrument_type','name', 'copyright', 'collision_energy','column',  'accession',
-        'precursor_mz', 'fragmentation_type', 'instrument', 'library_spectra_source_id', 'ms_level', 'inchikey_id',
-        'mass_error', 'mass_accuracy', 'precursor_type', 'resolution', 'id', 'origin']
-        for row in cursor:
-            print(row)
+        # qry = cursor.execute("SELECT * FROM library_spectra_meta")
+        # names = sql_column_names(qry)
+        # print(names)
+        #
+        # names = ['polarity', 'instrument_type','name', 'copyright', 'collision_energy','column',  'accession',
+        # 'precursor_mz', 'fragmentation_type', 'instrument', 'library_spectra_source_id', 'ms_level', 'inchikey_id',
+        # 'mass_error', 'mass_accuracy', 'precursor_type', 'resolution', 'id', 'origin']
+        # for row in cursor:
+        #     print(row)
         print(libdata)
 
-    def test_example_single_file_BS(self):
-        libdata = self._test_example_single_file(os.path.join(os.path.dirname(__file__), "msp_files", "BS001001.txt"), 'BS')
-        print(libdata)
+    # def test_example_single_file_BS(self):
+    #     libdata = self._test_example_single_file(os.path.join(os.path.dirname(__file__), "msp_files", "BS001001.txt"), 'BS')
+    #     print(libdata)
 
 
 
