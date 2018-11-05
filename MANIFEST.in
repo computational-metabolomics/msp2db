@@ -1,0 +1,7 @@
+include README.rst
+include LICENSE
+include requirements.txt
+include examples/*.*
+include tests/*.py
+include tests/data/*.*
+include tests/test_results/*.*
