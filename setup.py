@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 import setuptools
 import sys
-import msnpy
+import msp2db
 
 
 def main():
 
     setuptools.setup(name="msp2db",
-        version=msnpy.__version__,
+        version=msp2db.__version__,
         description="Python package for converting msp to database",
         long_description=open('README.rst').read(),
         author="Thomas N. Lawson",
