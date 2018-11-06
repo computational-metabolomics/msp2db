@@ -1,0 +1,580 @@
+Name: Sulfaclozine
+Synon: 4-amino-N-(6-chloropyrazin-2-yl)benzenesulfonamide
+SYNON: $:00in-source
+DB#: AU100601
+InChIKey: QKLPUVXBJHRFQZ-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 285.0208
+Instrument_type: LC-ESI-QTOF
+Instrument: Bruker maXis Impact
+Ion_mode: P
+Collision_energy: Ramp 21.1-31.6 eV
+Formula: C10H9ClN4O2S
+MW: 284
+ExactMass: 284.013474208
+Comments: "accession=AU100601" "author=Nikiforos Alygizakis, Anna Bletsou, Nikolaos Thomaidis, University of Athens" "license=CC BY" "copyright=Copyright (C) 2015 Department of Chemistry, University of Athens" "exact mass=284.0135" "instrument=Bruker maXis Impact" "instrument type=LC-ESI-QTOF" "ms level=MS2" "ionization=ESI" "fragmentation mode=CID" "collision energy=Ramp 21.1-31.6 eV" "resolution=35000" "column=Acclaim RSLC C18 2.2um, 2.1x100mm, Thermo" "flow gradient=99/1 at 0-1 min, 61/39 at 3 min, 0.1/99.9 at 14-16 min, 99/1 at 16.1-20 min" "flow rate=200 uL/min at 0-3 min, 400 uL/min at 14 min, 480 uL/min at 16-19 min, 200 uL/min at 19.1-20 min" "retention time=4.6 min" "solvent a=water with 0.01% formic acid and 5mM ammonium formate" "solvent b=90:10 methanol:water with 0.01% formic acid and 5mM ammonium formate" "precursor m/z=285.0208" "precursor type=[M+H]+" "ionization mode=positive" "mass accuracy=0.17469602228006656" "mass error=4.9792000027082395E-5" "SMILES=c1cc(ccc1N)S(=O)(=O)Nc2cncc(n2)Cl" "cas=102-65-8" "pubchem cid=66890" "chemspider=60252" "InChI=InChI=1S/C10H9ClN4O2S/c11-9-5-13-6-10(14-9)15-18(16,17)8-3-1-7(12)2-4-8/h1-6H,12H2,(H,14,15)" "InChIKey=QKLPUVXBJHRFQZ-UHFFFAOYSA-N" "molecular formula=C10H9ClN4O2S" "total exact mass=284.013474208" "SMILES=C=1C=C(C=CC1N)S(N=C2C=NC=C(Cl)N2)(=O)=O"
+Num Peaks: 27
+53.0389 0.594951
+54.0333 0.566811
+55.0178 0.522592
+60.0552 0.542692
+65.0382 3.822962
+66.0423 0.506512
+68.049 7.963499
+78.0333 0.727609
+79.0177 1.057244
+92.0498 7.702203
+93.0532 0.731629
+96.0443 0.623091
+108.0457 12.172375
+109.0483 1.181862
+110.0609 4.904325
+120.0562 3.095353
+130.0172 5.656054
+132.0138 1.515517
+156.0118 100.000000
+157.015 8.884065
+158.008 3.891301
+174.0228 0.751729
+184.0757 0.619071
+191.9647 0.590931
+219.0438 0.723589
+285.0221 3.694324
+287.0184 0.840167
+
+
+Name: Sulfachlorpyridazine
+Synon: 4-amino-N-(6-chloropyridazin-3-yl)benzenesulfonamide
+SYNON: $:00in-source
+DB#: AU100701
+InChIKey: XOXHILFPRYWFOD-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 285.0208
+Instrument_type: LC-ESI-QTOF
+Instrument: Bruker maXis Impact
+Ion_mode: P
+Collision_energy: Ramp 21.1-31.6 eV
+Formula: C10H9ClN4O2S
+MW: 284
+ExactMass: 284.013474208
+Comments: "accession=AU100701" "author=Nikiforos Alygizakis, Anna Bletsou, Nikolaos Thomaidis, University of Athens" "license=CC BY" "copyright=Copyright (C) 2015 Department of Chemistry, University of Athens" "exact mass=284.0135" "instrument=Bruker maXis Impact" "instrument type=LC-ESI-QTOF" "ms level=MS2" "ionization=ESI" "fragmentation mode=CID" "collision energy=Ramp 21.1-31.6 eV" "resolution=35000" "column=Acclaim RSLC C18 2.2um, 2.1x100mm, Thermo" "flow gradient=99/1 at 0-1 min, 61/39 at 3 min, 0.1/99.9 at 14-16 min, 99/1 at 16.1-20 min" "flow rate=200 uL/min at 0-3 min, 400 uL/min at 14 min, 480 uL/min at 16-19 min, 200 uL/min at 19.1-20 min" "retention time=4.6 min" "solvent a=water with 0.01% formic acid and 5mM ammonium formate" "solvent b=90:10 methanol:water with 0.01% formic acid and 5mM ammonium formate" "precursor m/z=285.0208" "precursor type=[M+H]+" "ionization mode=positive" "mass accuracy=0.17469602228006656" "mass error=4.9792000027082395E-5" "SMILES=c1cc(ccc1N)S(=O)(=O)Nc2ccc(nn2)Cl" "cas=80-32-0" "pubchem cid=6634" "chemspider=6382" "InChI=InChI=1S/C10H9ClN4O2S/c11-9-5-6-10(14-13-9)15-18(16,17)8-3-1-7(12)2-4-8/h1-6H,12H2,(H,14,15)" "InChIKey=XOXHILFPRYWFOD-UHFFFAOYSA-N" "molecular formula=C10H9ClN4O2S" "total exact mass=284.013474208" "SMILES=C=1C=C(C=CC1N)S(NC=2C=CC(Cl)=NN2)(=O)=O"
+Num Peaks: 27
+53.0389 0.594951
+54.0333 0.566811
+55.0178 0.522592
+60.0552 0.542692
+65.0382 3.822962
+66.0423 0.506512
+68.049 7.963499
+78.0333 0.727609
+79.0177 1.057244
+92.0498 7.702203
+93.0532 0.731629
+96.0443 0.623091
+108.0457 12.172375
+109.0483 1.181862
+110.0609 4.904325
+120.0562 3.095353
+130.0172 5.656054
+132.0138 1.515517
+156.0118 100.000000
+157.015 8.884065
+158.008 3.891301
+174.0228 0.751729
+184.0757 0.619071
+191.9647 0.590931
+219.0438 0.723589
+285.0221 3.694324
+287.0184 0.840167
+
+
+Name: Sulfadimidine
+Synon: 4-amino-N-(4,6-dimethylpyrimidin-2-yl)benzenesulfonamide
+SYNON: $:00in-source
+DB#: AU100801
+InChIKey: ASWVTGNCAZCNNR-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 279.091
+Instrument_type: LC-ESI-QTOF
+Instrument: Bruker maXis Impact
+Ion_mode: P
+Collision_energy: Ramp 20.8-31.3 eV
+Formula: C12H14N4O2S
+MW: 278
+ExactMass: 278.08374668799996
+Comments: "accession=AU100801" "author=Nikiforos Alygizakis, Anna Bletsou, Nikolaos Thomaidis, University of Athens" "license=CC BY" "copyright=Copyright (C) 2015 Department of Chemistry, University of Athens" "exact mass=278.0837" "instrument=Bruker maXis Impact" "instrument type=LC-ESI-QTOF" "ms level=MS2" "ionization=ESI" "fragmentation mode=CID" "collision energy=Ramp 20.8-31.3 eV" "resolution=35000" "column=Acclaim RSLC C18 2.2um, 2.1x100mm, Thermo" "flow gradient=99/1 at 0-1 min, 61/39 at 3 min, 0.1/99.9 at 14-16 min, 99/1 at 16.1-20 min" "flow rate=200 uL/min at 0-3 min, 400 uL/min at 14 min, 480 uL/min at 16-19 min, 200 uL/min at 19.1-20 min" "retention time=4.4 min" "solvent a=water with 0.01% formic acid and 5mM ammonium formate" "solvent b=90:10 methanol:water with 0.01% formic acid and 5mM ammonium formate" "precursor m/z=279.091" "precursor type=[M+H]+" "ionization mode=positive" "mass accuracy=0.08129248146496051" "mass error=-2.2687999944537296E-5" "SMILES=Cc1cc(nc(n1)NS(=O)(=O)c2ccc(cc2)N)C" "cas=57-68-1" "kegg=C19530" "pubchem cid=5327" "chemspider=5136" "InChI=InChI=1S/C12H14N4O2S/c1-8-7-9(2)15-12(14-8)16-19(17,18)11-5-3-10(13)4-6-11/h3-7H,13H2,1-2H3,(H,14,15,16)" "InChIKey=ASWVTGNCAZCNNR-UHFFFAOYSA-N" "molecular formula=C12H14N4O2S" "total exact mass=278.08374668799996" "SMILES=CC1=CC(C)=NC(=N1)NS(C2=CC=C(C=C2)N)(=O)=O"
+Num Peaks: 46
+53.0379 0.894101
+54.0335 0.661867
+55.0176 0.598003
+65.0379 8.717487
+68.0491 13.013818
+69.0329 1.640153
+78.0334 1.477589
+79.0178 2.261379
+80.0489 1.431143
+81.0444 1.950766
+82.0284 0.606712
+92.0499 30.585230
+93.0558 2.844868
+94.0647 1.686600
+95.0608 3.027752
+96.0443 1.300511
+108.0461 33.946818
+109.0497 2.360079
+110.0616 6.107757
+111.0651 0.519624
+120.0565 1.962378
+122.0716 6.078727
+123.0794 2.246865
+124.0872 71.211681
+125.0905 6.398049
+126.0663 17.911054
+127.0697 0.595100
+156.0117 82.855318
+157.0148 5.739085
+158.0072 1.544357
+174.0224 1.106015
+186.0334 11.263353
+187.0368 0.775081
+188.0128 1.637250
+188.0291 0.534138
+204.0445 100.000000
+205.0473 6.972829
+206.0406 3.358686
+213.1141 18.259405
+214.1167 2.241059
+215.0927 3.071296
+215.1291 1.320831
+279.0925 61.483976
+280.0953 8.438806
+281.0725 7.837901
+282.0742 1.222132
+
+
+Name: Sulfamethazine
+Synon: 4-amino-N-(4,6-dimethylpyrimidin-2-yl)benzenesulfonamide
+SYNON: $:00in-source
+DB#: AU100802
+InChIKey: ASWVTGNCAZCNNR-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 279.091
+Instrument_type: LC-ESI-QTOF
+Instrument: Bruker maXis Impact
+Ion_mode: P
+Collision_energy: 20 eV
+Formula: C12H14N4O2S
+MW: 278
+ExactMass: 278.08374668799996
+Comments: "accession=AU100802" "author=Nikiforos Alygizakis, Nikolaos Thomaidis, University of Athens" "license=CC BY-SA" "copyright=Copyright (C) 2015 Department of Chemistry, University of Athens" "exact mass=278.0837467" "instrument=Bruker maXis Impact" "instrument type=LC-ESI-QTOF" "ms level=MS2" "ionization=ESI" "fragmentation mode=CID" "collision energy=20 eV" "resolution=35000" "column=Acclaim RSLC C18 2.2um, 2.1x100mm, Thermo" "flow gradient=99/1 at 0-1 min, 61/39 at 3 min, 0.1/99.9 at 14-16 min, 99/1 at 16.1-20 min" "flow rate=200 uL/min at 0-3 min, 400 uL/min at 14 min, 480 uL/min at 16-19 min, 200 uL/min at 19.1-20 min" "retention time=4.1 min" "solvent a=90:10 water:methanol with 0.01% formic acid and 5mM ammonium formate" "solvent b=methanol with 0.01% formic acid and 5mM ammonium formate" "precursor m/z=279.091" "precursor type=[M+H]+" "ionization mode=positive" "mass accuracy=0.08129248146496051" "mass error=-2.2687999944537296E-5" "SMILES=CC1=CC(C)=NC(NS(=O)(=O)C2=CC=C(N)C=C2)=N1" "cas=57-68-1" "chebi=102265" "kegg=D02436" "pubchem cid=5327" "chemspider=5136" "InChI=InChI=1S/C12H14N4O2S/c1-8-7-9(2)15-12(14-8)16-19(17,18)11-5-3-10(13)4-6-11/h3-7H,13H2,1-2H3,(H,14,15,16)" "InChIKey=ASWVTGNCAZCNNR-UHFFFAOYSA-N" "molecular formula=C12H14N4O2S" "total exact mass=278.08374668799996" "SMILES=CC1=CC(C)=NC(=N1)NS(C2=CC=C(C=C2)N)(=O)=O"
+Num Peaks: 16
+122.0703 0.766124
+124.0861 36.693459
+125.0892 1.930893
+149.0227 0.828453
+156.0104 53.249536
+157.0129 2.999571
+158.0061 1.778967
+174.0209 0.627183
+186.0321 22.621444
+187.0346 1.719235
+188.0285 0.646661
+204.0431 100.000000
+213.1128 8.749399
+214.1159 1.407591
+215.1281 0.658348
+279.0909 80.894937
+
+
+Name: Sulfamethazine
+Synon: 4-amino-N-(4,6-dimethylpyrimidin-2-yl)benzenesulfonamide
+SYNON: $:00in-source
+DB#: AU100803
+InChIKey: ASWVTGNCAZCNNR-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 279.091
+Instrument_type: LC-ESI-QTOF
+Instrument: Bruker maXis Impact
+Ion_mode: P
+Collision_energy: 30 eV
+Formula: C12H14N4O2S
+MW: 278
+ExactMass: 278.083746688
+Comments: "accession=AU100803" "author=Nikiforos Alygizakis, Nikolaos Thomaidis, University of Athens" "license=CC BY-SA" "copyright=Copyright (C) 2015 Department of Chemistry, University of Athens" "exact mass=278.0837467" "instrument=Bruker maXis Impact" "instrument type=LC-ESI-QTOF" "ms level=MS2" "ionization=ESI" "fragmentation mode=CID" "collision energy=30 eV" "resolution=35000" "column=Acclaim RSLC C18 2.2um, 2.1x100mm, Thermo" "flow gradient=99/1 at 0-1 min, 61/39 at 3 min, 0.1/99.9 at 14-16 min, 99/1 at 16.1-20 min" "flow rate=200 uL/min at 0-3 min, 400 uL/min at 14 min, 480 uL/min at 16-19 min, 200 uL/min at 19.1-20 min" "retention time=4.2 min" "solvent a=90:10 water:methanol with 0.01% formic acid and 5mM ammonium formate" "solvent b=methanol with 0.01% formic acid and 5mM ammonium formate" "precursor m/z=279.091" "precursor type=[M+H]+" "ionization mode=positive" "mass accuracy=0.08129248166863394" "mass error=-2.2688000001380715E-5" "SMILES=CC1=CC(C)=NC(NS(=O)(=O)C2=CC=C(N)C=C2)=N1" "cas=57-68-1" "chebi=102265" "kegg=D02436" "pubchem cid=5327" "chemspider=5136" "InChI=InChI=1S/C12H14N4O2S/c1-8-7-9(2)15-12(14-8)16-19(17,18)11-5-3-10(13)4-6-11/h3-7H,13H2,1-2H3,(H,14,15,16)" "InChIKey=ASWVTGNCAZCNNR-UHFFFAOYSA-N" "molecular formula=C12H14N4O2S" "total exact mass=278.083746688" "SMILES=CC1=CC(C)=NC(=N1)NS(C2=CC=C(C=C2)N)(=O)=O"
+Num Peaks: 17
+108.0441 1.285794
+122.0704 6.630847
+123.0781 2.170942
+124.0861 100.000000
+125.0889 6.093546
+149.0221 1.388285
+156.0106 50.043481
+158.0064 1.615007
+186.0323 15.118951
+187.0355 1.323064
+196.0858 1.220573
+204.0429 70.964035
+205.0455 4.931983
+213.1123 22.610100
+214.1155 3.003292
+215.1283 0.804398
+279.0903 3.580968
+
+
+Name: Sulfamethazine
+Synon: 4-amino-N-(4,6-dimethylpyrimidin-2-yl)benzenesulfonamide
+SYNON: $:00in-source
+DB#: AU100804
+InChIKey: ASWVTGNCAZCNNR-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 279.091
+Instrument_type: LC-ESI-QTOF
+Instrument: Bruker maXis Impact
+Ion_mode: P
+Collision_energy: 40 eV
+Formula: C12H14N4O2S
+MW: 278
+ExactMass: 278.083746688
+Comments: "accession=AU100804" "author=Nikiforos Alygizakis, Nikolaos Thomaidis, University of Athens" "license=CC BY-SA" "copyright=Copyright (C) 2015 Department of Chemistry, University of Athens" "exact mass=278.0837467" "instrument=Bruker maXis Impact" "instrument type=LC-ESI-QTOF" "ms level=MS2" "ionization=ESI" "fragmentation mode=CID" "collision energy=40 eV" "resolution=35000" "column=Acclaim RSLC C18 2.2um, 2.1x100mm, Thermo" "flow gradient=99/1 at 0-1 min, 61/39 at 3 min, 0.1/99.9 at 14-16 min, 99/1 at 16.1-20 min" "flow rate=200 uL/min at 0-3 min, 400 uL/min at 14 min, 480 uL/min at 16-19 min, 200 uL/min at 19.1-20 min" "retention time=4.1 min" "solvent a=90:10 water:methanol with 0.01% formic acid and 5mM ammonium formate" "solvent b=methanol with 0.01% formic acid and 5mM ammonium formate" "precursor m/z=279.091" "precursor type=[M+H]+" "ionization mode=positive" "mass accuracy=0.08129248166863394" "mass error=-2.2688000001380715E-5" "SMILES=CC1=CC(C)=NC(NS(=O)(=O)C2=CC=C(N)C=C2)=N1" "cas=57-68-1" "chebi=102265" "kegg=D02436" "pubchem cid=5327" "chemspider=5136" "InChI=InChI=1S/C12H14N4O2S/c1-8-7-9(2)15-12(14-8)16-19(17,18)11-5-3-10(13)4-6-11/h3-7H,13H2,1-2H3,(H,14,15,16)" "InChIKey=ASWVTGNCAZCNNR-UHFFFAOYSA-N" "molecular formula=C12H14N4O2S" "total exact mass=278.083746688" "SMILES=CC1=CC(C)=NC(=N1)NS(C2=CC=C(C=C2)N)(=O)=O"
+Num Peaks: 22
+108.0445 1.153673
+122.0702 5.323878
+123.0772 2.202467
+124.0862 100.000000
+125.089 6.847126
+134.0701 0.714179
+149.0224 1.747990
+154.0624 0.644259
+155.0685 0.624282
+156.0104 10.373071
+157.0126 0.933926
+172.0852 0.564351
+186.0324 3.845578
+196.0852 5.209010
+197.0903 1.378415
+198.0888 2.362283
+204.0427 15.422264
+205.0463 0.869001
+206.0375 0.759127
+212.1036 0.659242
+213.1121 18.109174
+214.1152 2.577036
+
+
+Name: Sulfamethazine
+Synon: 4-amino-N-(4,6-dimethylpyrimidin-2-yl)benzenesulfonamide
+SYNON: $:00in-source
+DB#: AU100805
+InChIKey: ASWVTGNCAZCNNR-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 279.091
+Instrument_type: LC-ESI-QTOF
+Instrument: Bruker maXis Impact
+Ion_mode: P
+Collision_energy: 50 eV
+Formula: C12H14N4O2S
+MW: 278
+ExactMass: 278.083746688
+Comments: "accession=AU100805" "author=Nikiforos Alygizakis, Nikolaos Thomaidis, University of Athens" "license=CC BY-SA" "copyright=Copyright (C) 2015 Department of Chemistry, University of Athens" "exact mass=278.0837467" "instrument=Bruker maXis Impact" "instrument type=LC-ESI-QTOF" "ms level=MS2" "ionization=ESI" "fragmentation mode=CID" "collision energy=50 eV" "resolution=35000" "column=Acclaim RSLC C18 2.2um, 2.1x100mm, Thermo" "flow gradient=99/1 at 0-1 min, 61/39 at 3 min, 0.1/99.9 at 14-16 min, 99/1 at 16.1-20 min" "flow rate=200 uL/min at 0-3 min, 400 uL/min at 14 min, 480 uL/min at 16-19 min, 200 uL/min at 19.1-20 min" "retention time=4.2 min" "solvent a=90:10 water:methanol with 0.01% formic acid and 5mM ammonium formate" "solvent b=methanol with 0.01% formic acid and 5mM ammonium formate" "precursor m/z=279.091" "precursor type=[M+H]+" "ionization mode=positive" "mass accuracy=0.08129248166863394" "mass error=-2.2688000001380715E-5" "SMILES=CC1=CC(C)=NC(NS(=O)(=O)C2=CC=C(N)C=C2)=N1" "cas=57-68-1" "chebi=102265" "kegg=D02436" "pubchem cid=5327" "chemspider=5136" "InChI=InChI=1S/C12H14N4O2S/c1-8-7-9(2)15-12(14-8)16-19(17,18)11-5-3-10(13)4-6-11/h3-7H,13H2,1-2H3,(H,14,15,16)" "InChIKey=ASWVTGNCAZCNNR-UHFFFAOYSA-N" "molecular formula=C12H14N4O2S" "total exact mass=278.083746688" "SMILES=CC1=CC(C)=NC(=N1)NS(C2=CC=C(C=C2)N)(=O)=O"
+Num Peaks: 24
+108.0453 1.770916
+122.0703 2.803951
+123.078 2.792598
+124.0859 100.000000
+125.0891 7.901010
+149.0231 1.623340
+154.0639 2.111477
+155.0605 2.463390
+155.0714 2.690430
+156.01 2.713134
+169.0745 1.475763
+171.0781 1.555228
+172.0869 1.271427
+181.0634 0.930866
+186.1022 1.033034
+195.0786 1.555228
+196.0859 7.628562
+197.0856 3.871041
+198.0886 5.903054
+199.0904 0.998978
+204.0438 2.622318
+212.1048 2.327165
+213.1122 9.342718
+214.1153 1.725508
+
+
+Name: Sulfamethazine
+Synon: 4-amino-N-(4,6-dimethylpyrimidin-2-yl)benzenesulfonamide
+SYNON: $:00in-source
+DB#: AU100806
+InChIKey: ASWVTGNCAZCNNR-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 279.091
+Instrument_type: LC-ESI-QTOF
+Instrument: Bruker maXis Impact
+Ion_mode: P
+Collision_energy: 10 eV
+Formula: C12H14N4O2S
+MW: 278
+ExactMass: 278.08374668799996
+Comments: "accession=AU100806" "author=Nikiforos Alygizakis, Nikolaos Thomaidis, University of Athens" "license=CC BY-SA" "copyright=Copyright (C) 2015 Department of Chemistry, University of Athens" "exact mass=278.0837467" "instrument=Bruker maXis Impact" "instrument type=LC-ESI-QTOF" "ms level=MS2" "ionization=ESI" "fragmentation mode=CID" "collision energy=10 eV" "resolution=35000" "column=Acclaim RSLC C18 2.2um, 2.1x100mm, Thermo" "flow gradient=99/1 at 0-1 min, 61/39 at 3 min, 0.1/99.9 at 14-16 min, 99/1 at 16.1-20 min" "flow rate=200 uL/min at 0-3 min, 400 uL/min at 14 min, 480 uL/min at 16-19 min, 200 uL/min at 19.1-20 min" "retention time=4.2 min" "solvent a=90:10 water:methanol with 0.01% formic acid and 5mM ammonium formate" "solvent b=methanol with 0.01% formic acid and 5mM ammonium formate" "precursor m/z=279.091" "precursor type=[M+H]+" "ionization mode=positive" "mass accuracy=0.08129248146496051" "mass error=-2.2687999944537296E-5" "SMILES=CC1=CC(C)=NC(NS(=O)(=O)C2=CC=C(N)C=C2)=N1" "cas=57-68-1" "chebi=102265" "kegg=D02436" "pubchem cid=5327" "chemspider=5136" "InChI=InChI=1S/C12H14N4O2S/c1-8-7-9(2)15-12(14-8)16-19(17,18)11-5-3-10(13)4-6-11/h3-7H,13H2,1-2H3,(H,14,15,16)" "InChIKey=ASWVTGNCAZCNNR-UHFFFAOYSA-N" "molecular formula=C12H14N4O2S" "total exact mass=278.08374668799996" "SMILES=CC1=CC(C)=NC(=N1)NS(C2=CC=C(C=C2)N)(=O)=O"
+Num Peaks: 4
+124.086 0.740586
+156.0098 1.123942
+186.0319 0.831793
+279.0908 100.000000
+
+
+Name: Sulfadimethoxine
+Synon: 4-amino-n-(2,6-dimethoxypyrimidin-4-yl)benzenesulfonamide
+SYNON: $:00in-source
+DB#: AU100902
+InChIKey: ZZORFUFYDOWNEF-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 311.0809
+Instrument_type: LC-ESI-QTOF
+Instrument: Bruker maXis Impact
+Ion_mode: P
+Collision_energy: 20 eV
+Formula: C12H14N4O4S
+MW: 310
+ExactMass: 310.07357592799997
+Comments: "accession=AU100902" "author=Nikiforos Alygizakis, Anna Bletsou, Nikolaos Thomaidis, University of Athens" "license=CC BY-SA" "copyright=Copyright (C) 2015 Department of Chemistry, University of Athens" "exact mass=310.0735759" "instrument=Bruker maXis Impact" "instrument type=LC-ESI-QTOF" "ms level=MS2" "ionization=ESI" "fragmentation mode=CID" "collision energy=20 eV" "resolution=35000" "column=Acclaim RSLC C18 2.2um, 2.1x100mm, Thermo" "flow gradient=99/1 at 0-1 min, 61/39 at 3 min, 0.1/99.9 at 14-16 min, 99/1 at 16.1-20 min" "flow rate=200 uL/min at 0-3 min, 400 uL/min at 14 min, 480 uL/min at 16-19 min, 200 uL/min at 19.1-20 min" "retention time=4.6 min" "solvent a=water with 0.01% formic acid and 5mM ammonium formate" "solvent b=90:10 methanol:water with 0.01% formic acid and 5mM ammonium formate" "precursor m/z=311.0809" "precursor type=[M+H]+" "ionization mode=positive" "mass accuracy=0.15453214911901536" "mass error=4.8072000026877504E-5" "SMILES=COc1cc(nc(n1)OC)NS(=O)(=O)c2ccc(cc2)N" "cas=122-11-2" "chebi=32161" "pubchem=5323" "chemspider=5132" "InChI=InChI=1S/C12H14N4O4S/c1-19-11-7-10(14-12(15-11)20-2)16-21(17,18)9-5-3-8(13)4-6-9/h3-7H,13H2,1-2H3,(H,14,15,16)" "InChIKey=ZZORFUFYDOWNEF-UHFFFAOYSA-N" "molecular formula=C12H14N4O4S" "total exact mass=310.07357592799997" "SMILES=COC=1C=C(N=C(N1)OC)NS(C2=CC=C(C=C2)N)(=O)=O"
+Num Peaks: 15
+140.0447 6.249276
+141.0515 0.699085
+154.0604 5.781932
+155.0683 3.398864
+156.0107 100.000000
+156.0763 16.893901
+157.0134 4.171334
+157.0794 0.857441
+158.0069 2.371480
+218.0242 0.965586
+245.1032 9.010853
+246.1061 0.834267
+311.0811 75.335059
+312.0835 7.145340
+313.0796 2.301958
+
+
+Name: Sulfadimethoxine
+Synon: 4-amino-n-(2,6-dimethoxypyrimidin-4-yl)benzenesulfonamide
+SYNON: $:00in-source
+DB#: AU100903
+InChIKey: ZZORFUFYDOWNEF-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 311.0809
+Instrument_type: LC-ESI-QTOF
+Instrument: Bruker maXis Impact
+Ion_mode: P
+Collision_energy: 30 eV
+Formula: C12H14N4O4S
+MW: 310
+ExactMass: 310.073575928
+Comments: "accession=AU100903" "author=Nikiforos Alygizakis, Anna Bletsou, Nikolaos Thomaidis, University of Athens" "license=CC BY-SA" "copyright=Copyright (C) 2015 Department of Chemistry, University of Athens" "exact mass=310.0735759" "instrument=Bruker maXis Impact" "instrument type=LC-ESI-QTOF" "ms level=MS2" "ionization=ESI" "fragmentation mode=CID" "collision energy=30 eV" "resolution=35000" "column=Acclaim RSLC C18 2.2um, 2.1x100mm, Thermo" "flow gradient=99/1 at 0-1 min, 61/39 at 3 min, 0.1/99.9 at 14-16 min, 99/1 at 16.1-20 min" "flow rate=200 uL/min at 0-3 min, 400 uL/min at 14 min, 480 uL/min at 16-19 min, 200 uL/min at 19.1-20 min" "retention time=4.6 min" "solvent a=water with 0.01% formic acid and 5mM ammonium formate" "solvent b=90:10 methanol:water with 0.01% formic acid and 5mM ammonium formate" "precursor m/z=311.0809" "precursor type=[M+H]+" "ionization mode=positive" "mass accuracy=0.15453214893628664" "mass error=4.8071999970034085E-5" "SMILES=COc1cc(nc(n1)OC)NS(=O)(=O)c2ccc(cc2)N" "cas=122-11-2" "chebi=32161" "pubchem=5323" "chemspider=5132" "InChI=InChI=1S/C12H14N4O4S/c1-19-11-7-10(14-12(15-11)20-2)16-21(17,18)9-5-3-8(13)4-6-9/h3-7H,13H2,1-2H3,(H,14,15,16)" "InChIKey=ZZORFUFYDOWNEF-UHFFFAOYSA-N" "molecular formula=C12H14N4O4S" "total exact mass=310.073575928" "SMILES=COC=1C=C(N=C(N1)OC)NS(C2=CC=C(C=C2)N)(=O)=O"
+Num Peaks: 21
+108.0448 1.310092
+124.0204 1.354502
+126.0659 3.563895
+127.0504 0.843788
+138.0294 1.576552
+141.0517 10.458532
+154.0604 60.575108
+155.0672 5.484623
+156.0105 100.000000
+156.0762 63.495059
+157.0131 4.540913
+157.0798 3.452870
+158.0071 2.320417
+201.0772 2.720107
+212.069 3.896969
+218.0235 0.843788
+230.0808 9.270567
+231.0843 1.232375
+245.1039 10.447430
+246.107 1.176862
+311.0829 3.819252
+
+
+Name: Sulfadimethoxine
+Synon: 4-amino-n-(2,6-dimethoxypyrimidin-4-yl)benzenesulfonamide
+SYNON: $:00in-source
+DB#: AU100904
+InChIKey: ZZORFUFYDOWNEF-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 311.0809
+Instrument_type: LC-ESI-QTOF
+Instrument: Bruker maXis Impact
+Ion_mode: P
+Collision_energy: 40 eV
+Formula: C12H14N4O4S
+MW: 310
+ExactMass: 310.073575928
+Comments: "accession=AU100904" "author=Nikiforos Alygizakis, Anna Bletsou, Nikolaos Thomaidis, University of Athens" "license=CC BY-SA" "copyright=Copyright (C) 2015 Department of Chemistry, University of Athens" "exact mass=310.0735759" "instrument=Bruker maXis Impact" "instrument type=LC-ESI-QTOF" "ms level=MS2" "ionization=ESI" "fragmentation mode=CID" "collision energy=40 eV" "resolution=35000" "column=Acclaim RSLC C18 2.2um, 2.1x100mm, Thermo" "flow gradient=99/1 at 0-1 min, 61/39 at 3 min, 0.1/99.9 at 14-16 min, 99/1 at 16.1-20 min" "flow rate=200 uL/min at 0-3 min, 400 uL/min at 14 min, 480 uL/min at 16-19 min, 200 uL/min at 19.1-20 min" "retention time=4.7 min" "solvent a=water with 0.01% formic acid and 5mM ammonium formate" "solvent b=90:10 methanol:water with 0.01% formic acid and 5mM ammonium formate" "precursor m/z=311.0809" "precursor type=[M+H]+" "ionization mode=positive" "mass accuracy=0.15453214893628664" "mass error=4.8071999970034085E-5" "SMILES=COc1cc(nc(n1)OC)NS(=O)(=O)c2ccc(cc2)N" "cas=122-11-2" "chebi=32161" "pubchem=5323" "chemspider=5132" "InChI=InChI=1S/C12H14N4O4S/c1-19-11-7-10(14-12(15-11)20-2)16-21(17,18)9-5-3-8(13)4-6-9/h3-7H,13H2,1-2H3,(H,14,15,16)" "InChIKey=ZZORFUFYDOWNEF-UHFFFAOYSA-N" "molecular formula=C12H14N4O4S" "total exact mass=310.073575928" "SMILES=COC=1C=C(N=C(N1)OC)NS(C2=CC=C(C=C2)N)(=O)=O"
+Num Peaks: 27
+112.0515 2.118270
+123.0436 2.184466
+124.0205 1.897617
+124.0508 2.162401
+126.0666 5.803177
+127.0502 2.030009
+132.0558 1.963813
+138.0295 4.898500
+140.045 77.780229
+141.0524 38.989409
+142.058 2.449250
+154.0604 100.000000
+155.0634 5.383936
+156.0104 20.101500
+156.0407 4.236540
+156.0761 54.744042
+157.0639 1.809356
+160.049 1.985878
+178.0597 3.420124
+201.077 8.274492
+202.0789 1.787290
+212.0697 15.114740
+213.0728 2.581642
+229.0713 2.206531
+230.0797 6.421006
+231.0852 1.919682
+245.1026 1.919682
+
+
+Name: Sulfadimethoxine
+Synon: 4-amino-n-(2,6-dimethoxypyrimidin-4-yl)benzenesulfonamide
+SYNON: $:00in-source
+DB#: AU100905
+InChIKey: ZZORFUFYDOWNEF-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 311.0809
+Instrument_type: LC-ESI-QTOF
+Instrument: Bruker maXis Impact
+Ion_mode: P
+Collision_energy: 50 eV
+Formula: C12H14N4O4S
+MW: 310
+ExactMass: 310.07357592799997
+Comments: "accession=AU100905" "author=Nikiforos Alygizakis, Anna Bletsou, Nikolaos Thomaidis, University of Athens" "license=CC BY-SA" "copyright=Copyright (C) 2015 Department of Chemistry, University of Athens" "exact mass=310.0735759" "instrument=Bruker maXis Impact" "instrument type=LC-ESI-QTOF" "ms level=MS2" "ionization=ESI" "fragmentation mode=CID" "collision energy=50 eV" "resolution=35000" "column=Acclaim RSLC C18 2.2um, 2.1x100mm, Thermo" "flow gradient=99/1 at 0-1 min, 61/39 at 3 min, 0.1/99.9 at 14-16 min, 99/1 at 16.1-20 min" "flow rate=200 uL/min at 0-3 min, 400 uL/min at 14 min, 480 uL/min at 16-19 min, 200 uL/min at 19.1-20 min" "retention time=4.7 min" "solvent a=water with 0.01% formic acid and 5mM ammonium formate" "solvent b=90:10 methanol:water with 0.01% formic acid and 5mM ammonium formate" "precursor m/z=311.0809" "precursor type=[M+H]+" "ionization mode=positive" "mass accuracy=0.15453214911901536" "mass error=4.8072000026877504E-5" "SMILES=COc1cc(nc(n1)OC)NS(=O)(=O)c2ccc(cc2)N" "cas=122-11-2" "chebi=32161" "pubchem=5323" "chemspider=5132" "InChI=InChI=1S/C12H14N4O4S/c1-19-11-7-10(14-12(15-11)20-2)16-21(17,18)9-5-3-8(13)4-6-9/h3-7H,13H2,1-2H3,(H,14,15,16)" "InChIKey=ZZORFUFYDOWNEF-UHFFFAOYSA-N" "molecular formula=C12H14N4O4S" "total exact mass=310.07357592799997" "SMILES=COC=1C=C(N=C(N1)OC)NS(C2=CC=C(C=C2)N)(=O)=O"
+Num Peaks: 22
+112.051 5.243790
+123.0427 7.773689
+124.0502 6.439742
+126.0287 5.841766
+126.0666 6.255750
+127.0491 3.955842
+132.0559 9.521619
+133.0628 5.105796
+138.0293 10.579577
+140.045 45.768169
+141.0521 46.780129
+142.0539 3.817847
+154.0606 100.000000
+156.0102 3.679853
+156.0405 5.243790
+156.0769 17.157314
+157.0629 5.887764
+160.0507 3.909844
+178.0613 9.429623
+184.0741 4.737810
+201.0768 9.015639
+212.0705 7.589696
+
+
+Name: Sulfadoxine
+Synon: 4-amino-N-(5,6-dimethoxypyrimidin-4-yl)benzenesulfonamide
+SYNON: $:00in-source
+DB#: AU101001
+InChIKey: PJSFRIWCGOHTNF-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 311.0809
+Instrument_type: LC-ESI-QTOF
+Instrument: Bruker maXis Impact
+Ion_mode: P
+Collision_energy: Ramp 21.8-32.7 eV
+Formula: C12H14N4O4S
+MW: 310
+ExactMass: 310.07357592799997
+Comments: "accession=AU101001" "author=Nikiforos Alygizakis, Anna Bletsou, Nikolaos Thomaidis, University of Athens" "license=CC BY" "copyright=Copyright (C) 2015 Department of Chemistry, University of Athens" "exact mass=310.0736" "instrument=Bruker maXis Impact" "instrument type=LC-ESI-QTOF" "ms level=MS2" "ionization=ESI" "fragmentation mode=CID" "collision energy=Ramp 21.8-32.7 eV" "resolution=35000" "column=Acclaim RSLC C18 2.2um, 2.1x100mm, Thermo" "flow gradient=99/1 at 0-1 min, 61/39 at 3 min, 0.1/99.9 at 14-16 min, 99/1 at 16.1-20 min" "flow rate=200 uL/min at 0-3 min, 400 uL/min at 14 min, 480 uL/min at 16-19 min, 200 uL/min at 19.1-20 min" "retention time=4.8 min" "solvent a=water with 0.01% formic acid and 5mM ammonium formate" "solvent b=90:10 methanol:water with 0.01% formic acid and 5mM ammonium formate" "precursor m/z=311.0809" "precursor type=[M+H]+" "ionization mode=positive" "mass accuracy=0.15453214911901536" "mass error=4.8072000026877504E-5" "SMILES=COc1c(ncnc1OC)NS(=O)(=O)c2ccc(cc2)N" "cas=2447-57-6" "kegg=C07630" "pubchem cid=17134" "chemspider=16218" "InChI=InChI=1S/C12H14N4O4S/c1-19-10-11(14-7-15-12(10)20-2)16-21(17,18)9-5-3-8(13)4-6-9/h3-7H,13H2,1-2H3,(H,14,15,16)" "InChIKey=PJSFRIWCGOHTNF-UHFFFAOYSA-N" "molecular formula=C12H14N4O4S" "total exact mass=310.07357592799997" "SMILES=COC1=C(N=CN=C1OC)NS(C2=CC=C(C=C2)N)(=O)=O"
+Num Peaks: 42
+53.0386 0.535490
+54.0339 0.505437
+65.0381 7.755041
+68.0491 10.088247
+69.0329 1.049123
+78.0332 1.038195
+79.0179 1.721217
+80.0363 0.707612
+80.0493 1.446642
+92.0498 46.272062
+93.0559 3.808535
+96.0447 1.331894
+108.0463 57.395771
+109.049 3.816731
+109.0643 0.531392
+110.0614 7.111633
+113.0359 0.703513
+120.0568 1.860554
+124.0215 1.529971
+124.0512 0.572373
+126.0665 2.939730
+138.0301 0.707612
+140.0457 34.351948
+141.0528 5.744222
+154.0615 32.562428
+155.0682 7.798754
+156.0118 100.000000
+156.0771 40.377575
+157.0147 7.961314
+157.0796 2.486203
+158.0078 3.766188
+201.0773 1.349653
+212.0697 2.576362
+213.0752 0.527294
+218.0236 1.945249
+230.0808 5.531119
+231.085 0.811431
+245.1045 18.128791
+246.1073 2.479373
+311.0829 49.986340
+312.0854 8.491339
+313.0812 2.222556
+
+
+Name: Sulfadiazine
+Synon: 4-amino-n-pyrimidin-2-ylbenzenesulfonamide
+SYNON: $:00in-source
+DB#: AU101101
+InChIKey: SEEPANYCNGTZFQ-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 251.0597
+Instrument_type: LC-ESI-QTOF
+Instrument: Bruker maXis Impact
+Ion_mode: P
+Collision_energy: 10 eV
+Formula: C10H10N4O2S
+MW: 250
+ExactMass: 250.05244656
+Comments: "accession=AU101101" "author=Nikiforos Alygizakis, Anna Bletsou, Nikolaos Thomaidis, University of Athens" "license=CC BY-SA" "copyright=Copyright (C) 2015 Department of Chemistry, University of Athens" "exact mass=250.0524466" "instrument=Bruker maXis Impact" "instrument type=LC-ESI-QTOF" "ms level=MS2" "ionization=ESI" "fragmentation mode=CID" "collision energy=10 eV" "resolution=35000" "column=Acclaim RSLC C18 2.2um, 2.1x100mm, Thermo" "flow gradient=99/1 at 0-1 min, 61/39 at 3 min, 0.1/99.9 at 14-16 min, 99/1 at 16.1-20 min" "flow rate=200 uL/min at 0-3 min, 400 uL/min at 14 min, 480 uL/min at 16-19 min, 200 uL/min at 19.1-20 min" "retention time=3.3 min" "solvent a=water with 0.01% formic acid and 5mM ammonium formate" "solvent b=90:10 methanol:water with 0.01% formic acid and 5mM ammonium formate" "precursor m/z=251.0597" "precursor type=[M+H]+" "ionization mode=positive" "mass accuracy=0.08985910518808851" "mass error=-2.2559999990789947E-5" "SMILES=c1cnc(nc1)NS(=O)(=O)c2ccc(cc2)N" "cas=141582-64-1" "chebi=9328" "kegg=C07658" "pubchem=5215" "chemspider=5026" "InChI=InChI=1S/C10H10N4O2S/c11-8-2-4-9(5-3-8)17(15,16)14-10-12-6-1-7-13-10/h1-7H,11H2,(H,12,13,14)" "InChIKey=SEEPANYCNGTZFQ-UHFFFAOYSA-N" "molecular formula=C10H10N4O2S" "total exact mass=250.05244656" "SMILES=C1=CN=C(N=C1)NS(C2=CC=C(C=C2)N)(=O)=O"
+Num Peaks: 6
+156.0106 9.361897
+174.0199 0.724251
+176.012 0.693756
+251.0596 100.000000
+252.0616 7.867653
+253.0565 2.729283

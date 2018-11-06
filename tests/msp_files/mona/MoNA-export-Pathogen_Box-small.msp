@@ -1,0 +1,339 @@
+Name: MMV689758
+SYNON: $:00in-source
+DB#: MoNA001278
+InChIKey: QUIJNHUBAXPXFS-XLJNKUFUSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 555.164367675781
+Instrument_type: LC-ESI-QFT
+Instrument: Thermo Q Exactive HF
+Ion_mode: P
+Collision_energy: HCD (NCE 20-30-40%)
+Formula: C32H31BrN2O2
+MW: 554
+ExactMass: 554.156890332
+Comments: "precursor type=[M+H]+" "ms level=MS2" "precursor m/z=555.164367675781" "instrument type=LC-ESI-QFT" "instrument=Thermo Q Exactive HF" "collision energy=HCD (NCE 20-30-40%)" "formula=C32H31N2O2Br" "exact mass=554.157" "molecular weight=555.5" "origin=pathogen_box_qe_rp_pos_proton_sept_2018_dinesh_barupal.msp" "ionization mode=positive" "mass accuracy=0.3626741785129274" "mass error=2.0134378098646266E-4" "InChI=InChI=1S/C32H31BrN2O2/c1-35(2)19-18-32(36,28-15-9-13-22-10-7-8-14-26(22)28)30(23-11-5-4-6-12-23)27-21-24-20-25(33)16-17-29(24)34-31(27)37-3/h4-17,20-21,30,36H,18-19H2,1-3H3/t30-,32-/m1/s1" "InChIKey=QUIJNHUBAXPXFS-XLJNKUFUSA-N" "molecular formula=C32H31BrN2O2" "total exact mass=554.156890332" "SMILES=BrC=1C=CC2=NC(OC)=C(C=C2C1)C(C=3C=CC=CC3)C(O)(C4=CC=CC=5C=CC=CC54)CCN(C)C"
+Num Peaks: 20
+72.0808 50.37
+104.586 3.73
+130.8709 3.27
+141.0702 3.57
+220.6961 4.09
+225.5517 3.49
+228.1388 24.74
+229.146 25.5
+237.9866 5.44
+249.9865 14.94
+255.118 6.49
+328.0339 62.6
+342.1359 3.57
+350.0203 4.74
+450.6161 3.8
+466.0805 5.32
+478.0791 4.82
+523.1375 15.29
+537.1512 44.68
+555.1642 100
+
+
+Name: MMV688472
+SYNON: $:00in-source
+DB#: MoNA001279
+InChIKey: HAWUXIAKFTWNEO-ZDUSSCGKSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 394.095184326172
+Instrument_type: LC-ESI-QFT
+Instrument: Thermo Q Exactive HF
+Ion_mode: P
+Collision_energy: HCD (NCE 20-30-40%)
+Formula: C21H16ClN3O3
+MW: 393
+ExactMass: 393.088019052
+Comments: "precursor type=[M+H]+" "ms level=MS2" "precursor m/z=394.095184326172" "instrument type=LC-ESI-QFT" "instrument=Thermo Q Exactive HF" "collision energy=HCD (NCE 20-30-40%)" "formula=C21H16N3O3Cl" "exact mass=393.088" "molecular weight=393.82" "origin=pathogen_box_qe_rp_pos_proton_sept_2018_dinesh_barupal.msp" "ionization mode=positive" "mass accuracy=0.2809621441676562" "mass error=-1.1072582799442898E-4" "InChI=InChI=1S/C21H16ClN3O3/c1-13(27-17-4-2-3-15(22)11-17)20(26)24-16-5-6-19-18(12-16)25-21(28-19)14-7-9-23-10-8-14/h2-13H,1H3,(H,24,26)/t13-/m0/s1" "InChIKey=HAWUXIAKFTWNEO-ZDUSSCGKSA-N" "molecular formula=C21H16ClN3O3" "total exact mass=393.088019052" "SMILES=ClC1=CC=CC(OC(C(O)=NC=2C=CC=3OC(=NC3C2)C=4C=CN=CC4)C)=C1"
+Num Peaks: 27
+79.0417 16.12
+80.0494 0.14
+105.0446 1.47
+107.0367 0.25
+111.0315 7.26
+119.4477 0.12
+119.8092 0.12
+161.071 1.11
+163.0625 1.58
+196.0995 0.26
+210.1023 0.14
+211.0754 0.61
+211.1106 0.16
+212.0815 1.33
+216.7879 0.44
+223.088 0.24
+224.096 2.09
+225.1022 0.25
+225.8721 0.12
+238.0975 10.84
+239.1052 5.61
+251.0714 0.13
+252.0757 1.18
+266.0924 40.32
+267.1002 17.3
+372.6876 0.12
+394.0952 100
+
+
+Name: MMV688416
+SYNON: $:00in-source
+DB#: MoNA001280
+InChIKey: RBWQOYBXBPZIQX-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 457.145751953125
+Instrument_type: LC-ESI-QFT
+Instrument: Thermo Q Exactive HF
+Ion_mode: P
+Collision_energy: HCD (NCE 20-30-40%)
+Formula: C23H25ClN4O2S
+MW: 456
+ExactMass: 456.13867472
+Comments: "precursor type=[M+H]+" "ms level=MS2" "precursor m/z=457.145751953125" "instrument type=LC-ESI-QFT" "instrument=Thermo Q Exactive HF" "collision energy=HCD (NCE 20-30-40%)" "formula=C23H25N4O2ClS" "exact mass=456.139" "molecular weight=456.99" "origin=pathogen_box_qe_rp_pos_proton_sept_2018_dinesh_barupal.msp" "ionization mode=positive" "mass accuracy=0.43479978567934974" "mass error=-1.9876687497344392E-4" "InChI=InChI=1S/C23H25ClN4O2S/c1-23(2,3)30-22(29)28-14-12-27(13-15-28)21-25-11-10-18(26-21)20-9-8-19(31-20)16-4-6-17(24)7-5-16/h4-11H,12-15H2,1-3H3" "InChIKey=RBWQOYBXBPZIQX-UHFFFAOYSA-N" "molecular formula=C23H25ClN4O2S" "total exact mass=456.13867472" "SMILES=O=C(OC(C)(C)C)N1CCN(C2=NC=CC(=N2)C=3SC(=CC3)C=4C=CC(Cl)=CC4)CC1"
+Num Peaks: 15
+70.0653 1.57
+74.4307 0.11
+79.4867 0.11
+126.8087 0.11
+213.8424 0.96
+288.0354 5.08
+312.0352 0.24
+314.0511 96.55
+340.0677 2.61
+341.0586 0.16
+355.0789 0.25
+357.0934 100
+383.0717 1.45
+401.0832 62.15
+457.3246 0.17
+
+
+Name: MMV010764
+SYNON: $:00in-source
+DB#: MoNA001281
+InChIKey: LVVHGBHCFCKIPX-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 321.083673919593
+Instrument_type: LC-ESI-QFT
+Instrument: Thermo Q Exactive HF
+Ion_mode: P
+Collision_energy: HCD (NCE 20-30-40%)
+Formula: C14H16N4OS2
+MW: 320
+ExactMass: 320.076553132
+Comments: "precursor type=[M+H]+" "ms level=MS2" "precursor m/z=321.083673919593" "instrument type=LC-ESI-QFT" "instrument=Thermo Q Exactive HF" "collision energy=HCD (NCE 20-30-40%)" "formula=C14H16N4OS2" "exact mass=320.077" "molecular weight=320.44" "origin=pathogen_box_qe_rp_pos_proton_sept_2018_dinesh_barupal.msp" "ionization mode=positive" "mass accuracy=0.48340174100294764" "mass error=-1.55212406980354E-4" "InChI=InChI=1S/C14H16N4OS2/c1-2-12(20-7-1)11-9-16-14-18(11)17-13(21-14)15-8-10-3-5-19-6-4-10/h1-2,7,9-10H,3-6,8H2,(H,15,17)" "InChIKey=LVVHGBHCFCKIPX-UHFFFAOYSA-N" "molecular formula=C14H16N4OS2" "total exact mass=320.076553132" "SMILES=N=1C=C(C=2SC=CC2)N3NC(=NCC4CCOCC4)SC13"
+Num Peaks: 15
+71.5945 0.2
+77.2353 0.17
+81.0701 1
+83.2662 0.2
+96.4579 0.23
+99.0805 4.03
+120.6399 0.18
+121.4981 0.19
+123.0137 7.24
+153.8457 0.21
+180.9887 6.87
+181.9958 0.42
+219.8642 0.34
+223.0109 1.11
+321.0837 100
+
+
+Name: MMV688553
+SYNON: $:00in-source
+DB#: MoNA001282
+InChIKey: CZPFRNLXROZEKS-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 344.160341376985
+Instrument_type: LC-ESI-QFT
+Instrument: Thermo Q Exactive HF
+Ion_mode: P
+Collision_energy: HCD (NCE 20-30-40%)
+Formula: C18H21N3O4
+MW: 343
+ExactMass: 343.153206152
+Comments: "precursor type=[M+H]+" "ms level=MS2" "precursor m/z=344.160341376985" "instrument type=LC-ESI-QFT" "instrument=Thermo Q Exactive HF" "collision energy=HCD (NCE 20-30-40%)" "formula=C18H21N3O4" "exact mass=343.153" "molecular weight=343.38" "origin=pathogen_box_qe_rp_pos_proton_sept_2018_dinesh_barupal.msp" "ionization mode=positive" "mass accuracy=0.40903903808478703" "mass error=-1.4077501498377387E-4" "InChI=InChI=1S/C18H21N3O4/c22-18(19-10-15-3-8-23-12-15)21-6-4-20(5-7-21)11-14-1-2-16-17(9-14)25-13-24-16/h1-3,8-9,12H,4-7,10-11,13H2,(H,19,22)" "InChIKey=CZPFRNLXROZEKS-UHFFFAOYSA-N" "molecular formula=C18H21N3O4" "total exact mass=343.153206152" "SMILES=OC(=NCC1=COC=C1)N2CCN(CC3=CC=C4OCOC4=C3)CC2"
+Num Peaks: 15
+73.7578 0.22
+85.0759 0.3
+87.0918 6.34
+99.8469 0.26
+122.4545 0.24
+125.0457 0.22
+133.6132 0.25
+135.044 100
+144.2935 0.21
+150.282 0.19
+186.6096 0.21
+212.891 1.89
+215.0704 0.32
+221.1284 34.38
+344.1588 0.33
+
+
+Name: MMV688796
+SYNON: $:00in-source
+DB#: MoNA001283
+InChIKey: GVQWKADEEQMGQO-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 355.156219379321
+Instrument_type: LC-ESI-QFT
+Instrument: Thermo Q Exactive HF
+Ion_mode: P
+Collision_energy: HCD (NCE 20-30-40%)
+Formula: C19H19FN4O2
+MW: 354
+ExactMass: 354.149204068
+Comments: "precursor type=[M+H]+" "ms level=MS2" "precursor m/z=355.156219379321" "instrument type=LC-ESI-QFT" "instrument=Thermo Q Exactive HF" "collision energy=HCD (NCE 20-30-40%)" "formula=C19H19N4O2F" "exact mass=354.149" "molecular weight=354.38" "origin=pathogen_box_qe_rp_pos_proton_sept_2018_dinesh_barupal.msp" "ionization mode=positive" "mass accuracy=0.7340113020574152" "mass error=-2.606886790204044E-4" "InChI=InChI=1S/C19H19FN4O2/c20-14-7-5-13(6-8-14)15-9-10-16(26-15)19(25)21-12-18-23-22-17-4-2-1-3-11-24(17)18/h5-10H,1-4,11-12H2,(H,21,25)" "InChIKey=GVQWKADEEQMGQO-UHFFFAOYSA-N" "molecular formula=C19H19FN4O2" "total exact mass=354.149204068" "SMILES=O=C(NCC1=NN=C2N1CCCCC2)C=3OC(=CC3)C=4C=CC(F)=CC4"
+Num Peaks: 13
+83.9265 0.07
+96.0558 0.14
+96.0808 0.15
+133.0444 0.75
+138.1024 1.62
+149.4284 0.1
+150.1026 22.73
+168.1128 0.35
+189.0346 13.65
+193.1084 9.5
+312.1512 0.45
+326.1284 0.14
+355.1564 100
+
+
+Name: MMV676526
+SYNON: $:00in-source
+DB#: MoNA001284
+InChIKey: RWSCJEILSRMTEH-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 386.095001220703
+Instrument_type: LC-ESI-QFT
+Instrument: Thermo Q Exactive HF
+Ion_mode: P
+Collision_energy: HCD (NCE 20-30-40%)
+Formula: C21H17ClFNO3
+MW: 385
+ExactMass: 385.08809930399997
+Comments: "precursor type=[M+H]+" "ms level=MS2" "precursor m/z=386.095001220703" "instrument type=LC-ESI-QFT" "instrument=Thermo Q Exactive HF" "collision energy=HCD (NCE 20-30-40%)" "formula=C21H17NO3ClF" "exact mass=385.088" "molecular weight=385.82" "origin=pathogen_box_qe_rp_pos_proton_sept_2018_dinesh_barupal.msp" "ionization mode=positive" "mass accuracy=0.9688892520345148" "mass error=-3.7408329694699205E-4" "InChI=InChI=1S/C21H17ClFNO3/c1-26-16-7-3-13(4-8-16)18-12-15(6-10-20(18)27-2)24-21(25)17-9-5-14(23)11-19(17)22/h3-12H,1-2H3,(H,24,25)" "InChIKey=RWSCJEILSRMTEH-UHFFFAOYSA-N" "molecular formula=C21H17ClFNO3" "total exact mass=385.08809930399997" "SMILES=FC1=CC=C(C(O)=NC2=CC=C(OC)C(=C2)C=3C=CC(OC)=CC3)C(Cl)=C1"
+Num Peaks: 38
+84.9839 0.03
+85.06 0.03
+93.0143 0.03
+94.0224 0.05
+100.0322 0.03
+104.8965 0.03
+108.9846 0.06
+111.0235 0.04
+128.9907 0.18
+151.0217 0.06
+152.0244 0.13
+153.016 0.32
+154.6061 0.08
+156.0013 0.04
+156.4387 0.15
+156.4545 0.08
+156.9851 100
+157.5185 0.08
+157.5343 0.17
+157.9882 0.15
+159.4051 0.03
+159.4187 0.1
+198.0694 0.04
+199.076 0.04
+214.0858 0.23
+214.1727 0.11
+214.1973 0.07
+216.0777 0.11
+228.1018 0.47
+229.1097 1.98
+231.1019 0.34
+245.1926 0.03
+256.0968 0.06
+325.0684 0.03
+355.0764 0.13
+368.083 0.28
+371.0707 0.34
+386.0953 18.87
+
+
+Name: MMV676501
+SYNON: $:00in-source
+DB#: MoNA001285
+InChIKey: NJEDOEVDJDTSLL-UHFFFAOYSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 345.927429199219
+Instrument_type: LC-ESI-QFT
+Instrument: Thermo Q Exactive HF
+Ion_mode: P
+Collision_energy: HCD (NCE 20-30-40%)
+Formula: C11H5Cl2N3O2S2
+MW: 345
+ExactMass: 344.92002376
+Comments: "precursor type=[M+H]+" "ms level=MS2" "precursor m/z=345.927429199219" "instrument type=LC-ESI-QFT" "instrument=Thermo Q Exactive HF" "collision energy=HCD (NCE 20-30-40%)" "formula=C11H5N3O2Cl2S2" "exact mass=344.92" "molecular weight=346.21" "origin=pathogen_box_qe_rp_pos_proton_sept_2018_dinesh_barupal.msp" "ionization mode=positive" "mass accuracy=0.3741802703948981" "mass error=1.2943921899477573E-4" "InChI=InChI=1S/C11H5Cl2N3O2S2/c12-7-3-1-5(19-7)9(17)14-11-16-15-10(18-11)6-2-4-8(13)20-6/h1-4H,(H,14,16,17)" "InChIKey=NJEDOEVDJDTSLL-UHFFFAOYSA-N" "molecular formula=C11H5Cl2N3O2S2" "total exact mass=344.92002376" "SMILES=ClC=1SC(=CC1)C(O)=NC2=NN=C(O2)C=3SC(Cl)=CC3"
+Num Peaks: 13
+72.9845 0.53
+79.5825 0.09
+82.1487 0.08
+83.5036 0.09
+84.3306 0.09
+144.479 0.09
+144.9509 100
+145.4248 0.1
+191.176 0.09
+202.9668 0.18
+213.7381 0.78
+322.765 0.09
+345.9274 8.32
+
+
+Name: MMV676449
+SYNON: $:00in-source
+DB#: MoNA001286
+InChIKey: VNHGTXZRTKLTAX-AWEZNQCLSA-N
+Precursor_type: [M+H]+
+Spectrum_type: MS2
+PrecursorMZ: 345.136383056641
+Instrument_type: LC-ESI-QFT
+Instrument: Thermo Q Exactive HF
+Ion_mode: P
+Collision_energy: HCD (NCE 20-30-40%)
+Formula: C19H21ClN2O2
+MW: 344
+ExactMass: 344.129155592
+Comments: "precursor type=[M+H]+" "ms level=MS2" "precursor m/z=345.136383056641" "instrument type=LC-ESI-QFT" "instrument=Thermo Q Exactive HF" "collision energy=HCD (NCE 20-30-40%)" "formula=C19H21N2O2Cl" "exact mass=344.129" "molecular weight=344.84" "origin=pathogen_box_qe_rp_pos_proton_sept_2018_dinesh_barupal.msp" "ionization mode=positive" "mass accuracy=0.1406266084014269" "mass error=-4.8535358985191124E-5" "InChI=InChI=1S/C19H21ClN2O2/c1-3-19-21-16-6-4-5-7-17(16)22(19)11-14(23)12-24-18-10-13(2)8-9-15(18)20/h4-10,14,23H,3,11-12H2,1-2H3/t14-/m0/s1" "InChIKey=VNHGTXZRTKLTAX-AWEZNQCLSA-N" "molecular formula=C19H21ClN2O2" "total exact mass=344.129155592" "SMILES=ClC1=CC=C(C=C1OCC(O)CN2C=3C=CC=CC3N=C2CC)C"
+Num Peaks: 23
+80.8966 0.13
+95.7922 0.11
+131.7121 0.13
+145.076 1.7
+146.0838 13.71
+146.6954 0.12
+147.0916 10.1
+153.0466 0.3
+155.0255 0.3
+158.2767 0.12
+159.0918 1.2
+160.0994 7.71
+175.0703 0.27
+175.0866 6.12
+181.0417 0.49
+187.1226 1.42
+189.1027 0.25
+192.0891 0.5
+203.1176 0.61
+214.6358 0.94
+268.1534 0.14
+307.6559 0.11
+345.1363 100

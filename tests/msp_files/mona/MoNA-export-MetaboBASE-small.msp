@@ -1,0 +1,520 @@
+Name: 8-Prenylnaringenin
+SYNON: $:00in-source
+DB#: MetaboBASE0001
+InChIKey: LPEPZZAVFJPLNZ-SFHVURJKSA-N
+Precursor_type: [M-H]-
+Spectrum_type: MS2
+PrecursorMZ: 339.1
+Instrument_type: LC-ESI-TOF
+Instrument: impact HD
+Ion_mode: N
+Collision_energy: 40
+Formula: C20H20O5
+MW: 340
+ExactMass: 340.13107374
+Comments: "license=License CC-BY-NC-SA 4.0 International" "author=Plant Biology, The Noble Foundation, Ardmore, OK, US/Dennis Fine, Daniel Wherritt, and Lloyd Sumner" "instrument type=LC-ESI-TOF" "instrument=impact HD" "ionization=ESI" "ionization mode=negative" "ms level=MS2" "precursor m/z=339.1" "isolation width=5" "collision gas=Nitrogen" "collision energy=40" "peak width=0.017" "date=2013-11-16 00:25:35+01:00" "column=Waters Acquity BEH C18 1.7um x 2.1 x 150 mm" "retention time=952.8" "raw data file=C:\Data\Confirmed Standards\Confirmed stds MSMS 14Nov13\8-Prenylnaringenin MSMS v47.d" "precursor type=[M-H]-" "mass accuracy=70.17912120307754" "mass error=-0.023797739999963596" "cas number=53846-50-7" "SMILES=CC(=CCc1c(cc(c2c1O[C@@H](CC2=O)c3ccc(cc3)O)O)O)C" "InChI=InChI=1S/C20H20O5/c1-11(2)3-8-14-15(22)9-16(23)19-17(24)10-18(25-20(14)19)12-4-6-13(21)7-5-12/h3-7,9,18,21-23H,8,10H2,1-2H3/t18-/m0/s1" "InChIKey=LPEPZZAVFJPLNZ-SFHVURJKSA-N" "molecular formula=C20H20O5" "total exact mass=340.13107374" "SMILES=CC(=CCC1=C(C=C(C2=C1OC(CC2=O)C3=CC=C(C=C3)O)O)O)C"
+Num Peaks: 16
+109.0679 4.204204
+117.0366 2.802803
+119.0517 100.000000
+120.0537 5.805806
+129.0735 2.102102
+131.0876 5.005005
+133.0662 24.624625
+134.0659 3.803804
+136.0164 2.802803
+147.0774 2.002002
+148.0182 2.502503
+151.0780 6.906907
+175.0741 3.803804
+176.0148 7.507508
+219.0694 9.209209
+233.0848 2.202202
+
+
+Name: 8-Prenylnaringenin
+SYNON: $:00in-source
+DB#: MetaboBASE0002
+InChIKey: LPEPZZAVFJPLNZ-SFHVURJKSA-N
+Precursor_type: [M-H]-
+Spectrum_type: MS2
+PrecursorMZ: 339.1281
+Instrument_type: LC-ESI-TOF
+Instrument: impact HD
+Ion_mode: N
+Collision_energy: 20
+Formula: C20H20O5
+MW: 340
+ExactMass: 340.13107374000003
+Comments: "license=License CC-BY-NC-SA 4.0 International" "author=Plant Biology, The Noble Foundation, Ardmore, OK, US/Dennis Fine, Daniel Wherritt, and Lloyd Sumner" "instrument type=LC-ESI-TOF" "instrument=impact HD" "ionization=ESI" "ionization mode=negative" "ms level=MS2" "precursor m/z=339.1281" "isolation width=5" "collision gas=Nitrogen" "collision energy=20" "peak width=0.013" "date=2013-11-16 00:25:35+01:00" "column=Waters Acquity BEH C18 1.7um x 2.1 x 150 mm" "retention time=952.8" "raw data file=C:\Data\Confirmed Standards\Confirmed stds MSMS 14Nov13\8-Prenylnaringenin MSMS v47.d" "precursor type=[M-H]-" "mass accuracy=12.686238621849581" "mass error=0.004302259999974467" "cas number=53846-50-7" "SMILES=CC(=CCc1c(cc(c2c1O[C@@H](CC2=O)c3ccc(cc3)O)O)O)C" "InChI=InChI=1S/C20H20O5/c1-11(2)3-8-14-15(22)9-16(23)19-17(24)10-18(25-20(14)19)12-4-6-13(21)7-5-12/h3-7,9,18,21-23H,8,10H2,1-2H3/t18-/m0/s1" "InChIKey=LPEPZZAVFJPLNZ-SFHVURJKSA-N" "molecular formula=C20H20O5" "total exact mass=340.13107374000003" "SMILES=CC(=CCC1=C(C=C(C2=C1OC(CC2=O)C3=CC=C(C=C3)O)O)O)C"
+Num Peaks: 8
+119.0516 9.409409
+219.0694 28.428428
+220.0725 3.603604
+233.0859 3.003003
+245.0850 4.504505
+339.1281 100.000000
+340.1314 14.414414
+341.1337 2.502503
+
+
+Name: 8-Prenylnaringenin
+SYNON: $:00in-source
+DB#: MetaboBASE0003
+InChIKey: LPEPZZAVFJPLNZ-SFHVURJKSA-N
+Precursor_type: [M-H]-
+Spectrum_type: MS2
+PrecursorMZ: 339.1283
+Instrument_type: LC-ESI-TOF
+Instrument: impact HD
+Ion_mode: N
+Collision_energy: 10
+Formula: C20H20O5
+MW: 340
+ExactMass: 340.13107374
+Comments: "license=License CC-BY-NC-SA 4.0 International" "author=Plant Biology, The Noble Foundation, Ardmore, OK, US/Dennis Fine, Daniel Wherritt, and Lloyd Sumner" "instrument type=LC-ESI-TOF" "instrument=impact HD" "ionization=ESI" "ionization mode=negative" "ms level=MS2" "precursor m/z=339.1283" "isolation width=5" "collision gas=Nitrogen" "collision energy=10" "peak width=0.0094" "date=2013-11-16 00:25:35+01:00" "column=Waters Acquity BEH C18 1.7um x 2.1 x 150 mm" "retention time=952.8" "raw data file=C:\Data\Confirmed Standards\Confirmed stds MSMS 14Nov13\8-Prenylnaringenin MSMS v47.d" "precursor type=[M-H]-" "mass accuracy=13.275978442489022" "mass error=0.00450226000003795" "cas number=53846-50-7" "SMILES=CC(=CCc1c(cc(c2c1O[C@@H](CC2=O)c3ccc(cc3)O)O)O)C" "InChI=InChI=1S/C20H20O5/c1-11(2)3-8-14-15(22)9-16(23)19-17(24)10-18(25-20(14)19)12-4-6-13(21)7-5-12/h3-7,9,18,21-23H,8,10H2,1-2H3/t18-/m0/s1" "InChIKey=LPEPZZAVFJPLNZ-SFHVURJKSA-N" "molecular formula=C20H20O5" "total exact mass=340.13107374" "SMILES=CC(=CCC1=C(C=C(C2=C1OC(CC2=O)C3=CC=C(C=C3)O)O)O)C"
+Num Peaks: 2
+339.1283 100.000000
+340.1317 11.811812
+
+
+Name: 8-Prenylnaringenin
+SYNON: $:00in-source
+DB#: MetaboBASE0004
+InChIKey: LPEPZZAVFJPLNZ-SFHVURJKSA-N
+Precursor_type: [M-H]-
+Spectrum_type: MS2
+PrecursorMZ: 339.1277
+Instrument_type: LC-ESI-TOF
+Instrument: impact HD
+Ion_mode: N
+Collision_energy: 30
+Formula: C20H20O5
+MW: 340
+ExactMass: 340.13107374
+Comments: "license=License CC-BY-NC-SA 4.0 International" "author=Plant Biology, The Noble Foundation, Ardmore, OK, US/Dennis Fine, Daniel Wherritt, and Lloyd Sumner" "instrument type=LC-ESI-TOF" "instrument=impact HD" "ionization=ESI" "ionization mode=negative" "ms level=MS2" "precursor m/z=339.1277" "isolation width=5" "collision gas=Nitrogen" "collision energy=30" "peak width=0.016" "date=2013-11-16 00:25:35+01:00" "column=Waters Acquity BEH C18 1.7um x 2.1 x 150 mm" "retention time=952.8" "raw data file=C:\Data\Confirmed Standards\Confirmed stds MSMS 14Nov13\8-Prenylnaringenin MSMS v47.d" "precursor type=[M-H]-" "mass accuracy=11.506756894285049" "mass error=0.003902260000018032" "cas number=53846-50-7" "SMILES=CC(=CCc1c(cc(c2c1O[C@@H](CC2=O)c3ccc(cc3)O)O)O)C" "InChI=InChI=1S/C20H20O5/c1-11(2)3-8-14-15(22)9-16(23)19-17(24)10-18(25-20(14)19)12-4-6-13(21)7-5-12/h3-7,9,18,21-23H,8,10H2,1-2H3/t18-/m0/s1" "InChIKey=LPEPZZAVFJPLNZ-SFHVURJKSA-N" "molecular formula=C20H20O5" "total exact mass=340.13107374" "SMILES=CC(=CCC1=C(C=C(C2=C1OC(CC2=O)C3=CC=C(C=C3)O)O)O)C"
+Num Peaks: 18
+119.0516 100.000000
+120.0553 7.307307
+131.0880 4.304304
+133.0678 24.724725
+134.0715 2.902903
+137.0252 2.502503
+145.0341 2.302302
+151.0777 12.012012
+164.0146 2.402402
+175.0784 9.209209
+176.0132 9.609610
+177.0266 2.302302
+191.0731 2.902903
+219.0692 52.352352
+220.0732 5.605606
+233.0851 6.506507
+245.0863 4.704705
+339.1277 6.906907
+
+
+Name: 1,8,9-Anthracenetriol
+SYNON: $:00in-source
+DB#: MetaboBASE0005
+InChIKey: YUTJCNNFTOIOGT-UHFFFAOYSA-N
+Spectrum_type: MS2
+PrecursorMZ: 449.1028
+Instrument_type: LC-ESI-TOF
+Instrument: impact HD
+Ion_mode: N
+Collision_energy: 10
+Formula: C14H10O3
+MW: 226
+ExactMass: 226.06299417999998
+Comments: "license=License CC-BY-NC-SA 4.0 International" "author=Plant Biology, The Noble Foundation, Ardmore, OK, US/Dennis Fine, Daniel Wherritt, and Lloyd Sumner" "instrument type=LC-ESI-TOF" "instrument=impact HD" "ionization=ESI" "ionization mode=negative" "ms level=MS2" "precursor m/z=449.1028" "isolation width=5" "collision gas=Nitrogen" "collision energy=10" "peak width=0.017" "date=2014-07-26 01:11:21+02:00" "column=Waters Acquity BEH C18 1.7um x 2.1 x 150 mm" "retention time=819" "raw data file=C:\Data\Confirmed standards 24_July_2014\MSMS\1,8,9-Anthracenetriol vial 28_1-A,4_01_484.d" "cas number=480-22-8" "SMILES=c1cc2cc3cccc(c3c(c2c(c1)O)O)O" "InChI=InChI=1S/C14H10O3/c15-10-5-1-3-8-7-9-4-2-6-11(16)13(9)14(17)12(8)10/h1-7,15-17H" "InChIKey=YUTJCNNFTOIOGT-UHFFFAOYSA-N" "molecular formula=C14H10O3" "total exact mass=226.06299417999998" "SMILES=C1=CC2=CC3=C(C(=CC=C3)O)C(=C2C(=C1)O)O"
+Num Peaks: 5
+224.0434 2.802803
+242.9399 1.701702
+449.1028 100.000000
+450.1069 29.829830
+451.1076 2.402402
+
+
+Name: 1,8,9-Anthracenetriol
+SYNON: $:00in-source
+DB#: MetaboBASE0006
+InChIKey: YUTJCNNFTOIOGT-UHFFFAOYSA-N
+Spectrum_type: MS2
+PrecursorMZ: 449.1017
+Instrument_type: LC-ESI-TOF
+Instrument: impact HD
+Ion_mode: N
+Collision_energy: 30
+Formula: C14H10O3
+MW: 226
+ExactMass: 226.06299417999998
+Comments: "license=License CC-BY-NC-SA 4.0 International" "author=Plant Biology, The Noble Foundation, Ardmore, OK, US/Dennis Fine, Daniel Wherritt, and Lloyd Sumner" "instrument type=LC-ESI-TOF" "instrument=impact HD" "ionization=ESI" "ionization mode=negative" "ms level=MS2" "precursor m/z=449.1017" "isolation width=5" "collision gas=Nitrogen" "collision energy=30" "peak width=0.016" "date=2014-07-26 01:11:21+02:00" "column=Waters Acquity BEH C18 1.7um x 2.1 x 150 mm" "retention time=819" "raw data file=C:\Data\Confirmed standards 24_July_2014\MSMS\1,8,9-Anthracenetriol vial 28_1-A,4_01_484.d" "cas number=480-22-8" "SMILES=c1cc2cc3cccc(c3c(c2c(c1)O)O)O" "InChI=InChI=1S/C14H10O3/c15-10-5-1-3-8-7-9-4-2-6-11(16)13(9)14(17)12(8)10/h1-7,15-17H" "InChIKey=YUTJCNNFTOIOGT-UHFFFAOYSA-N" "molecular formula=C14H10O3" "total exact mass=226.06299417999998" "SMILES=C1=CC2=CC3=C(C(=CC=C3)O)C(=C2C(=C1)O)O"
+Num Peaks: 9
+174.9512 1.401401
+224.0438 11.111111
+225.0477 3.003003
+431.0919 2.602603
+432.0993 1.401401
+448.0937 6.206206
+449.1017 100.000000
+450.1050 35.235235
+451.1061 2.302302
+
+
+Name: 1,8,9-Anthracenetriol
+SYNON: $:00in-source
+DB#: MetaboBASE0007
+InChIKey: YUTJCNNFTOIOGT-UHFFFAOYSA-N
+Spectrum_type: MS2
+PrecursorMZ: 449.1031
+Instrument_type: LC-ESI-TOF
+Instrument: impact HD
+Ion_mode: N
+Collision_energy: 20
+Formula: C14H10O3
+MW: 226
+ExactMass: 226.06299417999998
+Comments: "license=License CC-BY-NC-SA 4.0 International" "author=Plant Biology, The Noble Foundation, Ardmore, OK, US/Dennis Fine, Daniel Wherritt, and Lloyd Sumner" "instrument type=LC-ESI-TOF" "instrument=impact HD" "ionization=ESI" "ionization mode=negative" "ms level=MS2" "precursor m/z=449.1031" "isolation width=5" "collision gas=Nitrogen" "collision energy=20" "peak width=0.016" "date=2014-07-26 01:11:21+02:00" "column=Waters Acquity BEH C18 1.7um x 2.1 x 150 mm" "retention time=819" "raw data file=C:\Data\Confirmed standards 24_July_2014\MSMS\1,8,9-Anthracenetriol vial 28_1-A,4_01_484.d" "cas number=480-22-8" "SMILES=c1cc2cc3cccc(c3c(c2c(c1)O)O)O" "InChI=InChI=1S/C14H10O3/c15-10-5-1-3-8-7-9-4-2-6-11(16)13(9)14(17)12(8)10/h1-7,15-17H" "InChIKey=YUTJCNNFTOIOGT-UHFFFAOYSA-N" "molecular formula=C14H10O3" "total exact mass=226.06299417999998" "SMILES=C1=CC2=CC3=C(C(=CC=C3)O)C(=C2C(=C1)O)O"
+Num Peaks: 5
+224.0430 5.505506
+242.9401 1.501502
+449.1031 100.000000
+450.1054 29.429429
+451.1093 3.103103
+
+
+Name: 1,8,9-Anthracenetriol
+SYNON: $:00in-source
+DB#: MetaboBASE0008
+InChIKey: YUTJCNNFTOIOGT-UHFFFAOYSA-N
+Instrument_type: LC-ESI-TOF
+Instrument: impact HD
+Ion_mode: N
+Formula: C14H10O3
+MW: 226
+ExactMass: 226.06299417999998
+Comments: "license=License CC-BY-NC-SA 4.0 International" "author=Plant Biology, The Noble Foundation, Ardmore, OK, US/Dennis Fine, Daniel Wherritt, and Lloyd Sumner" "instrument type=LC-ESI-TOF" "instrument=impact HD" "ionization=ESI" "ionization mode=negative" "collision gas=Nitrogen" "peak width=0.012" "date=2013-06-22 20:05:13+02:00" "column=Waters Acquity BEH C18 1.7um x 2.1 x 150 mm" "retention time=819" "raw data file=D:\Data\Confirmed Standards\1,8,9-Anthracenetriol.d" "cas number=480-22-8" "SMILES=c1cc2cc3cccc(c3c(c2c(c1)O)O)O" "InChI=InChI=1S/C14H10O3/c15-10-5-1-3-8-7-9-4-2-6-11(16)13(9)14(17)12(8)10/h1-7,15-17H" "InChIKey=YUTJCNNFTOIOGT-UHFFFAOYSA-N" "molecular formula=C14H10O3" "total exact mass=226.06299417999998" "SMILES=C1=CC2=CC3=C(C(=CC=C3)O)C(=C2C(=C1)O)O"
+Num Peaks: 10
+221.0505 0.400400
+223.0300 100.000000
+224.0305 22.422422
+225.0277 13.713714
+226.0279 2.002002
+227.0250 0.600601
+239.0610 0.400400
+241.0402 0.900901
+242.0409 0.200200
+294.9965 0.200200
+
+
+Name: 1,8,9-Anthracenetriol
+SYNON: $:00in-source
+DB#: MetaboBASE0009
+InChIKey: YUTJCNNFTOIOGT-UHFFFAOYSA-N
+Spectrum_type: MS2
+PrecursorMZ: 448.0945
+Instrument_type: LC-ESI-TOF
+Instrument: impact HD
+Ion_mode: N
+Collision_energy: 50
+Formula: C14H10O3
+MW: 226
+ExactMass: 226.06299417999998
+Comments: "license=License CC-BY-NC-SA 4.0 International" "author=Plant Biology, The Noble Foundation, Ardmore, OK, US/Dennis Fine, Daniel Wherritt, and Lloyd Sumner" "instrument type=LC-ESI-TOF" "instrument=impact HD" "ionization=ESI" "ionization mode=negative" "ms level=MS2" "precursor m/z=448.0945" "isolation width=5" "collision gas=Nitrogen" "collision energy=50" "peak width=0.016" "date=2014-07-26 01:11:21+02:00" "column=Waters Acquity BEH C18 1.7um x 2.1 x 150 mm" "retention time=819" "raw data file=C:\Data\Confirmed standards 24_July_2014\MSMS\1,8,9-Anthracenetriol vial 28_1-A,4_01_484.d" "cas number=480-22-8" "SMILES=c1cc2cc3cccc(c3c(c2c(c1)O)O)O" "InChI=InChI=1S/C14H10O3/c15-10-5-1-3-8-7-9-4-2-6-11(16)13(9)14(17)12(8)10/h1-7,15-17H" "InChIKey=YUTJCNNFTOIOGT-UHFFFAOYSA-N" "molecular formula=C14H10O3" "total exact mass=226.06299417999998" "SMILES=C1=CC2=CC3=C(C(=CC=C3)O)C(=C2C(=C1)O)O"
+Num Peaks: 22
+224.0439 51.551552
+225.0496 38.738739
+226.0538 3.803804
+227.0313 9.009009
+228.0375 3.403403
+327.0652 3.603604
+329.0796 2.902903
+401.0840 2.702703
+403.0973 4.304304
+419.0878 4.204204
+420.0982 3.303303
+427.0615 3.203203
+429.0746 9.209209
+430.0814 9.509510
+431.0845 9.809810
+432.0987 26.526527
+433.0988 6.706707
+446.0765 7.307307
+447.0801 4.704705
+448.0945 100.000000
+449.1013 50.350350
+450.1072 7.207207
+
+
+Name: 1,8,9-Anthracenetriol
+SYNON: $:00in-source
+DB#: MetaboBASE0010
+InChIKey: YUTJCNNFTOIOGT-UHFFFAOYSA-N
+Spectrum_type: MS2
+PrecursorMZ: 449.102
+Instrument_type: LC-ESI-TOF
+Instrument: impact HD
+Ion_mode: N
+Collision_energy: 40
+Formula: C14H10O3
+MW: 226
+ExactMass: 226.06299417999998
+Comments: "license=License CC-BY-NC-SA 4.0 International" "author=Plant Biology, The Noble Foundation, Ardmore, OK, US/Dennis Fine, Daniel Wherritt, and Lloyd Sumner" "instrument type=LC-ESI-TOF" "instrument=impact HD" "ionization=ESI" "ionization mode=negative" "ms level=MS2" "precursor m/z=449.102" "isolation width=5" "collision gas=Nitrogen" "collision energy=40" "peak width=0.018" "date=2014-07-26 01:11:21+02:00" "column=Waters Acquity BEH C18 1.7um x 2.1 x 150 mm" "retention time=819" "raw data file=C:\Data\Confirmed standards 24_July_2014\MSMS\1,8,9-Anthracenetriol vial 28_1-A,4_01_484.d" "cas number=480-22-8" "SMILES=c1cc2cc3cccc(c3c(c2c(c1)O)O)O" "InChI=InChI=1S/C14H10O3/c15-10-5-1-3-8-7-9-4-2-6-11(16)13(9)14(17)12(8)10/h1-7,15-17H" "InChIKey=YUTJCNNFTOIOGT-UHFFFAOYSA-N" "molecular formula=C14H10O3" "total exact mass=226.06299417999998" "SMILES=C1=CC2=CC3=C(C(=CC=C3)O)C(=C2C(=C1)O)O"
+Num Peaks: 12
+224.0430 30.730731
+225.0502 13.613614
+421.1082 2.102102
+429.0790 3.803804
+430.0848 3.703704
+431.0927 5.205205
+432.0995 9.709710
+433.1024 2.802803
+448.0947 40.340340
+449.1020 100.000000
+450.1077 27.727728
+451.1123 2.102102
+
+
+Name: Chrysin
+SYNON: $:00in-source
+DB#: MetaboBASE0011
+InChIKey: RTIXKCRFFJGDFG-UHFFFAOYSA-N
+Instrument_type: LC-ESI-TOF
+Instrument: impact HD
+Ion_mode: N
+Formula: C15H10O4
+MW: 254
+ExactMass: 254.0579088
+Comments: "license=License CC-BY-NC-SA 4.0 International" "author=Plant Biology, The Noble Foundation, Ardmore, OK, US/Dennis Fine, Daniel Wherritt, and Lloyd Sumner" "instrument type=LC-ESI-TOF" "instrument=impact HD" "ionization=ESI" "ionization mode=negative" "collision gas=Nitrogen" "peak width=0.0067" "date=2013-06-22 02:20:10+02:00" "column=Waters Acquity BEH C18 1.7um x 2.1 x 150 mm" "retention time=835.2" "raw data file=D:\Data\Confirmed Standards\Chrysin (Vial 1).d" "cas number=480-40-0" "SMILES=c1ccc(cc1)c2cc(=O)c3c(cc(cc3o2)O)O" "InChI=InChI=1S/C15H10O4/c16-10-6-11(17)15-12(18)8-13(19-14(15)7-10)9-4-2-1-3-5-9/h1-8,16-17H" "InChIKey=RTIXKCRFFJGDFG-UHFFFAOYSA-N" "molecular formula=C15H10O4" "total exact mass=254.0579088" "SMILES=C1=CC=C(C=C1)C2=CC(=O)C3=C(C=C(C=C3O2)O)O"
+Num Peaks: 5
+253.0557 100.000000
+253.5722 0.200200
+254.0578 9.509510
+255.0598 1.401401
+507.1156 0.400400
+
+
+Name: Chrysin
+SYNON: $:00in-source
+DB#: MetaboBASE0012
+InChIKey: RTIXKCRFFJGDFG-UHFFFAOYSA-N
+Precursor_type: [M-H]-
+Spectrum_type: MS2
+PrecursorMZ: 253.052
+Instrument_type: LC-ESI-TOF
+Instrument: impact HD
+Ion_mode: N
+Collision_energy: 26.25
+Formula: C15H10O4
+MW: 254
+ExactMass: 254.0579088
+Comments: "license=License CC-BY-NC-SA 4.0 International" "author=Plant Biology, The Noble Foundation, Ardmore, OK, US/Dennis Fine, Daniel Wherritt, and Lloyd Sumner" "instrument type=LC-ESI-TOF" "instrument=impact HD" "ionization=ESI" "ionization mode=negative" "ms level=MS2" "precursor m/z=253.052" "collision gas=Nitrogen" "collision energy=26.25" "collision energy 2=43.75" "peak width=0.0054" "date=2013-07-01 17:46:22+02:00" "column=Waters Acquity BEH C18 1.7um x 2.1 x 150 mm" "retention time=835.424" "raw data file=D:\Data\Confirmed Standards\MSMS confirmed standards\Chrysin (Vial 1) MSMS_1115.d" "precursor type=[M-H]-" "mass accuracy=5.402842103503667" "mass error=0.00136719999997581" "cas number=480-40-0" "SMILES=c1ccc(cc1)c2cc(=O)c3c(cc(cc3o2)O)O" "InChI=InChI=1S/C15H10O4/c16-10-6-11(17)15-12(18)8-13(19-14(15)7-10)9-4-2-1-3-5-9/h1-8,16-17H" "InChIKey=RTIXKCRFFJGDFG-UHFFFAOYSA-N" "molecular formula=C15H10O4" "total exact mass=254.0579088" "SMILES=C1=CC=C(C=C1)C2=CC(=O)C3=C(C=C(C=C3O2)O)O"
+Num Peaks: 71
+101.0396 0.100100
+107.0136 0.900901
+108.0160 0.200200
+115.0541 0.800801
+117.0329 0.300300
+119.0496 2.102102
+120.0536 0.200200
+121.0288 0.200200
+125.0386 0.100100
+127.0518 0.100100
+129.0381 0.100100
+129.0757 0.100100
+139.0547 0.300300
+140.0585 0.100100
+141.0317 0.100100
+141.0725 0.100100
+143.0499 7.907908
+144.0539 0.900901
+145.0292 4.304304
+145.0580 0.100100
+146.0325 0.300300
+148.0160 0.500501
+149.0184 0.100100
+151.0032 1.401401
+152.0049 0.200200
+152.0649 0.100100
+153.0704 0.400400
+154.0743 0.100100
+155.0490 0.500501
+156.0512 0.100100
+157.0641 0.300300
+165.0705 1.201201
+166.0752 0.200200
+167.0498 1.201201
+168.0526 0.300300
+169.0294 0.100100
+169.0648 0.100100
+171.0798 0.100100
+180.0588 1.001001
+181.0651 1.801802
+182.0682 0.200200
+183.0431 0.500501
+184.0515 0.100100
+185.0603 1.601602
+186.0632 0.300300
+187.0392 0.600601
+188.0369 0.100100
+191.0517 0.100100
+196.0466 0.100100
+197.0586 0.200200
+208.0517 0.400400
+209.0602 6.506507
+210.0656 0.900901
+211.0388 1.801802
+211.0746 0.100100
+212.0409 0.200200
+224.0541 0.100100
+225.0542 1.301301
+226.0600 0.100100
+252.2708 0.100100
+252.5695 0.100100
+252.6893 0.100100
+252.7910 0.100100
+252.9831 0.200200
+253.0507 100.000000
+254.0539 14.414414
+255.0563 2.102102
+255.6313 0.100100
+256.0414 0.100100
+256.0652 0.100100
+256.9513 0.100100
+
+
+Name: Chrysin
+SYNON: $:00in-source
+DB#: MetaboBASE0013
+InChIKey: RTIXKCRFFJGDFG-UHFFFAOYSA-N
+Precursor_type: [M-H]-
+Spectrum_type: MS2
+PrecursorMZ: 253.055
+Instrument_type: LC-ESI-TOF
+Instrument: impact HD
+Ion_mode: N
+Collision_energy: 40
+Formula: C15H10O4
+MW: 254
+ExactMass: 254.0579088
+Comments: "license=License CC-BY-NC-SA 4.0 International" "author=Plant Biology, The Noble Foundation, Ardmore, OK, US/Dennis Fine, Daniel Wherritt, and Lloyd Sumner" "instrument type=LC-ESI-TOF" "instrument=impact HD" "ionization=ESI" "ionization mode=negative" "ms level=MS2" "precursor m/z=253.055" "collision gas=Nitrogen" "collision energy=40" "collision energy 2=40" "peak width=0.022" "date=2013-07-31 20:45:23+02:00" "column=Waters Acquity BEH C18 1.7um x 2.1 x 150 mm" "retention time=836.256" "raw data file=D:\Data\Confirmed Standards\Reanalyzed MRM multiple CID\Chrysin (Vial 1).d" "precursor type=[M-H]-" "mass accuracy=17.25790835980374" "mass error=0.0043671999999901345" "cas number=480-40-0" "SMILES=c1ccc(cc1)c2cc(=O)c3c(cc(cc3o2)O)O" "InChI=InChI=1S/C15H10O4/c16-10-6-11(17)15-12(18)8-13(19-14(15)7-10)9-4-2-1-3-5-9/h1-8,16-17H" "InChIKey=RTIXKCRFFJGDFG-UHFFFAOYSA-N" "molecular formula=C15H10O4" "total exact mass=254.0579088" "SMILES=C1=CC=C(C=C1)C2=CC(=O)C3=C(C=C(C=C3O2)O)O"
+Num Peaks: 38
+101.0413 40.040040
+107.0154 34.034034
+108.0198 2.502503
+115.0573 17.917918
+117.0357 8.208208
+119.0523 64.764765
+120.0252 2.402402
+120.0553 3.903904
+121.0330 6.606607
+127.0577 2.102102
+139.0571 2.602603
+141.0353 4.004004
+141.0724 1.801802
+143.0527 100.000000
+144.0555 8.308308
+145.0319 46.546547
+146.0348 2.602603
+148.0184 2.202202
+151.0070 11.211211
+151.0597 2.002002
+153.0721 4.204204
+155.0532 5.505506
+156.0543 1.801802
+157.0691 4.704705
+165.0745 10.110110
+167.0556 8.408408
+169.0336 2.302302
+169.0736 2.002002
+180.0617 3.003003
+181.0677 6.706707
+183.0497 2.902903
+185.0617 3.403403
+197.0643 2.602603
+208.0568 1.901902
+209.0609 7.007007
+253.0546 20.320320
+254.0570 4.704705
+255.0592 1.901902
+
+
+Name: Catechin
+SYNON: $:00in-source
+DB#: MetaboBASE0014
+InChIKey: PFTAWBLQPZVEMU-DZGCQCFKSA-N
+Instrument_type: LC-ESI-TOF
+Instrument: impact HD
+Ion_mode: N
+Collision_energy: 10
+Formula: C15H14O6
+MW: 290
+ExactMass: 290.079038168
+Comments: "license=License CC-BY-NC-SA 4.0 International" "author=Plant Biology, The Noble Foundation, Ardmore, OK, US/Dennis Fine, Daniel Wherritt, and Lloyd Sumner" "instrument type=LC-ESI-TOF" "instrument=impact HD" "ionization=ESI" "ionization mode=negative" "collision gas=Nitrogen" "collision energy=10" "peak width=0.014" "date=2013-11-19 09:46:44+01:00" "column=Waters Acquity BEH C18 1.7um x 2.1 x 150 mm" "retention time=123" "raw data file=C:\Data\Confirmed Standards\Confirmed stds MSMS 14Nov13\Catechin (vial 166).d" "cas number=154-23-4" "SMILES=c1cc(c(cc1[C@@H]2[C@H](Cc3c(cc(cc3O2)O)O)O)O)O" "InChI=InChI=1S/C15H14O6/c16-8-4-11(18)9-6-13(20)15(21-14(9)5-8)7-1-2-10(17)12(19)3-7/h1-5,13,15-20H,6H2/t13-,15+/m0/s1" "InChIKey=PFTAWBLQPZVEMU-DZGCQCFKSA-N" "molecular formula=C15H14O6" "total exact mass=290.079038168" "SMILES=C1C(C(OC2=CC(=CC(=C21)O)O)C3=CC(=C(C=C3)O)O)O" "InChI=InChI=1S/C15H14O6/c16-8-4-11(18)9-6-13(20)15(21-14(9)5-8)7-1-2-10(17)12(19)3-7/h1-5,13,15-20H,6H2" "InChIKey=PFTAWBLQPZVEMU-UHFFFAOYSA-N"
+Num Peaks: 12
+245.0811 6.506507
+259.0600 1.001001
+287.0554 9.309309
+288.0585 1.301301
+289.0713 100.000000
+290.0744 12.412412
+291.0762 1.301301
+577.1353 5.805806
+578.1381 1.601602
+579.1503 10.010010
+580.1538 2.802803
+867.2137 1.401401
+
+
+Name: Catechin
+SYNON: $:00in-source
+DB#: MetaboBASE0015
+InChIKey: PFTAWBLQPZVEMU-DZGCQCFKSA-N
+Precursor_type: [M-H]-
+Spectrum_type: MS2
+PrecursorMZ: 289.0769
+Instrument_type: LC-ESI-TOF
+Instrument: impact HD
+Ion_mode: N
+Collision_energy: 20
+Formula: C15H14O6
+MW: 290
+ExactMass: 290.079038168
+Comments: "license=License CC-BY-NC-SA 4.0 International" "author=Plant Biology, The Noble Foundation, Ardmore, OK, US/Dennis Fine, Daniel Wherritt, and Lloyd Sumner" "instrument type=LC-ESI-TOF" "instrument=impact HD" "ionization=ESI" "ionization mode=negative" "ms level=MS2" "precursor m/z=289.0769" "collision gas=Nitrogen" "collision energy=20" "collision energy 2=20" "peak width=0.015" "date=2013-07-31 21:26:16+02:00" "column=Waters Acquity BEH C18 1.7um x 2.1 x 150 mm" "retention time=120.152" "raw data file=D:\Data\Confirmed Standards\Reanalyzed MRM multiple CID\Catechin (vial 2).d" "precursor type=[M-H]-" "mass accuracy=17.773236118149246" "mass error=0.005137832000002618" "cas number=154-23-4" "SMILES=c1cc(c(cc1[C@@H]2[C@H](Cc3c(cc(cc3O2)O)O)O)O)O" "InChI=InChI=1S/C15H14O6/c16-8-4-11(18)9-6-13(20)15(21-14(9)5-8)7-1-2-10(17)12(19)3-7/h1-5,13,15-20H,6H2/t13-,15+/m0/s1" "InChIKey=PFTAWBLQPZVEMU-DZGCQCFKSA-N" "molecular formula=C15H14O6" "total exact mass=290.079038168" "SMILES=C1C(C(OC2=CC(=CC(=C21)O)O)C3=CC(=C(C=C3)O)O)O" "InChI=InChI=1S/C15H14O6/c16-8-4-11(18)9-6-13(20)15(21-14(9)5-8)7-1-2-10(17)12(19)3-7/h1-5,13,15-20H,6H2" "InChIKey=PFTAWBLQPZVEMU-UHFFFAOYSA-N"
+Num Peaks: 35
+95.0532 12.512513
+97.0310 30.630631
+108.0602 9.309309
+109.0320 67.067067
+110.0333 12.112112
+121.0308 12.112112
+123.0488 22.822823
+125.0283 68.368368
+135.0468 8.808809
+137.0268 55.555556
+139.0485 9.909910
+149.0274 48.248248
+150.0355 17.017017
+151.0426 31.631632
+159.0471 10.310310
+160.0524 12.912913
+163.0447 12.712713
+167.0403 11.611612
+175.0474 17.417417
+179.0395 16.116116
+188.0492 10.810811
+189.0591 13.313313
+199.0565 10.110110
+203.0748 22.022022
+205.0543 29.929930
+215.0798 9.509510
+221.0860 29.529530
+227.0771 28.428428
+229.0572 9.309309
+245.0856 100.000000
+246.0900 15.515516
+247.0674 12.512513
+271.0620 8.608609
+289.0769 84.284284
+290.0836 8.808809

@@ -2,8 +2,6 @@
 from __future__ import absolute_import, unicode_literals, print_function
 import datetime
 import sqlite3
-import argparse
-import textwrap
 import re
 import collections
 import os
@@ -94,6 +92,17 @@ def create_db(file_pth=None, db_type='sqlite', db_name=None, user='', password='
                                               )'''
                   )
 
+        c.execute('DROP TABLE IF EXISTS library_spectra_annotation')
+        c.execute('''CREATE TABLE library_spectra_annotation (
+                                              id integer PRIMARY KEY,
+                                              mz real,
+                                              tentative_formula text,
+                                              mass_error real,
+                                              library_spectra_meta_id integer NOT NULL,
+                                              FOREIGN KEY (library_spectra_meta_id) REFERENCES library_spectra_meta(id)
+                                              )'''
+                  )
+
 
 def get_meta_regex(schema='massbank'):
     # NOTE: will just ignore cases, to avoid repetition here
@@ -142,7 +151,7 @@ def get_meta_regex(schema='massbank'):
 
 
 def get_compound_regex(schema='mona'):
-    # NOTE: will just ignore cases, to avoid repetition here
+    # NOTE: will just ignore cases in the regex, to avoid repetition here
     meta_parse = collections.OrderedDict()
 
     if schema == 'mona':
@@ -195,22 +204,28 @@ def removekey(d, key):
 
 
 class LibraryData(object):
-    def __init__(self, msp_pth, name, source, mslevel=0,
-                 db_pth=None, db_type='sqlite', d_form=False, password='', user='',
+    def __init__(self, msp_pth, source, mslevel=0,
+                 db_pth=None, db_type='sqlite', d_form=False, password='', user='', mysql_db_name=None,
                  chunk=0, schema = 'mona', user_meta_regex=None, user_compound_regex=None, celery_obj=False):
 
-        conn = get_connection(db_type, db_pth, user, password, name)
+        conn = get_connection(db_type, db_pth, user, password, mysql_db_name)
         print('Starting library data parsing')
         self.c = conn.cursor()
         self.conn = conn
 
         self.meta_info_all = []
+
         self.compound_info_all = []
         self.compound_ids = []
         self.get_compound_ids()
 
         self.spectra_all = []
+        self.spectra_annotation_all = []
         self.start_spectra = False
+        self.start_spectra_annotation = False
+        self.ignore_additional_spectra_info = False
+        self.collect_meta = True
+        self.update_source = True
 
         if user_meta_regex:
             self.meta_regex = user_meta_regex
@@ -226,7 +241,6 @@ class LibraryData(object):
 
         self.compound_info = self.get_blank_compound_info()
         self.get_current_ids()
-        self.name = name
         self.source = source
         self.mslevel = mslevel
         self.other_names = []
@@ -236,22 +250,34 @@ class LibraryData(object):
             self.update_lines(msp_pth,
                               chunk,
                               db_type,
-                              initial_update_source=True,
                               celery_obj=celery_obj
                               )
         else:
-            self.num_lines = sum(1 for line in open(msp_pth))
-            with open(msp_pth, "rb") as f:
-                self.update_lines(f, chunk, db_type, initial_update_source=True,
-                                  celery_obj=celery_obj)
 
-    def update_lines(self, f, chunk, db_type, initial_update_source=True, celery_obj=False):
+            self.parse_files(msp_pth, chunk, db_type, celery_obj=celery_obj)
+
+    def parse_files(self, msp_pth, chunk, db_type, celery_obj=False):
+
         c = 0
-        old = 0
-        update_source = initial_update_source
-        for i, line in enumerate(f):
-            print(i, line)
+        if os.path.isdir(msp_pth):
+            for msp_file in os.listdir(msp_pth):
+                msp_file_pth = os.path.join(msp_pth, msp_file)
+                if os.path.isdir(msp_pth):
+                    continue
+                self.num_lines = sum(1 for line in open(msp_file_pth))
+                with open(msp_file_pth, "rb") as f:
 
+                    c = self.update_lines(f, chunk, db_type, celery_obj, c)
+        else:
+            with open(msp_pth, "rb") as f:
+                self.update_lines(f, chunk, db_type, celery_obj)
+
+        self.insert_data(remove_data=True, db_type=db_type)
+
+    def update_lines(self, f, chunk, db_type, celery_obj=False, c=0):
+        old = 0
+
+        for i, line in enumerate(f):
             if i == 0:
                 old = self.current_id_meta
 
@@ -267,14 +293,12 @@ class LibraryData(object):
                     celery_obj.update_state(state='current spectra {}'.format(str(i)),
                                             meta={'current': i, 'total': self.num_lines})
                 print(self.current_id_meta)
-
-                self.insert_data(update_source=update_source, remove_data=True, db_type=db_type)
-                update_source = False
+                self.insert_data(remove_data=True, db_type=db_type)
+                self.update_source = False
                 c = 0
+        return c
 
-        self.insert_data(update_source=update_source, remove_data=True, db_type=db_type)
-
-    def get_current_ids(self, source=True, meta=True, spectra=True):
+    def get_current_ids(self, source=True, meta=True, spectra=True, spectra_annotation=True):
         c = self.c
         # Get the last uid for the spectra_info table
         if source:
@@ -303,6 +327,15 @@ class LibraryData(object):
             else:
                 self.current_id_spectra = 1
 
+        if spectra_annotation:
+            c.execute('SELECT max(id) FROM library_spectra_annotation')
+            last_id_spectra_annotation = c.fetchone()[0]
+
+            if last_id_spectra_annotation:
+                self.current_id_spectra_annotation = last_id_spectra_annotation + 1
+            else:
+                self.current_id_spectra_annotation = 1
+
     def get_compound_ids(self):
         cursor = self.conn.cursor()
         cursor.execute('SELECT inchikey_id FROM metab_compound')
@@ -326,16 +359,22 @@ class LibraryData(object):
             self.meta_info['ms_level'] = self.mslevel
 
         self.get_other_names(line)
+        if re.match('^PK\$PEAK: m/z int\. rel\.int\.$', line, re.IGNORECASE):
+            self.ignore_additional_spectra_info = True
+
+
 
         # num peaks
-        if re.match('^Num Peaks(.*)$', line, re.IGNORECASE) or \
-                re.match('^PK\$PEAK: m/z int\. rel\.int\.$', line, re.IGNORECASE):
+        if self.collect_meta and (re.match('^Num Peaks(.*)$', line, re.IGNORECASE) or \
+                re.match('^PK\$PEAK:(.*)', line, re.IGNORECASE) or \
+                re.match('^PK\$ANNOTATION(.*)', line, re.IGNORECASE)):
+
 
             # In the mass bank msp files, sometimes the precursor_mz is missing but we have the neutral mass and
             # the precursor_type (e.g. adduct) so we can calculate the precursor_mz
 
-            if not self.meta_info['precursor_mz'] and self.meta_info['precursor_type'] and self.compound_info[
-                'exact_mass']:
+            if not self.meta_info['precursor_mz'] and self.meta_info['precursor_type'] and \
+                    self.compound_info['exact_mass']:
                 self.meta_info['precursor_mz'] = get_precursor_mz(float(self.compound_info['exact_mass']),
                                                                   self.meta_info['precursor_type'])
 
@@ -352,7 +391,6 @@ class LibraryData(object):
 
             other_name_l = [name for name in self.other_names if name != self.compound_info['name']]
             self.compound_info['other_names'] = ' <#> '.join(other_name_l)
-
 
 
             if not self.compound_info['inchikey_id']:
@@ -397,22 +435,49 @@ class LibraryData(object):
             self.meta_info = self.get_blank_meta_info()
             self.compound_info = self.get_blank_compound_info()
             self.other_names = []
+            self.collect_meta = False
 
+
+        if re.match('^Num Peaks(.*)$', line, re.IGNORECASE) or re.match('^PK\$PEAK:(.*)', line, re.IGNORECASE):
             self.start_spectra = True
             return
+        elif re.match('^PK\$ANNOTATION(.*)', line, re.IGNORECASE):
+            self.start_spectra_annotation = True
+            return
+
+        if self.start_spectra_annotation:
+            if re.match('^PK\$NUM_PEAK(.*)', line, re.IGNORECASE):
+                self.start_spectra_annotation = False
+                return
+
+            saplist = line.split()
+            'm/z tentative_formula mass_error'
+            sarow = (
+                self.current_id_spectra_annotation,
+                float(saplist[0]),
+                saplist[1],
+                float(saplist[2]),
+                self.current_id_meta)
+
+            self.spectra_annotation_all.append(sarow)
+
+            self.current_id_spectra_annotation += 1
+
 
         if self.start_spectra:
             if line in ['\n', '\r\n', '//\n', '//\r\n']:
                 self.start_spectra = False
                 self.current_id_meta += 1
+                self.collect_meta = True
                 return
 
             splist = line.split()
 
-            if len(splist) > 2:
+            if len(splist) > 2 and not self.ignore_additional_spectra_info:
                 additional_info = ''.join(map(str, splist[2:len(splist)]))
             else:
                 additional_info = ''
+
 
             srow = (
                 self.current_id_spectra, float(splist[0]), float(splist[1]), additional_info,
@@ -462,9 +527,7 @@ class LibraryData(object):
     def get_other_names(self, line):
         m = re.search(self.compound_regex['other_names'][0], line, re.IGNORECASE)
         if m:
-
             self.other_names.append(m.group(1).strip())
-            print('OTHER NAMES!!!!!!!!!!!!!!!!!!!!!!', self.other_names)
 
     def parse_meta_info(self, line):
 
@@ -484,10 +547,10 @@ class LibraryData(object):
                 if m:
                     self.compound_info[k] = m.group(1).strip()
 
-    def insert_data(self, update_source, remove_data=False, schema='mona', db_type='sqlite'):
-        # print "INSERT DATA"
+    def insert_data(self, remove_data=False, schema='mona', db_type='sqlite'):
+        print("INSERT DATA")
 
-        if update_source:
+        if self.update_source:
             # print "insert ref id"
             self.c.execute(
                 "INSERT INTO library_spectra_source (id, name) VALUES ({a}, '{b}')".format(a=self.current_id_origin,
@@ -512,11 +575,16 @@ class LibraryData(object):
 
         cn = "id, mz, i, other, library_spectra_meta_id"
         insert_query_m(self.spectra_all, columns=cn, conn=self.conn, table='library_spectra', db_type=db_type)
+        if self.spectra_annotation_all:
+            cn = "id, mz, tentative_formula, mass_error, library_spectra_meta_id"
+            insert_query_m(self.spectra_annotation_all, columns=cn, conn=self.conn, table='library_spectra_annotation', db_type=db_type)
+
 
         # self.conn.close()
         if remove_data:
             self.meta_info_all = []
             self.spectra_all = []
+            self.spectra_annotation_all = []
             self.compound_info_all = []
             self.get_current_ids(source=False)
 
@@ -527,6 +595,7 @@ def chunk_query(l, n, cn, conn, name, db_type):
 
 
 def insert_query_m(data, table, conn, columns=None, db_type='mysql'):
+
     if len(data) > 10000:
         chunk_query(data, 10000, columns, conn, table, db_type)
     else:
@@ -535,7 +604,7 @@ def insert_query_m(data, table, conn, columns=None, db_type='mysql'):
         else:
             type_sign = '%s'
         type_com = type_sign + ", "
-        print(data)
+
         type = type_com * (len(data[0]) - 1)
         type = type + type_sign
 
@@ -543,8 +612,9 @@ def insert_query_m(data, table, conn, columns=None, db_type='mysql'):
             stmt = "INSERT INTO " + table + "( " + columns + ") VALUES (" + type + ")"
         else:
             stmt = "INSERT INTO " + table + " VALUES (" + type + ")"
-        print(stmt)
 
+        print(stmt)
+        print(data)
         cursor = conn.cursor()
         cursor.executemany(stmt, data)
         conn.commit()
