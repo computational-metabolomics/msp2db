@@ -212,6 +212,7 @@ class LibraryData(object):
         print('Starting library data parsing')
         self.c = conn.cursor()
         self.conn = conn
+        self.db_pth = db_pth
 
         self.meta_info_all = []
 
@@ -262,8 +263,9 @@ class LibraryData(object):
         if os.path.isdir(msp_pth):
             for msp_file in os.listdir(msp_pth):
                 msp_file_pth = os.path.join(msp_pth, msp_file)
-                if os.path.isdir(msp_pth):
+                if os.path.isdir(msp_file_pth):
                     continue
+                print('MSP FILE PATH', msp_file_pth)
                 self.num_lines = sum(1 for line in open(msp_file_pth))
                 with open(msp_file_pth, "rb") as f:
 
@@ -588,6 +590,32 @@ class LibraryData(object):
             self.compound_info_all = []
             self.get_current_ids(source=False)
 
+    def get_db_dict(self):
+        return db_dict(self.c)
+
+    def close(self):
+        self.conn.close()
+
+
+def db_dict(c):
+    db_d = {}
+    c.execute('SELECT * FROM library_spectra')
+    db_d['library_spectra'] = [list(row) for row in c]
+
+    c.execute('SELECT * FROM library_spectra_meta')
+    db_d['library_spectra_meta'] = [list(row) for row in c]
+
+    c.execute('SELECT * FROM library_spectra_annotation')
+    db_d['library_spectra_annotations'] = [list(row) for row in c]
+
+    c.execute('SELECT * FROM library_spectra_source')
+    db_d['library_spectra_source'] = [list(row) for row in c]
+
+    c.execute('SELECT * FROM metab_compound')
+    db_d['metab_compound'] = [list(row) for row in c]
+
+    return db_d
+
 
 def chunk_query(l, n, cn, conn, name, db_type):
     # For item i in a range that is a length of l,
@@ -605,6 +633,7 @@ def insert_query_m(data, table, conn, columns=None, db_type='mysql'):
             type_sign = '%s'
         type_com = type_sign + ", "
 
+
         type = type_com * (len(data[0]) - 1)
         type = type + type_sign
 
@@ -613,8 +642,8 @@ def insert_query_m(data, table, conn, columns=None, db_type='mysql'):
         else:
             stmt = "INSERT INTO " + table + " VALUES (" + type + ")"
 
-        print(stmt)
-        print(data)
+
+
         cursor = conn.cursor()
         cursor.executemany(stmt, data)
         conn.commit()

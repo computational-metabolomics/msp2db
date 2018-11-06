@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 import os
 import unittest
 import sqlite3
-from msp2db.msp2db import LibraryData, create_db
+from msp2db.msp2db import LibraryData, create_db, db_dict
 
 from sqlite3 import OperationalError
 import tempfile
@@ -31,8 +31,27 @@ def sql_column_names(cursor):
         c += 1
 
     return names
+
+
+
+
 #
 class TestSqlite(unittest.TestCase):
+
+    def remove_date_from_metab_compound_d(self, d):
+        for i in range(0, len(d['metab_compound'])):
+            d['metab_compound'][i][10] = None
+            d['metab_compound'][i][11] = None
+        return d
+
+    def compare_db_d(self, d1, d2):
+        d1 = self.remove_date_from_metab_compound_d(d1)
+        d2 = self.remove_date_from_metab_compound_d(d2)
+
+        self.assertEquals(d1['library_spectra_annotations'], d2['library_spectra_annotations'])
+        self.assertEquals(d1['metab_compound'], d2['metab_compound'])
+        self.assertEquals(d1['library_spectra_meta'], d2[u'library_spectra_meta'])
+        self.assertEquals(d1['library_spectra'], d2[u'library_spectra'])
 
     def test_create_db(self,):
         dirpath = tempfile.mkdtemp()
@@ -54,11 +73,39 @@ class TestSqlite(unittest.TestCase):
         self.assertTrue(check_table_exists_sqlite(cursor, 'metab_compound'))
         # test certain columns exit
 
+    def test_database_dict(self):
+        libdata, db_pth = self._test_example_single_file(
+            os.path.join(os.path.dirname(__file__), "msp_files", "AC000001.txt"), 'AC')
+
+        d_new = libdata.get_db_dict()
+        d_orig = {u'library_spectra_annotations': [[1, 133.0643, u'C9H9O1+', -3.74, 1], [2, 151.0751, u'C9H11O2+', -1.72, 1],
+                                          [3, 161.0591, u'C10H9O2+', -3.77, 1], [4, 179.0702, u'C10H11O3+', -0.39, 1]],
+              u'metab_compound': [[u'KWILGNNWGSNMPA-UHFFFAOYSA-N', u'Mellein', u'28516', u'26529',
+                              u'Ochracin <#> 8-hydroxy-3-methyl-3,4-dihydroisochromen-1-one', 178.06299, u'C10H10O3',
+                              None, u'Natural Product; Fungal metabolite', u'CC1CC2=C(C(=CC=C2)O)C(=O)O1',
+                              None, None]],
+             u'library_spectra_meta': [[1, u'Mellein; LC-ESI-ITFT; MS2; CE: 10; R=17500; [M+H]+', u'10(NCE)', 2.0, u'AC000001', u'17500',
+                                        u'POSITIVE', u'HCD', 179.0697, u'[M+H]+', u'LC-ESI-ITFT', u'Q-Exactive Orbitrap Thermo Scientific',
+                                        u'Copyright (C) 2017', None, None, None, None, 1, u'KWILGNNWGSNMPA-UHFFFAOYSA-N']],
+                                        u'library_spectra_source': [[1, u'test']],
+             u'library_spectra': [[1, 133.0648, 21905.33203125, u'', 1], [2, 151.0754, 9239.8974609375, u'', 1],
+                              [3, 155.9743, 10980.8896484375, u'', 1], [4, 161.0597, 96508.4375, u'', 1],
+                              [5, 179.0703, 72563.875, u'', 1]]}
+
+        d_new = self.remove_date_from_metab_compound_d(d_new)
+
+        self.assertEquals(d_new['library_spectra_annotations'], d_orig['library_spectra_annotations'])
+        self.assertEquals(d_new['metab_compound'], d_orig['metab_compound'])
+        self.assertEquals(d_new['library_spectra_meta'], d_orig[u'library_spectra_meta'])
+        self.assertEquals(d_new['library_spectra'], d_orig[u'library_spectra'])
+
+
+
+
     def _test_example_single_file(self, example_file_pth, name):
         # Parse all example files
         dirpath = tempfile.mkdtemp()
-        db_pth = os.path.join(os.path.dirname(__file__),
-                              dirpath, name + '.db')
+        db_pth = os.path.join(dirpath, name + '.db')
 
         create_db(file_pth=db_pth, db_type='sqlite', db_name=name)
 
@@ -139,15 +186,14 @@ class TestSqlite(unittest.TestCase):
     def test_example_multi_file(self):
 
         dirpath = tempfile.mkdtemp()
-        db_pth = os.path.join(os.path.dirname(__file__),
-                              dirpath, 'test_msp_dir.db')
+        # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        db_pth = os.path.join(dirpath, 'test_msp_dir.db')
 
         create_db(file_pth=db_pth, db_type='sqlite', db_name='test_dir')
 
         dir_pth = os.path.join(os.path.dirname(__file__), "msp_files")
 
         libdata = LibraryData(msp_pth=dir_pth,
-
                               db_pth=db_pth,
                               db_type='sqlite',
                               d_form=None,
@@ -156,12 +202,28 @@ class TestSqlite(unittest.TestCase):
                               mslevel=None,
                               chunk=200)
 
+        db_new = libdata.get_db_dict()
+
+        # get original database info
+        conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 'original_results', 'test_msp_dir.db'))
+        cursor = conn.cursor()
+
+        db_original = db_dict(cursor)
+
+        self.compare_db_d(db_new, db_original)
+
+
+
+
+
+
+
 
     def test_mona_files(self):
 
         dirpath = tempfile.mkdtemp()
-        db_pth = os.path.join(os.path.dirname(__file__),
-                              dirpath, 'test_msp_dir.db')
+        # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        db_pth = os.path.join(dirpath, 'test_msp_mona.db')
 
         create_db(file_pth=db_pth, db_type='sqlite', db_name='test_mona')
 
@@ -172,7 +234,7 @@ class TestSqlite(unittest.TestCase):
                               schema='mona',
                               source='pathogen',
                               mslevel=None,
-                              chunk=200)
+                              chunk=2)
 
         libdata = LibraryData(msp_pth=os.path.join(os.path.dirname(__file__), 'msp_files', 'mona', 'MoNA-export-MetaboBASE-small.msp'),
 
@@ -182,7 +244,7 @@ class TestSqlite(unittest.TestCase):
                               schema='mona',
                               source='massbank',
                               mslevel=None,
-                              chunk=200)
+                              chunk=2)
 
         libdata = LibraryData(msp_pth=os.path.join(os.path.dirname(__file__), 'msp_files', 'mona', 'MoNA-export-MassBank-small.msp'),
                               db_pth=db_pth,
@@ -191,9 +253,16 @@ class TestSqlite(unittest.TestCase):
                               schema='mona',
                               source='metabobase',
                               mslevel=None,
-                              chunk=200)
+                              chunk=2)
 
+        db_new = libdata.get_db_dict()
 
+        # get original database info
+        conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 'original_results', 'test_msp_mona.db'))
+        cursor = conn.cursor()
 
+        db_original = db_dict(cursor)
+
+        self.compare_db_d(db_new, db_original)
 
 
