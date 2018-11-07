@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 from __future__ import absolute_import, unicode_literals, print_function
 import argparse
+import os
 from .parse import LibraryData
+from .db import create_db
 
 
 def main():
@@ -14,11 +16,13 @@ def main():
     p.add_argument('-name', dest='name', help='name of the database', required=True)
     p.add_argument('-source', dest='source', help='Name of data source (e.g. MassBank, LipidBlast)', required=True)
     p.add_argument('-o', dest='out_dir', help='out directory', required=False)
-    p.add_argument('-t', dest='type', help='database type [mysql, sqlite]', required=True)
+    p.add_argument('-t', dest='type', help='database type [mysql, sqlite]', required=True, default='sqlite')
     p.add_argument('-dt', dest='dt', help='delete tables', action='store_true')
     p.add_argument('-mslevel', dest='mslevel', help='ms level of fragmentation if not detailed in msp file',
                    required=False)
-    p.add_argument('-chunk', dest='chunk', help='Memory efficient chunks to parse data')
+    p.add_argument('-chunk', dest='chunk', help='Chunks of spectra to parse data (useful to control memory usage)', default=200)
+    p.add_argument('-schema', dest='schema', help='Type of schema used (by default can use Massbank style or MSP or mona style'
+                                                  'msp', default='mona')
 
     args = p.parse_args()
 
@@ -49,20 +53,22 @@ def main():
 
     if args.chunk:
         libdata = LibraryData(msp_pth=args.msp_file,
-                              name=args.name,
+
                               db_pth=db_pth if db_pth else None,
                               db_type=args.type,
                               d_form=d_form,
                               source=args.source,
                               mslevel=args.mslevel,
+                              schema=args.schema,
                               chunk=int(args.chunk))
     else:
         libdata = LibraryData(msp_pth=args.msp_file,
-                              name=args.name,
+
                               db_pth=db_pth if db_pth else None,
                               db_type=args.type,
                               d_form=d_form,
                               source=args.source,
+                              schema=args.schema,
                               mslevel=args.mslevel)
         libdata.insert_data()
 

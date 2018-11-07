@@ -133,7 +133,7 @@ class LibraryData(object):
             with open(msp_pth, "r") as f:
                 self._parse_lines(f, chunk, db_type, celery_obj)
 
-        self._insert_data(remove_data=True, db_type=db_type)
+        self.insert_data(remove_data=True, db_type=db_type)
 
     def _parse_lines(self, f, chunk, db_type, celery_obj=False, c=0):
         old = 0
@@ -154,7 +154,7 @@ class LibraryData(object):
                     celery_obj.update_state(state='current spectra {}'.format(str(i)),
                                             meta={'current': i, 'total': self.num_lines})
                 print(self.current_id_meta)
-                self._insert_data(remove_data=True, db_type=db_type)
+                self.insert_data(remove_data=True, db_type=db_type)
                 self.update_source = False
                 c = 0
         return c
@@ -380,7 +380,7 @@ class LibraryData(object):
 
         self._get_other_names(line)
 
-    def _insert_data(self, remove_data=False, schema='mona', db_type='sqlite'):
+    def insert_data(self, remove_data=False, schema='mona', db_type='sqlite'):
         print("INSERT DATA")
 
         if self.update_source:
