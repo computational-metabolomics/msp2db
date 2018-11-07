@@ -9,7 +9,7 @@ install:
   - pip install .
 
 script:
-  - green -vvv
+  - green -vvv --run-coverage
 
 after_script:
   - python -m codecov
