@@ -261,17 +261,17 @@ class LibraryData(object):
 
         c = 0
         if os.path.isdir(msp_pth):
-            for msp_file in os.listdir(msp_pth):
+            for msp_file in sorted(os.listdir(msp_pth)):
                 msp_file_pth = os.path.join(msp_pth, msp_file)
                 if os.path.isdir(msp_file_pth):
                     continue
                 print('MSP FILE PATH', msp_file_pth)
                 self.num_lines = sum(1 for line in open(msp_file_pth))
-                with open(msp_file_pth, "rb") as f:
+                with open(msp_file_pth, "r") as f:
 
                     c = self.update_lines(f, chunk, db_type, celery_obj, c)
         else:
-            with open(msp_pth, "rb") as f:
+            with open(msp_pth, "r") as f:
                 self.update_lines(f, chunk, db_type, celery_obj)
 
         self.insert_data(remove_data=True, db_type=db_type)
