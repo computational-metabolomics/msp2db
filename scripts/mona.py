@@ -2,7 +2,7 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
-from msp2db.msp2db import LibraryData, create_db
+from msp2db.parse import LibraryData, create_db
 
 db_pth = 'spectral_library_06112018v4.db'
 

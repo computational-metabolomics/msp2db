@@ -5,12 +5,12 @@ from __future__ import unicode_literals
 import os
 import unittest
 import sqlite3
-from msp2db.msp2db import LibraryData, create_db, db_dict
+from msp2db.parse import LibraryData
+from msp2db.db import create_db, db_dict
 
 from sqlite3 import OperationalError
 import tempfile
 import shutil
-
 
 
 def check_table_exists_sqlite(cursor, tablename):
@@ -198,7 +198,7 @@ class TestSqlite(unittest.TestCase):
     def test_example_multi_file(self):
 
         dirpath = tempfile.mkdtemp()
-        # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
         db_pth = os.path.join(dirpath, 'test_msp_dir.db')
 
         create_db(file_pth=db_pth, db_type='sqlite', db_name='test_dir')
@@ -235,7 +235,7 @@ class TestSqlite(unittest.TestCase):
         self.maxDiff = None
 
         dirpath = tempfile.mkdtemp()
-        # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
         db_pth = os.path.join(dirpath, 'test_msp_mona.db')
 
         create_db(file_pth=db_pth, db_type='sqlite', db_name='test_mona')
