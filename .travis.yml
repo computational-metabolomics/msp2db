@@ -2,13 +2,14 @@ language: python
 python:
   - "2.7"
   - "3.6"
-  
+
 install:
+  - pip install coverage
   - pip install green codecov
   - pip install .
 
 script:
-  - python -m green -vvv
+  - green -vvv
 
 after_script:
   - python -m codecov
