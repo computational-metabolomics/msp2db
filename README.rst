@@ -43,7 +43,7 @@ License
    :target: https://github.com/ISA-tools/msp2db
 
 
-.. |License| image:: https://img.shields.io/pypi/l/msp2db.svg?style=flat&maxAge=3600
+.. |License| image:: https://img.shields.io/badge/License-GPL%20v3-blue.svg
    :target: https://www.gnu.org/licenses/gpl-3.0.html
 
 .. |RTD doc| image:: https://img.shields.io/readthedocs/msp2db.svg?style=flat&maxAge=3600
