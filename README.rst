@@ -1,7 +1,7 @@
 msp2db
 ======
 
-|Version| |Py versions| |Git| |Build Status (Travis)| |Build Status (AppVeyor)| |License| |RTD doc| 
+|Version| |Py versions| |Git| |Build Status (Travis)| |Build Status (AppVeyor)| |License| |RTD doc| |codecov|
 
 Installation
 ------------
@@ -48,6 +48,9 @@ License
 
 .. |RTD doc| image:: https://img.shields.io/readthedocs/msp2db.svg?style=flat&maxAge=3600
    :target: https://2isa.readthedocs.io/en/latest/msp2db/
+   
+.. |codecov| image:: https://codecov.io/gh/computational-metabolomics/msp2db/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/computational-metabolomics/msp2db
 
 
 
