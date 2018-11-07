@@ -357,7 +357,7 @@ class LibraryData(object):
         self.parse_meta_info(line)
         self.parse_compound_info(line)
 
-        if self.mslevel > 0:
+        if not self.mslevel or self.mslevel > 0:
             self.meta_info['ms_level'] = self.mslevel
 
         self.get_other_names(line)
