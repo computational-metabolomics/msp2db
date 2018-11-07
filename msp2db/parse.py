@@ -58,26 +58,26 @@ class LibraryData(object):
         else:
             self.compound_regex = get_compound_regex(schema=schema)
 
-        self.meta_info = self.get_blank_meta_info()
+        self.meta_info = self._get_blank_meta_info()
 
-        self.compound_info = self.get_blank_compound_info()
-        self.get_current_ids()
+        self.compound_info = self._get_blank_compound_info()
+        self._get_current_ids()
         self.source = source
         self.mslevel = mslevel
         self.other_names = []
 
         if d_form:
             self.num_lines = sum(1 for line in msp_pth)
-            self.parse_files(msp_pth,
+            self._parse_files(msp_pth,
                               chunk,
                               db_type,
                               celery_obj=celery_obj
                               )
         else:
 
-            self.parse_files(msp_pth, chunk, db_type, celery_obj=celery_obj)
+            self._parse_files(msp_pth, chunk, db_type, celery_obj=celery_obj)
 
-    def get_current_ids(self, source=True, meta=True, spectra=True, spectra_annotation=True):
+    def _get_current_ids(self, source=True, meta=True, spectra=True, spectra_annotation=True):
         c = self.c
         # Get the last uid for the spectra_info table
         if source:
@@ -116,7 +116,7 @@ class LibraryData(object):
                 self.current_id_spectra_annotation = 1
 
 
-    def parse_files(self, msp_pth, chunk, db_type, celery_obj=False):
+    def _parse_files(self, msp_pth, chunk, db_type, celery_obj=False):
 
         c = 0
         if os.path.isdir(msp_pth):
@@ -127,22 +127,22 @@ class LibraryData(object):
                 print('MSP FILE PATH', msp_file_pth)
                 self.num_lines = line_count(msp_file_pth)
                 with open(msp_file_pth, "r") as f:
-                    c = self.parse_lines(f, chunk, db_type, celery_obj, c)
+                    c = self._parse_lines(f, chunk, db_type, celery_obj, c)
         else:
             self.num_lines = line_count(msp_pth)
             with open(msp_pth, "r") as f:
-                self.parse_lines(f, chunk, db_type, celery_obj)
+                self._parse_lines(f, chunk, db_type, celery_obj)
 
-        self.insert_data(remove_data=True, db_type=db_type)
+        self._insert_data(remove_data=True, db_type=db_type)
 
-    def parse_lines(self, f, chunk, db_type, celery_obj=False, c=0):
+    def _parse_lines(self, f, chunk, db_type, celery_obj=False, c=0):
         old = 0
 
         for i, line in enumerate(f):
             if i == 0:
                 old = self.current_id_meta
 
-            self.update_libdata(line)
+            self._update_libdata(line)
 
             if self.current_id_meta > old:
                 old = self.current_id_meta
@@ -154,12 +154,12 @@ class LibraryData(object):
                     celery_obj.update_state(state='current spectra {}'.format(str(i)),
                                             meta={'current': i, 'total': self.num_lines})
                 print(self.current_id_meta)
-                self.insert_data(remove_data=True, db_type=db_type)
+                self._insert_data(remove_data=True, db_type=db_type)
                 self.update_source = False
                 c = 0
         return c
 
-    def update_libdata(self, line):
+    def _update_libdata(self, line):
 
         ####################################################
         # Parse the lines
@@ -167,23 +167,23 @@ class LibraryData(object):
         if re.match('^Comment.*$', line, re.IGNORECASE):
             comments = re.findall('"([^"]*)"', line)
             for c in comments:
-                self.parse_meta_info(c)
-                self.parse_compound_info(c)
-        self.parse_meta_info(line)
-        self.parse_compound_info(line)
+                self._parse_meta_info(c)
+                self._parse_compound_info(c)
+        self._parse_meta_info(line)
+        self._parse_compound_info(line)
 
 
         # num peaks
         if self.collect_meta and (re.match('^Num Peaks(.*)$', line, re.IGNORECASE) or re.match('^PK\$PEAK:(.*)', line,
                 re.IGNORECASE) or re.match('^PK\$ANNOTATION(.*)', line, re.IGNORECASE)):
 
-            self.store_compound_info()
+            self._store_compound_info()
 
-            self.store_meta_info()
+            self._store_meta_info()
 
             # Reset the temp meta information
-            self.meta_info = self.get_blank_meta_info()
-            self.compound_info = self.get_blank_compound_info()
+            self.meta_info = self._get_blank_meta_info()
+            self.compound_info = self._get_blank_compound_info()
             self.other_names = []
             self.collect_meta = False
 
@@ -198,10 +198,10 @@ class LibraryData(object):
             return
 
         if self.start_spectra_annotation:
-            self.parse_spectra_annotation(line)
+            self._parse_spectra_annotation(line)
 
         if self.start_spectra:
-            self.parse_spectra(line)
+            self._parse_spectra(line)
 
 
     def get_compound_ids(self):
@@ -212,18 +212,18 @@ class LibraryData(object):
             if not row[0] in self.compound_ids:
                 self.compound_ids.append(row[0])
 
-    def store_compound_info(self):
+    def _store_compound_info(self):
         other_name_l = [name for name in self.other_names if name != self.compound_info['name']]
         self.compound_info['other_names'] = ' <#> '.join(other_name_l)
 
         if not self.compound_info['inchikey_id']:
-            self.set_inchi_pcc(self.compound_info['pubchem_id'], 'cid', 0)
+            self._set_inchi_pcc(self.compound_info['pubchem_id'], 'cid', 0)
 
         if not self.compound_info['inchikey_id']:
-            self.set_inchi_pcc(self.compound_info['smiles'], 'smiles', 0)
+            self._set_inchi_pcc(self.compound_info['smiles'], 'smiles', 0)
 
         if not self.compound_info['inchikey_id']:
-            self.set_inchi_pcc(self.compound_info['name'], 'name', 0)
+            self._set_inchi_pcc(self.compound_info['name'], 'name', 0)
 
         if not self.compound_info['inchikey_id']:
             print('WARNING, cant get inchi key for ', self.compound_info)
@@ -232,7 +232,7 @@ class LibraryData(object):
             self.compound_info['inchikey_id'] = 'UNKNOWN_' + str(uuid.uuid4())
 
         if not self.compound_info['pubchem_id'] and self.compound_info['inchikey_id']:
-            self.set_inchi_pcc(self.compound_info['inchikey_id'], 'inchikey', 0)
+            self._set_inchi_pcc(self.compound_info['inchikey_id'], 'inchikey', 0)
 
         if not self.compound_info['name']:
             self.compound_info['name'] = 'unknown name'
@@ -244,7 +244,7 @@ class LibraryData(object):
             ))
             self.compound_ids.append(self.compound_info['inchikey_id'])
 
-    def store_meta_info(self):
+    def _store_meta_info(self):
         # In the mass bank msp files, sometimes the precursor_mz is missing but we have the neutral mass and
         # the precursor_type (e.g. adduct) so we can calculate the precursor_mz
         if not self.meta_info['precursor_mz'] and self.meta_info['precursor_type'] and \
@@ -271,7 +271,7 @@ class LibraryData(object):
             (str(self.current_id_origin), self.compound_info['inchikey_id'],)
         )
 
-    def parse_spectra_annotation(self, line):
+    def _parse_spectra_annotation(self, line):
 
 
         if re.match('^PK\$NUM_PEAK(.*)', line, re.IGNORECASE):
@@ -291,7 +291,7 @@ class LibraryData(object):
 
         self.current_id_spectra_annotation += 1
 
-    def parse_spectra(self, line):
+    def _parse_spectra(self, line):
 
 
         if line in ['\n', '\r\n', '//\n', '//\r\n']:
@@ -316,13 +316,13 @@ class LibraryData(object):
         self.current_id_spectra += 1
 
 
-    def get_blank_meta_info(self):
+    def _get_blank_meta_info(self):
         return {k: '' for k in self.meta_regex.keys()}
 
-    def get_blank_compound_info(self,):
+    def _get_blank_compound_info(self,):
         return {k: '' for k in self.compound_regex.keys()}
 
-    def set_inchi_pcc(self, in_str, pcp_type, elem):
+    def _set_inchi_pcc(self, in_str, pcp_type, elem):
         if not in_str:
             return 0
 
@@ -353,12 +353,12 @@ class LibraryData(object):
             if len(pccs) > 1:
                 print('WARNING, multiple compounds for ', self.compound_info)
 
-    def get_other_names(self, line):
+    def _get_other_names(self, line):
         m = re.search(self.compound_regex['other_names'][0], line, re.IGNORECASE)
         if m:
             self.other_names.append(m.group(1).strip())
 
-    def parse_meta_info(self, line):
+    def _parse_meta_info(self, line):
         if self.mslevel:
             self.meta_info['ms_level'] = self.mslevel
 
@@ -368,7 +368,7 @@ class LibraryData(object):
                 if m:
                     self.meta_info[k] = m.group(1).strip()
 
-    def parse_compound_info(self, line):
+    def _parse_compound_info(self, line):
 
         for k, regexes in six.iteritems(self.compound_regex):
             for reg in regexes:
@@ -378,9 +378,9 @@ class LibraryData(object):
                 if m:
                     self.compound_info[k] = m.group(1).strip()
 
-        self.get_other_names(line)
+        self._get_other_names(line)
 
-    def insert_data(self, remove_data=False, schema='mona', db_type='sqlite'):
+    def _insert_data(self, remove_data=False, schema='mona', db_type='sqlite'):
         print("INSERT DATA")
 
         if self.update_source:
@@ -420,7 +420,7 @@ class LibraryData(object):
             self.spectra_all = []
             self.spectra_annotation_all = []
             self.compound_info_all = []
-            self.get_current_ids(source=False)
+            self._get_current_ids(source=False)
 
     def get_db_dict(self):
         return db_dict(self.c)
