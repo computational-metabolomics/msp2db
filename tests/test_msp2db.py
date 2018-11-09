@@ -11,7 +11,6 @@ from msp2db.db import create_db, db_dict
 from sqlite3 import OperationalError
 import tempfile
 import shutil
-import sys
 
 
 def check_table_exists_sqlite(cursor, tablename):
@@ -280,12 +279,8 @@ class TestCLI(unittest.TestCase):
         self.assertEquals(d1['library_spectra'], d2[u'library_spectra'])
 
     def test_cli(self,):
-        if sys.version_info < (3, 0):
-            dirpath = tempfile.mkdtemp()
-        else:
-            # in py3 strings should be ok...
-            dirpath = '.'
 
+        dirpath = tempfile.mkdtemp()
 
 
         # db_pth = os.path.join(os.path.dirname(__file__), 'original_results', 'test_sqlite_cli.db')
