@@ -11,6 +11,7 @@ from msp2db.db import create_db, db_dict
 from sqlite3 import OperationalError
 import tempfile
 import shutil
+import sys
 
 
 def check_table_exists_sqlite(cursor, tablename):
@@ -33,9 +34,8 @@ def sql_column_names(cursor):
     return names
 
 
-
-
 def remove_date_from_metab_compound_d(d):
+
     for i in range(0, len(d['metab_compound'])):
         d['metab_compound'][i][10] = None
         d['metab_compound'][i][11] = None
@@ -280,7 +280,12 @@ class TestCLI(unittest.TestCase):
         self.assertEquals(d1['library_spectra'], d2[u'library_spectra'])
 
     def test_cli(self,):
-        dirpath = tempfile.mkdtemp()
+        if sys.version_info < (3, 0):
+            dirpath = tempfile.mkdtemp()
+        else:
+            # in py3 strings should be ok...
+            dirpath = '.'
+
 
 
         # db_pth = os.path.join(os.path.dirname(__file__), 'original_results', 'test_sqlite_cli.db')
