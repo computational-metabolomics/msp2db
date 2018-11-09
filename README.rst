@@ -56,7 +56,7 @@ Released under the GNU General Public License v3.0 (see `LICENSE file <https://g
    :target: https://pypi.python.org/pypi/msp2db/
   
 .. |Build Status (AppVeyor)| image:: https://img.shields.io/appveyor/ci/Tomnl/msp2db.svg?style=flat&maxAge=3600&label=AppVeyor
-   :target: https://ci.appveyor.com/project/computational-metabolomics/msp2db
+   :target: https://ci.appveyor.com/project/Tomnl/msp2db
 
 .. |Version| image:: https://img.shields.io/pypi/v/msp2db.svg?style=flat&maxAge=3600
    :target: https://pypi.python.org/pypi/msp2db/
