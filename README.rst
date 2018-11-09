@@ -69,7 +69,7 @@ Released under the GNU General Public License v3.0 (see `LICENSE file <https://g
    :target: https://www.gnu.org/licenses/gpl-3.0.html
 
 .. |RTD doc| image:: https://img.shields.io/readthedocs/msp2db.svg?style=flat&maxAge=3600
-   :target: https://msp2db.readthedocs.io/en/latest/msp2db/
+   :target: https://msp2db.readthedocs.io/en/latest/
    
 .. |codecov| image:: https://codecov.io/gh/computational-metabolomics/msp2db/branch/master/graph/badge.svg
   :target: https://codecov.io/gh/computational-metabolomics/msp2db
