@@ -1,2 +1,2 @@
-napoleon
+spinxcontrib.napoleon
 msp2db
