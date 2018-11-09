@@ -15,7 +15,7 @@ def main():
     p.add_argument('-msp_file', dest='msp_file', help='path to the MSP file', required=True)
     p.add_argument('-name', dest='name', help='name of the database', required=True)
     p.add_argument('-source', dest='source', help='Name of data source (e.g. MassBank, LipidBlast)', required=True)
-    p.add_argument('-o', dest='out_dir', help='out directory', required=False)
+    p.add_argument('-o', dest='out_dir', help='out directory for SQLite database', required=False)
     p.add_argument('-t', dest='type', help='database type [mysql, sqlite]', required=True, default='sqlite')
     p.add_argument('-dt', dest='dt', help='delete tables', action='store_true')
     p.add_argument('-mslevel', dest='mslevel', help='ms level of fragmentation if not detailed in msp file',
@@ -41,10 +41,6 @@ def main():
 
         db_pth = None
 
-    if args.type == 'django_mysql':
-        d_form = True
-    else:
-        d_form = False
 
     print(db_pth, args.dt)
 
