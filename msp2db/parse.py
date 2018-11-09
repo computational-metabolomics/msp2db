@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# coding: utf-8
 from __future__ import absolute_import, unicode_literals, print_function
 import datetime
 import re
@@ -7,8 +7,8 @@ import pubchempy as pcp
 import uuid
 import six
 from .re import get_compound_regex, get_meta_regex
-from .db import get_connection, insert_query_m, make_sql_compatible, db_dict
-from .utils import removekey, get_precursor_mz, line_count
+from .db import get_connection, insert_query_m, _make_sql_compatible, db_dict
+from .utils import get_precursor_mz, line_count, get_blank_dict
 
 try:
     # For Python 3.0 and later
@@ -24,22 +24,62 @@ except ImportError:
 
 
 class LibraryData(object):
-    def __init__(self, msp_pth, source, mslevel=None,
-                 db_pth=None, db_type='sqlite', d_form=False, password='', user='', mysql_db_name=None,
-                 chunk=0, schema = 'mona', user_meta_regex=None, user_compound_regex=None, celery_obj=False):
+    """MSP file parser to SQL databases
 
+    After creating a SQL database for the library spectra using create_db, MSP files can be parsed into the database
+    using the LibraryData class.
+
+    Example:
+        >>> from msp2db.db import create_db
+        >>> from msp2db.parse import LibraryData
+        >>> db_pth = 'spectral_library.db'
+        >>> create_db(file_pth=db_pth, db_type='sqlite', db_name='spectra')
+        >>> libdata = LibraryData(msp_pth='MoNA-export-FAHFA.msp',
+        >>>                  db_pth=db_pth,
+        >>>                  db_type='sqlite',
+        >>>                  schema='mona',
+        >>>                  source='fahfa',
+        >>>                  chunk=200)
+
+    Args:
+        msp_pth (str): path to msp file or directory [required]
+        db_pth (str): path to sqlite database (only required when using SQLite database) [default None]
+        source (str): Source of the msp files (e.g. massbank) [default 'unknown']
+        mslevel (int): If the msp file does not contain the mslevel this can be defined here [default None]
+        db_type (str): The type of database to submit to (either 'sqlite', 'mysql' or 'django_mysql') [default sqlite]
+        user (str): Username for database (only required for non Django mysql databases) [default None]
+        password (str): Password for database (only required for non Django mysql databases) [default None]
+        mysql_db_name (str):  Name of the mysql database (only required for non Django mysql databases) [default None]
+        chunk (int): Chunks of spectra to parse data (useful to control memory usage) [default 200]
+        schema (str): MSP files can vary based on how they were made, two standard schemas are available either 'mona'
+                      based on the MassBank of North America (MoNA) MSP files. And 'massbank' which is based on the
+                      more controlled MassBank MSP files https://github.com/MassBank/MassBank-data [default 'mona']
+        user_meta_regex (dict): For other MSP files not derived from either MoNA or MassBank a custom dictionary of
+                                regexes can be used [default None]
+        user_compound_regex (dict): For other MSP files not derived from either MoNA or MassBank a custom dictionary of
+                                    regexes can be used [default None]
+        celery_obj (boolean): If using Django a Celery task object can be used to keep track on ongoing tasks
+                              [default False]
+
+    Returns:
+        LibraryData object
+    """
+    def __init__(self, msp_pth, db_pth=None,
+                 mslevel=None, source='unknown', db_type='sqlite', password=None, user=None,
+                 mysql_db_name=None, chunk=200, schema='mona', user_meta_regex=None, user_compound_regex=None,
+                 celery_obj=False):
+
+        # get the database connection (either sqlite, mysql or Django mysql)
         conn = get_connection(db_type, db_pth, user, password, mysql_db_name)
-        print('Starting library data parsing')
+
+        # set up object variables
         self.c = conn.cursor()
         self.conn = conn
         self.db_pth = db_pth
-
         self.meta_info_all = []
-
         self.compound_info_all = []
         self.compound_ids = []
         self.get_compound_ids()
-
         self.spectra_all = []
         self.spectra_annotation_all = []
         self.start_spectra = False
@@ -47,7 +87,11 @@ class LibraryData(object):
         self.ignore_additional_spectra_info = False
         self.collect_meta = True
         self.update_source = True
+        self.source = source
+        self.mslevel = mslevel
+        self.other_names = []
 
+        # Either get standard regexs or the user provided regexes
         if user_meta_regex:
             self.meta_regex = user_meta_regex
         else:
@@ -58,26 +102,26 @@ class LibraryData(object):
         else:
             self.compound_regex = get_compound_regex(schema=schema)
 
-        self.meta_info = self._get_blank_meta_info()
-
-        self.compound_info = self._get_blank_compound_info()
+        # initiate the meta data
+        self.meta_info = get_blank_dict(self.meta_regex)
+        self.compound_info = get_blank_dict(self.compound_regex)
         self._get_current_ids()
-        self.source = source
-        self.mslevel = mslevel
-        self.other_names = []
 
-        if d_form:
-            self.num_lines = sum(1 for line in msp_pth)
-            self._parse_files(msp_pth,
-                              chunk,
-                              db_type,
-                              celery_obj=celery_obj
-                              )
-        else:
-
-            self._parse_files(msp_pth, chunk, db_type, celery_obj=celery_obj)
+        # parse the file(s)
+        self._parse_files(msp_pth, chunk, db_type, celery_obj=celery_obj)
 
     def _get_current_ids(self, source=True, meta=True, spectra=True, spectra_annotation=True):
+        """Get the current id for each table in the database
+
+        Args:
+            source (boolean): get the id for the table "library_spectra_source" will update self.current_id_origin
+            meta (boolean): get the id for the table "library_spectra_meta" will update self.current_id_meta
+            spectra (boolean): get the id for the table "library_spectra" will update self.current_id_spectra
+            spectra_annotation (boolean): get the id for the table "library_spectra_annotation" will update
+                                          self.current_id_spectra_annotation
+
+        """
+        # get the cursor for the database connection
         c = self.c
         # Get the last uid for the spectra_info table
         if source:
@@ -117,17 +161,29 @@ class LibraryData(object):
 
 
     def _parse_files(self, msp_pth, chunk, db_type, celery_obj=False):
+        """Parse the MSP files and insert into database
 
-        c = 0
+        Args:
+            msp_pth (str): path to msp file or directory [required]
+            db_type (str): The type of database to submit to (either 'sqlite', 'mysql' or 'django_mysql') [required]
+            chunk (int): Chunks of spectra to parse data (useful to control memory usage) [required]
+            celery_obj (boolean): If using Django a Celery task object can be used to keep track on ongoing tasks
+                              [default False]
+        """
+
         if os.path.isdir(msp_pth):
-            for msp_file in sorted(os.listdir(msp_pth)):
-                msp_file_pth = os.path.join(msp_pth, msp_file)
-                if os.path.isdir(msp_file_pth):
-                    continue
-                print('MSP FILE PATH', msp_file_pth)
-                self.num_lines = line_count(msp_file_pth)
-                with open(msp_file_pth, "r") as f:
-                    c = self._parse_lines(f, chunk, db_type, celery_obj, c)
+            c = 0
+            for folder, subs, files in sorted(os.walk(msp_pth)):
+                for msp_file in files:
+                    msp_file_pth = os.path.join(folder, msp_file)
+                    if os.path.isdir(msp_file_pth):
+                        continue
+                    print('MSP FILE PATH', msp_file_pth)
+                    self.num_lines = line_count(msp_file_pth)
+                    # each file is processed separately but we want to still process in chunks so we save the number
+                    # of spectra currently being processed with the c variable
+                    with open(msp_file_pth, "r") as f:
+                        c = self._parse_lines(f, chunk, db_type, celery_obj, c)
         else:
             self.num_lines = line_count(msp_pth)
             with open(msp_pth, "r") as f:
@@ -136,6 +192,17 @@ class LibraryData(object):
         self.insert_data(remove_data=True, db_type=db_type)
 
     def _parse_lines(self, f, chunk, db_type, celery_obj=False, c=0):
+        """Parse the MSP files and insert into database
+
+        Args:
+            f (file object): the opened file object
+            db_type (str): The type of database to submit to (either 'sqlite', 'mysql' or 'django_mysql') [required]
+            chunk (int): Chunks of spectra to parse data (useful to control memory usage) [required]
+            celery_obj (boolean): If using Django a Celery task object can be used to keep track on ongoing tasks
+                              [default False]
+            c (int): Number of spectra currently processed (will reset to 0 after that chunk of spectra has been
+                     inserted into the database
+        """
         old = 0
 
         for i, line in enumerate(f):
@@ -160,20 +227,36 @@ class LibraryData(object):
         return c
 
     def _update_libdata(self, line):
+        """Update the library meta data from the current line being parsed
 
+        Args:
+            line (str): The current line of the of the file being parsed
+        """
         ####################################################
-        # Parse the lines
+        # parse MONA Comments line
         ####################################################
+        # The mona msp files contain a "comments" line that contains lots of other information normally separated
+        # into by ""
         if re.match('^Comment.*$', line, re.IGNORECASE):
             comments = re.findall('"([^"]*)"', line)
             for c in comments:
                 self._parse_meta_info(c)
                 self._parse_compound_info(c)
+
+        ####################################################
+        # parse meta and compound info lines
+        ####################################################
+        # check the current line for both general meta data
+        # and compound information
         self._parse_meta_info(line)
         self._parse_compound_info(line)
 
-
-        # num peaks
+        ####################################################
+        # End of meta data
+        ####################################################
+        # Most MSP files have the a standard line of text before the spectra information begins. Here we check
+        # for this line and store the relevant details for the compound and meta information to be ready for insertion
+        # into the database
         if self.collect_meta and (re.match('^Num Peaks(.*)$', line, re.IGNORECASE) or re.match('^PK\$PEAK:(.*)', line,
                 re.IGNORECASE) or re.match('^PK\$ANNOTATION(.*)', line, re.IGNORECASE)):
 
@@ -181,15 +264,17 @@ class LibraryData(object):
 
             self._store_meta_info()
 
-            # Reset the temp meta information
-            self.meta_info = self._get_blank_meta_info()
-            self.compound_info = self._get_blank_compound_info()
+            # Reset the temp meta and compound information
+            self.meta_info = get_blank_dict(self.meta_regex)
+            self.compound_info = get_blank_dict(self.compound_regex)
             self.other_names = []
             self.collect_meta = False
 
+        # ignore additional information in the 3rd column if using the MassBank spectra schema
         if re.match('^PK\$PEAK: m/z int\. rel\.int\.$', line, re.IGNORECASE):
             self.ignore_additional_spectra_info = True
 
+        # Check if annnotation or spectra is to be in the next lines to be parsed
         if re.match('^Num Peaks(.*)$', line, re.IGNORECASE) or re.match('^PK\$PEAK:(.*)', line, re.IGNORECASE):
             self.start_spectra = True
             return
@@ -197,14 +282,22 @@ class LibraryData(object):
             self.start_spectra_annotation = True
             return
 
+        ####################################################
+        # Process annotation details
+        ####################################################
+        # e.g. molecular formula for each peak in the spectra
         if self.start_spectra_annotation:
             self._parse_spectra_annotation(line)
 
+        ####################################################
+        # Process spectra
+        ####################################################
         if self.start_spectra:
             self._parse_spectra(line)
 
-
     def get_compound_ids(self):
+        """Extract the current compound ids in the database. Updates the self.compound_ids list
+        """
         cursor = self.conn.cursor()
         cursor.execute('SELECT inchikey_id FROM metab_compound')
         self.conn.commit()
@@ -213,6 +306,11 @@ class LibraryData(object):
                 self.compound_ids.append(row[0])
 
     def _store_compound_info(self):
+        """Update the compound_info dictionary with the current chunk of compound details
+
+        Note that we use the inchikey as unique identifier. If we can't find an appropiate inchikey we just use
+        a random string (uuid4) suffixed with UNKNOWN
+        """
         other_name_l = [name for name in self.other_names if name != self.compound_info['name']]
         self.compound_info['other_names'] = ' <#> '.join(other_name_l)
 
@@ -245,6 +343,8 @@ class LibraryData(object):
             self.compound_ids.append(self.compound_info['inchikey_id'])
 
     def _store_meta_info(self):
+        """Update the meta dictionary with the current chunk of meta data details
+        """
         # In the mass bank msp files, sometimes the precursor_mz is missing but we have the neutral mass and
         # the precursor_type (e.g. adduct) so we can calculate the precursor_mz
         if not self.meta_info['precursor_mz'] and self.meta_info['precursor_type'] and \
@@ -272,8 +372,8 @@ class LibraryData(object):
         )
 
     def _parse_spectra_annotation(self, line):
-
-
+        """Parse and store the spectral annotation details
+        """
         if re.match('^PK\$NUM_PEAK(.*)', line, re.IGNORECASE):
             self.start_spectra_annotation = False
             return
@@ -292,8 +392,8 @@ class LibraryData(object):
         self.current_id_spectra_annotation += 1
 
     def _parse_spectra(self, line):
-
-
+        """Parse and store the spectral details
+        """
         if line in ['\n', '\r\n', '//\n', '//\r\n']:
             self.start_spectra = False
             self.current_id_meta += 1
@@ -315,14 +415,9 @@ class LibraryData(object):
 
         self.current_id_spectra += 1
 
-
-    def _get_blank_meta_info(self):
-        return {k: '' for k in self.meta_regex.keys()}
-
-    def _get_blank_compound_info(self,):
-        return {k: '' for k in self.compound_regex.keys()}
-
     def _set_inchi_pcc(self, in_str, pcp_type, elem):
+        """Check pubchem compounds via API for both an inchikey and any available compound details
+        """
         if not in_str:
             return 0
 
@@ -334,7 +429,7 @@ class LibraryData(object):
         except pcp.TimeoutError as e:
             print(e)
             return 0
-        except urllib2.URLError as e:
+        except URLError as e:
             print(e)
             return 0
         except BadStatusLine as e:
@@ -354,11 +449,23 @@ class LibraryData(object):
                 print('WARNING, multiple compounds for ', self.compound_info)
 
     def _get_other_names(self, line):
+        """Parse and extract any other names that might be recorded for the compound
+
+        Args:
+             line (str): line of the msp file
+        """
         m = re.search(self.compound_regex['other_names'][0], line, re.IGNORECASE)
         if m:
             self.other_names.append(m.group(1).strip())
 
     def _parse_meta_info(self, line):
+        """Parse and extract all meta data by looping through the dictionary of meta_info regexs
+
+        updates self.meta_info
+
+        Args:
+             line (str): line of the msp file
+        """
         if self.mslevel:
             self.meta_info['ms_level'] = self.mslevel
 
@@ -369,7 +476,14 @@ class LibraryData(object):
                     self.meta_info[k] = m.group(1).strip()
 
     def _parse_compound_info(self, line):
+        """Parse and extract all compound data by looping through the dictionary of compound_info regexs
 
+        updates self.compound_info
+
+        Args:
+             line (str): line of the msp file
+
+        """
         for k, regexes in six.iteritems(self.compound_regex):
             for reg in regexes:
                 if self.compound_info[k]:
@@ -380,9 +494,16 @@ class LibraryData(object):
 
         self._get_other_names(line)
 
-    def insert_data(self, remove_data=False, schema='mona', db_type='sqlite'):
-        print("INSERT DATA")
+    def insert_data(self, remove_data=False, db_type='sqlite'):
+        """Insert data stored in the current chunk of parsing into the selected database
 
+
+        Args:
+             remove_data (boolean): Remove the data stored within the LibraryData object for the current chunk of
+                                    processing
+             db_type (str): The type of database to submit to
+                            either 'sqlite', 'mysql' or 'django_mysql' [default sqlite]
+        """
         if self.update_source:
             # print "insert ref id"
             self.c.execute(
@@ -391,14 +512,14 @@ class LibraryData(object):
             self.conn.commit()
 
         if self.compound_info_all:
-            self.compound_info_all = make_sql_compatible(self.compound_info_all)
+            self.compound_info_all = _make_sql_compatible(self.compound_info_all)
 
             cn = ', '.join(self.compound_info.keys()) + ',created_at,updated_at'
 
             insert_query_m(self.compound_info_all, columns=cn, conn=self.conn, table='metab_compound',
                            db_type=db_type)
 
-        self.meta_info_all = make_sql_compatible(self.meta_info_all)
+        self.meta_info_all = _make_sql_compatible(self.meta_info_all)
 
         cn = 'id,' + ', '.join(self.meta_info.keys()) + ',library_spectra_source_id, inchikey_id'
 
@@ -423,7 +544,33 @@ class LibraryData(object):
             self._get_current_ids(source=False)
 
     def get_db_dict(self):
+        """ Get a dictionary of the library spectra from the associated database
+
+        Example:
+            >>> from msp2db.db import create_db
+            >>> from msp2db.parse import LibraryData
+            >>> db_pth = 'spectral_library.db'
+            >>> create_db(file_pth=db_pth, db_type='sqlite', db_name='spectra')
+            >>> libdata = LibraryData(msp_pth='MoNA-export-FAHFA.msp',
+            >>>                  db_pth=db_pth,
+            >>>                  db_type='sqlite',
+            >>>                  schema='mona',
+            >>>                  source='fahfa',
+            >>>                  chunk=200)
+            >>> libdata.db_dict()
+
+        If using a large database the resulting dictionary will be very large!
+
+
+        Returns:
+           A dictionary with the following keys 'library_spectra', 'library_spectra_meta', 'library_spectra_annotations',
+           'library_spectra_source' and 'metab_compound'. Where corresponding values for each key are list of list containing
+           all the rows in the database.
+
+        """
         return db_dict(self.c)
 
     def close(self):
+        """ Close the database connections
+        """
         self.conn.close()

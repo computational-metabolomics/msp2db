@@ -10,7 +10,7 @@ db_pth = '/home/tomnl/spectral_library_07112018v1.db'
 #############################################################
 # Create database
 #############################################################
-create_db(file_pth=db_pth, db_type='sqlite', db_name='spectra')
+create_db(file_pth=db_pth)
 
 
 

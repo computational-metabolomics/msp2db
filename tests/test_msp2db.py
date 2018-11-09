@@ -61,9 +61,7 @@ class TestSqlite(unittest.TestCase):
                               dirpath,
                      'test_sqlite_db_create.db')
 
-        create_db(file_pth=db_pth,
-                           db_type='sqlite',
-                           db_name='test')
+        create_db(file_pth=db_pth)
         print(db_pth)
         conn = sqlite3.connect(db_pth)
         cursor = conn.cursor()
@@ -76,7 +74,7 @@ class TestSqlite(unittest.TestCase):
 
     def test_database_dict(self):
         libdata, db_pth = self._test_example_single_file(
-            os.path.join(os.path.dirname(__file__), "msp_files", "AC000001.txt"), 'AC')
+            os.path.join(os.path.dirname(__file__), "msp_files",  "massbank", "AC000001.txt"), 'AC')
 
         d_new = libdata.get_db_dict()
         d_orig = {
@@ -120,13 +118,9 @@ class TestSqlite(unittest.TestCase):
         dirpath = tempfile.mkdtemp()
         db_pth = os.path.join(dirpath, name + '.db')
 
-        create_db(file_pth=db_pth, db_type='sqlite', db_name=name)
+        create_db(file_pth=db_pth)
 
-        libdata = LibraryData(msp_pth=example_file_pth,
-
-                              db_pth=db_pth,
-                              db_type='sqlite',
-                              d_form=None,
+        libdata = LibraryData(msp_pth=example_file_pth, db_pth=db_pth, db_type="sqlite",
                               schema='massbank',
                               source='test',
                               mslevel=None,
@@ -136,7 +130,7 @@ class TestSqlite(unittest.TestCase):
     def test_example_single_file_massbank_AC(self):
 
         libdata, db_pth = self._test_example_single_file(
-            os.path.join(os.path.dirname(__file__), "msp_files", "AC000001.txt"), 'AC')
+            os.path.join(os.path.dirname(__file__), "msp_files",  "massbank", "AC000001.txt"), 'AC')
 
         conn = sqlite3.connect(db_pth)
         cursor = conn.cursor()
@@ -202,14 +196,14 @@ class TestSqlite(unittest.TestCase):
         # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
         db_pth = os.path.join(dirpath, 'test_msp_dir.db')
 
-        create_db(file_pth=db_pth, db_type='sqlite', db_name='test_dir')
+        create_db(file_pth=db_pth)
 
-        dir_pth = os.path.join(os.path.dirname(__file__), "msp_files")
+        dir_pth = os.path.join(os.path.dirname(__file__), "msp_files", "massbank")
 
         libdata = LibraryData(msp_pth=dir_pth,
                               db_pth=db_pth,
                               db_type='sqlite',
-                              d_form=None,
+
                               schema='massbank',
                               source='test',
                               mslevel=None,
@@ -233,12 +227,12 @@ class TestSqlite(unittest.TestCase):
         # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
         db_pth = os.path.join(dirpath, 'test_msp_mona.db')
 
-        create_db(file_pth=db_pth, db_type='sqlite', db_name='test_mona')
+        create_db(file_pth=db_pth)
 
         libdata = LibraryData(msp_pth=os.path.join(os.path.dirname(__file__), 'msp_files', 'mona', 'MoNA-export-Pathogen_Box-small.msp'),
                               db_pth=db_pth,
                               db_type='sqlite',
-                              d_form=None,
+
                               schema='mona',
                               source='pathogen',
                               mslevel=None,
@@ -248,7 +242,7 @@ class TestSqlite(unittest.TestCase):
 
                               db_pth=db_pth,
                               db_type='sqlite',
-                              d_form=None,
+
                               schema='mona',
                               source='massbank',
                               mslevel=None,
@@ -257,7 +251,7 @@ class TestSqlite(unittest.TestCase):
         libdata = LibraryData(msp_pth=os.path.join(os.path.dirname(__file__), 'msp_files', 'mona', 'MoNA-export-MassBank-small.msp'),
                               db_pth=db_pth,
                               db_type='sqlite',
-                              d_form=None,
+
                               schema='mona',
                               source='metabobase',
                               mslevel=None,
@@ -291,7 +285,7 @@ class TestCLI(unittest.TestCase):
 
         # db_pth = os.path.join(os.path.dirname(__file__), 'original_results', 'test_sqlite_cli.db')
 
-        infile = os.path.join(os.path.dirname(__file__), 'msp_files',  "AC000001.txt")
+        infile = os.path.join(os.path.dirname(__file__), 'msp_files',  "massbank", "AC000001.txt")
         call = "msp2db -msp_file {} -name test_sqlite_cli -source massbank -o {} -t sqlite -schema massbank".format(infile, dirpath)
         print(call)
         os.system(call)

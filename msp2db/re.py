@@ -2,7 +2,9 @@
 from __future__ import absolute_import, unicode_literals, print_function
 import collections
 
-def get_meta_regex(schema='massbank'):
+def get_meta_regex(schema='mona'):
+    """ Create a dictionary of regex for extracting the meta data for the spectra
+    """
     # NOTE: will just ignore cases, to avoid repetition here
     meta_parse = collections.OrderedDict()
 
@@ -47,6 +49,9 @@ def get_meta_regex(schema='massbank'):
 
 
 def get_compound_regex(schema='mona'):
+    """ Create a dictionary of regex for extracting the compound information for the spectra
+    """
+
     # NOTE: will just ignore cases in the regex, to avoid repetition here
     meta_parse = collections.OrderedDict()
 

@@ -33,11 +33,11 @@ def main():
 
         db_pth = os.path.join(args.out_dir, args.name + '.db')
         if not os.path.exists(db_pth) or args.dt:
-            create_db(db_pth, db_type=args.type, db_name=args.name)
+            create_db(db_pth)
 
     else:
         if args.dt:
-            create_db(file_pth=None, db_type=args.type, db_name=args.name)
+            create_db(file_pth=None)
 
         db_pth = None
 
@@ -56,7 +56,7 @@ def main():
 
                               db_pth=db_pth if db_pth else None,
                               db_type=args.type,
-                              d_form=d_form,
+
                               source=args.source,
                               mslevel=args.mslevel,
                               schema=args.schema,
@@ -66,7 +66,7 @@ def main():
 
                               db_pth=db_pth if db_pth else None,
                               db_type=args.type,
-                              d_form=d_form,
+
                               source=args.source,
                               schema=args.schema,
                               mslevel=args.mslevel)

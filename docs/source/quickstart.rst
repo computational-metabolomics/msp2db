@@ -19,7 +19,7 @@ API
 ------------
 .. code-block:: python
 
-    db_pth = '/home/tomnl/spectral_library_07112018v1.db'
+    db_pth = 'spectral_library_07112018v1.db'
     create_db(file_pth=db_pth, db_type='sqlite', db_name='spectra')
     libdata = LibraryData(msp_pth='MoNA-export-FAHFA.msp',
                       db_pth=db_pth,
