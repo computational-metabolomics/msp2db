@@ -90,7 +90,7 @@ class TestSqlite(unittest.TestCase):
              u'library_spectra_meta': [[1, u'Mellein; LC-ESI-ITFT; MS2; CE: 10; R=17500; [M+H]+', u'10(NCE)',
                                         2.0, u'AC000001', u'17500', u'POSITIVE', u'HCD', 179.0697, u'[M+H]+',
                                         u'LC-ESI-ITFT', u'Q-Exactive Orbitrap Thermo Scientific',
-                                        u'Copyright (C) 2017', None, None, None, None, 1,
+                                        u'Copyright (C) 2017', None, None, None, None,'splash10-03fr-0900000000-035ec76d23650a15673b', 1,
                                         u'KWILGNNWGSNMPA-UHFFFAOYSA-N']],
 
              u'library_spectra_source': [[1, u'test']],
@@ -192,7 +192,7 @@ class TestSqlite(unittest.TestCase):
     def test_example_multi_file(self):
 
         dirpath = tempfile.mkdtemp()
-        # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
         db_pth = os.path.join(dirpath, 'test_msp_dir.db')
 
         create_db(file_pth=db_pth)
@@ -223,7 +223,7 @@ class TestSqlite(unittest.TestCase):
         self.maxDiff = None
 
         dirpath = tempfile.mkdtemp()
-        # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
         db_pth = os.path.join(dirpath, 'test_msp_mona.db')
 
         create_db(file_pth=db_pth)
@@ -281,9 +281,7 @@ class TestCLI(unittest.TestCase):
     def test_cli(self,):
 
         dirpath = tempfile.mkdtemp()
-
-
-        # db_pth = os.path.join(os.path.dirname(__file__), 'original_results', 'test_sqlite_cli.db')
+        dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
 
         infile = os.path.join(os.path.dirname(__file__), 'msp_files',  "massbank", "AC000001.txt")
         call = "msp2db -msp_file {} -name test_sqlite_cli -source massbank -o {} -t sqlite -schema massbank".format(infile, dirpath)

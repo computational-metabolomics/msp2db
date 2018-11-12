@@ -21,7 +21,9 @@ def create_db(file_pth):
     c.execute('DROP TABLE IF EXISTS library_spectra_source')
     c.execute('''CREATE TABLE library_spectra_source (
                           id integer PRIMARY KEY,
-                          name text NOT NULL
+                          name text NOT NULL,
+                          created_at date,
+                          parsing_software text
                           )'''
               )
 
@@ -61,7 +63,7 @@ def create_db(file_pth):
                                    mass_accuracy real,
                                    mass_error real,
                                    origin text,
-
+                                   splash text,
                                    library_spectra_source_id integer NOT NULL,
                                    inchikey_id text NOT NULL,
 

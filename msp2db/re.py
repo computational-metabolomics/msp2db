@@ -9,7 +9,6 @@ def get_meta_regex(schema='mona'):
     meta_parse = collections.OrderedDict()
 
     if schema == 'mona':
-        print('mona schema')
         meta_parse['collision_energy'] = ['^collision energy(?:=|:)(.*)$']
         meta_parse['ms_level'] = ['^ms.*level(?:=|:)\D*(\d*)$', '^ms type(?:=|:)\D*(\d*)$',
                               '^Spectrum_type(?:=|:)\D*(\d*)$']
@@ -27,9 +26,9 @@ def get_meta_regex(schema='mona'):
         meta_parse['mass_error'] = ['^mass.*error(?:=|:)\s*(\d*[.,]?\d*)$']
         meta_parse['origin'] = ['^origin(?:=|:)(.*)$']
         meta_parse['name'] = ['^Name(?:=|:)(.*)$']
+        meta_parse['splash'] = ['^splash:(.*)$']
 
     elif schema == 'massbank':
-        print('massbank schema')
         meta_parse['collision_energy'] = ['^AC\$MASS_SPECTROMETRY:\s+COLLISION_ENERGY\s+(.*)$']
         meta_parse['ms_level'] = ['^AC\$MASS_SPECTROMETRY:\s+MS_TYPE\s+\D*(\d*)$']
         meta_parse['accession'] = ['^ACCESSION:(.*)$']
@@ -44,8 +43,11 @@ def get_meta_regex(schema='mona'):
         # meta_parse['column'] = ['^column(?:=|:)(.*)$']
         meta_parse['mass_accuracy'] = ['^AC\$MASS_SPECTROMETRY:\s+ACCURACY\s+(.*)$']  # need to check
         meta_parse['mass_error'] = ['^AC\$MASS_SPECTROMETRY:\s+ERROR\s+(.*)$']  # need to check
+        meta_parse['splash'] = ['^PK\$SPLASH:\s+(.*)$']
         meta_parse['origin'] = ['^origin(?:=|:)(.*)$']
         meta_parse['name'] = ['^RECORD_TITLE:\s+(.*)$']
+
+
 
     return meta_parse
 

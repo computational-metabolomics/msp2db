@@ -4,6 +4,7 @@ import datetime
 import re
 import os
 import pubchempy as pcp
+import csv
 import uuid
 import six
 from .re import get_compound_regex, get_meta_regex
@@ -397,7 +398,7 @@ class LibraryData(object):
     def _parse_spectra(self, line):
         """Parse and store the spectral details
         """
-        if line in ['\n', '\r\n', '//\n', '//\r\n', '']:
+        if line in ['\n', '\r\n', '//\n', '//\r\n', '', '//']:
             self.start_spectra = False
             self.current_id_meta += 1
             self.collect_meta = True
@@ -511,9 +512,10 @@ class LibraryData(object):
         """
         if self.update_source:
             # print "insert ref id"
+            import msp2db
             self.c.execute(
-                "INSERT INTO library_spectra_source (id, name) VALUES ({a}, '{b}')".format(a=self.current_id_origin,
-                                                                                           b=self.source))
+                "INSERT INTO library_spectra_source (id, name, parsing_software) VALUES"
+                " ({a}, '{b}', 'msp2db-v{c}')".format(a=self.current_id_origin, b=self.source, c=msp2db.__version__))
             self.conn.commit()
 
         if self.compound_info_all:
@@ -579,3 +581,68 @@ class LibraryData(object):
         """ Close the database connections
         """
         self.conn.close()
+
+        # build up list of inserts
+
+        # add in bulk the splash keys
+
+
+def add_splash_ids(splash_mapping_file_pth, conn, db_type='sqlite'):
+    """ Add splash ids to database (in case stored in a different file to the msp files like for MoNA)
+
+    Example:
+        >>> from msp2db.db import get_connection
+        >>> from msp2db.parse import add_splash_ids
+        >>> conn = get_connection('sqlite', 'library.db')
+        >>> add_splash_ids('splash_mapping_file.csv', conn, db_type='sqlite')
+
+
+    Args:
+        splash_mapping_file_pth (str): Path to the splash mapping file (needs to be csv format and have no headers,
+                                       should contain two columns. The first the accession number the second the splash.
+                                       e.g. AU100601, splash10-0a4i-1900000000-d2bc1c887f6f99ed0f74 \n
+
+    """
+    # get dictionary of accession and library_spectra_meta_id
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, accession FROM library_spectra_meta")
+
+    accession_d = {row[1]: row[0] for row in cursor}
+
+    if db_type == 'sqlite':
+        type_sign = '?'
+    else:
+        type_sign = '%s'
+
+    rows = []
+    c = 0
+    # loop through splash mapping file
+    with open(splash_mapping_file_pth, "r") as f:
+
+        for line in f:
+            c+=1
+            line = line.rstrip()
+            line_l = line.split(',')
+
+            accession = line_l[0]
+            splash = line_l[1]
+            try:
+                aid = accession_d[accession]
+            except KeyError as e:
+                print("can't find accession {}".format(accession))
+                continue
+
+            row = (splash, aid)
+            rows.append(row)
+
+            if c > 200:
+                print(row)
+                cursor.executemany("UPDATE library_spectra_meta SET splash = {t} WHERE id = {t} ".format(t=type_sign), rows)
+                conn.commit()
+                rows = []
+                c = 0
+
+    cursor.executemany("UPDATE library_spectra_meta SET splash = {t} WHERE id = {t} ".format(t=type_sign), rows)
+    conn.commit()
+
+
