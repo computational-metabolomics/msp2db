@@ -9,6 +9,7 @@ def get_meta_regex(schema='mona'):
     meta_parse = collections.OrderedDict()
 
     if schema == 'mona':
+        print('mona schema')
         meta_parse['collision_energy'] = ['^collision energy(?:=|:)(.*)$']
         meta_parse['ms_level'] = ['^ms.*level(?:=|:)\D*(\d*)$', '^ms type(?:=|:)\D*(\d*)$',
                               '^Spectrum_type(?:=|:)\D*(\d*)$']
@@ -16,18 +17,19 @@ def get_meta_regex(schema='mona'):
         meta_parse['resolution'] = ['^resolution(?:=|:)(.*)$']
         meta_parse['polarity'] = ['^ion.*mode(?:=|:)(.*)$', '^ionization.*mode(?:=|:)(.*)$', '^polarity(?:=|:)(.*)$']
         meta_parse['fragmentation_type'] = ['^fragmentation.*mode(?:=|:)(.*)$', '^fragmentation.*type(?:=|:)(.*)$']
-        meta_parse['precursor_mz'] = ['^precursor m/z(?:=|:)(\d*[.,]?\d*)$', '^precursor.*mz(?:=|:)(\d*[.,]?\d*)$']
+        meta_parse['precursor_mz'] = ['^precursor m/z(?:=|:)\s*(\d*[.,]?\d*)$', '^precursor.*mz(?:=|:)\s*(\d*[.,]?\d*)$']
         meta_parse['precursor_type'] = ['^precursor.*type(?:=|:)(.*)$', '^adduct(?:=|:)(.*)$']
         meta_parse['instrument_type'] = ['^instrument.*type(?:=|:)(.*)$']
         meta_parse['instrument'] = ['^instrument(?:=|:)(.*)$']
         meta_parse['copyright'] = ['^copyright(?:=|:)(.*)$']
         # meta_parse['column'] = ['^column(?:=|:)(.*)$']
-        meta_parse['mass_accuracy'] = ['^mass.*accuracy(?:=|:)(\d*[.,]?\d*)$']
-        meta_parse['mass_error'] = ['^mass.*error(?:=|:)(\d*[.,]?\d*)$']
+        meta_parse['mass_accuracy'] = ['^mass.*accuracy(?:=|:)\s*(\d*[.,]?\d*)$']
+        meta_parse['mass_error'] = ['^mass.*error(?:=|:)\s*(\d*[.,]?\d*)$']
         meta_parse['origin'] = ['^origin(?:=|:)(.*)$']
         meta_parse['name'] = ['^Name(?:=|:)(.*)$']
 
     elif schema == 'massbank':
+        print('massbank schema')
         meta_parse['collision_energy'] = ['^AC\$MASS_SPECTROMETRY:\s+COLLISION_ENERGY\s+(.*)$']
         meta_parse['ms_level'] = ['^AC\$MASS_SPECTROMETRY:\s+MS_TYPE\s+\D*(\d*)$']
         meta_parse['accession'] = ['^ACCESSION:(.*)$']

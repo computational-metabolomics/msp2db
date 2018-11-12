@@ -206,6 +206,9 @@ class LibraryData(object):
         old = 0
 
         for i, line in enumerate(f):
+
+            line = line.rstrip()
+
             if i == 0:
                 old = self.current_id_meta
 
@@ -394,7 +397,7 @@ class LibraryData(object):
     def _parse_spectra(self, line):
         """Parse and store the spectral details
         """
-        if line in ['\n', '\r\n', '//\n', '//\r\n']:
+        if line in ['\n', '\r\n', '//\n', '//\r\n', '']:
             self.start_spectra = False
             self.current_id_meta += 1
             self.collect_meta = True
@@ -471,7 +474,9 @@ class LibraryData(object):
 
         for k, regexes in six.iteritems(self.meta_regex):
             for reg in regexes:
+
                 m = re.search(reg, line, re.IGNORECASE)
+
                 if m:
                     self.meta_info[k] = m.group(1).strip()
 
