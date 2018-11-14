@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 from msp2db.parse import LibraryData
 from msp2db.db import create_db
 
-db_pth = '/home/tomnl/spectral_library_07112018v1.db'
+db_pth = '/home/tomnl/spectral_library_14112018v1.db'
 
 #############################################################
 # Create database
@@ -21,7 +21,7 @@ libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-FAHFA.msp',
 
                       db_pth=db_pth,
                       db_type='sqlite',
-                      d_form=None,
+
                       schema='mona',
                       source='fahfa',
                       mslevel=None,
@@ -34,7 +34,7 @@ libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-GNPS.msp',
 
                       db_pth=db_pth,
                       db_type='sqlite',
-                      d_form=None,
+
                       schema='mona',
                       source='gnps',
                       mslevel=None,
@@ -47,7 +47,7 @@ libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-HMDB.msp',
 
                       db_pth=db_pth,
                       db_type='sqlite',
-                      d_form=None,
+
                       schema='mona',
                       source='hmdb',
                       mslevel=None,
