@@ -284,6 +284,12 @@ class LibraryData(object):
             return
         elif re.match('^PK\$ANNOTATION(.*)', line, re.IGNORECASE):
             self.start_spectra_annotation = True
+
+            match = re.match('^PK\$ANNOTATION:(.*)', line, re.IGNORECASE)
+            columns = match.group(1)
+            cl = columns.split()
+
+            self.spectra_annotation_indexes = {i: cl.index(i) for i in cl}
             return
 
         ####################################################
@@ -383,12 +389,14 @@ class LibraryData(object):
             return
 
         saplist = line.split()
-        'm/z tentative_formula mass_error'
+
         sarow = (
             self.current_id_spectra_annotation,
-            float(saplist[0]),
-            saplist[1],
-            float(saplist[2]),
+            float(saplist[self.spectra_annotation_indexes['m/z']]) if 'm/z' in self.spectra_annotation_indexes else None,
+            saplist[self.spectra_annotation_indexes[
+                'tentative_formula']] if 'tentative_formula' in self.spectra_annotation_indexes else None,
+            float(saplist[self.spectra_annotation_indexes[
+                'mass_error(ppm)']]) if 'mass_error(ppm)' in self.spectra_annotation_indexes else None,
             self.current_id_meta)
 
         self.spectra_annotation_all.append(sarow)
