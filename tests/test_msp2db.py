@@ -192,7 +192,7 @@ class TestSqlite(unittest.TestCase):
     def test_example_multi_file(self):
 
         dirpath = tempfile.mkdtemp()
-        dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        #dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
         db_pth = os.path.join(dirpath, 'test_msp_dir.db')
 
         create_db(file_pth=db_pth)
@@ -223,7 +223,7 @@ class TestSqlite(unittest.TestCase):
         self.maxDiff = None
 
         dirpath = tempfile.mkdtemp()
-        dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        #dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
         db_pth = os.path.join(dirpath, 'test_msp_mona.db')
 
         create_db(file_pth=db_pth)
@@ -281,10 +281,10 @@ class TestCLI(unittest.TestCase):
     def test_cli(self,):
 
         dirpath = tempfile.mkdtemp()
-        dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        #dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
 
         infile = os.path.join(os.path.dirname(__file__), 'msp_files',  "massbank", "AC000001.txt")
-        call = "msp2db -msp_file {} -name test_sqlite_cli -source massbank -o {} -t sqlite -schema massbank".format(infile, dirpath)
+        call = "msp2db -msp_pth {} -name test_sqlite_cli -source massbank -o {} -t sqlite -schema massbank".format(infile, dirpath)
         print(call)
         os.system(call)
 

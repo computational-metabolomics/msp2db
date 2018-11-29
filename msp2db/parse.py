@@ -177,9 +177,10 @@ class LibraryData(object):
             for folder, subs, files in sorted(os.walk(msp_pth)):
                 for msp_file in sorted(files):
                     msp_file_pth = os.path.join(folder, msp_file)
-                    if os.path.isdir(msp_file_pth):
+                    if os.path.isdir(msp_file_pth) or not msp_file_pth.lower().endswith(('txt', 'msp')):
                         continue
                     print('MSP FILE PATH', msp_file_pth)
+
                     self.num_lines = line_count(msp_file_pth)
                     # each file is processed separately but we want to still process in chunks so we save the number
                     # of spectra currently being processed with the c variable

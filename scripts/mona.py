@@ -1,165 +1,191 @@
 # coding: utf-8
 from __future__ import absolute_import
 from __future__ import unicode_literals
-
+import time
+import datetime
+import sys
+import csv
+import os
 from msp2db.parse import LibraryData
 from msp2db.db import create_db
 
-db_pth = '/home/tomnl/spectral_library_14112018v1.db'
+ts = time.time()
 
+st = datetime.datetime.fromtimestamp(ts).strftime('%Y_%m_%d_%H_%M_%S')
+
+db_pth = os.path.join(sys.argv[1], 'spectral_library_{}.db'.format(st))
+
+file_size_check_pth = os.path.join(sys.argv[1], 'file_size_check.csv')
+print(file_size_check_pth)
 #############################################################
 # Create database
 #############################################################
 create_db(file_pth=db_pth)
 
+with open(file_size_check_pth, 'w') as fsc:
+    dw = csv.DictWriter(fsc, fieldnames=['source', 'size', 'diff'])
+    dw.writeheader()
+    print("#############################################################")
+    print('# FAHFA')
+    print("#############################################################")
+    libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-FAHFA.msp',
+
+                          db_pth=db_pth,
+                          db_type='sqlite',
+                          schema='mona',
+                          source='fahfa',
+                          mslevel=None,
+                          chunk=200)
+
+    dw.writerow( {'source':'fahfa', 'size':os.path.getsize(db_pth), 'diff':os.path.getsize(db_pth) })
+    old_size = os.path.getsize(db_pth)
+    print("#############################################################")
+    print('# GNPS')
+    print("#############################################################")
+    libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-GNPS.msp',
+
+                          db_pth=db_pth,
+                          db_type='sqlite',
+
+                          schema='mona',
+                          source='gnps',
+                          mslevel=None,
+                          chunk=200)
+    dw.writerow({'source': 'gnps', 'size':os.path.getsize(db_pth), 'diff':os.path.getsize(db_pth) })
+    old_size = os.path.getsize(db_pth)
+
+    print("#############################################################")
+    print('# HMDB')
+    print("#############################################################")
+    libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-HMDB.msp',
+
+                          db_pth=db_pth,
+                          db_type='sqlite',
+
+                          schema='mona',
+                          source='hmdb',
+                          mslevel=None,
+                          chunk=200)
+    dw.writerow({'source': 'hmdb','size':os.path.getsize(db_pth), 'diff':os.path.getsize(db_pth)-old_size })
+    old_size = os.path.getsize(db_pth)
+
+    print("#############################################################")
+    print('# RTX5_Fiehnlib')
+    print("#############################################################")
+    libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-RTX5_Fiehnlib.msp',
+                          db_pth=db_pth,
+                          db_type='sqlite',
+
+                          schema='mona',
+                          source='rtx5_fiehnlib',
+                          mslevel=None,
+                          chunk=200)
+    dw.writerow({'source': 'rtx5', 'size':os.path.getsize(db_pth), 'diff':os.path.getsize(db_pth)-old_size })
+    old_size = os.path.getsize(db_pth)
 
 
-#############################################################
-# FAHFA
-#############################################################
-libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-FAHFA.msp',
+    print("#############################################################")
+    print('# MoNA-export-Vaniya-Fiehn_Natural_Products_Library')
+    print("#############################################################")
+    libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-Vaniya-Fiehn_Natural_Products_Library.msp',
+                          db_pth=db_pth,
+                          db_type='sqlite',
 
-                      db_pth=db_pth,
-                      db_type='sqlite',
-                      schema='mona',
-                      source='fahfa',
-                      mslevel=None,
-                      chunk=200)
+                          schema='mona',
+                          source='vaniya_fiehn_natural_products_library',
+                          mslevel=None,
+                          chunk=200)
+    dw.writerow({'source': 'vaniya', 'size':os.path.getsize(db_pth), 'diff':os.path.getsize(db_pth)-old_size })
+    old_size = os.path.getsize(db_pth)
+    print("#############################################################")
+    print('# Fiehn_HILIC')
+    print("#############################################################")
+    libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-Fiehn_HILIC.msp',
+                          db_pth=db_pth,
+                          db_type='sqlite',
+                          schema='mona',
+                          source='fiehn_hilic',
+                          mslevel=None,
+                          chunk=200)
+    dw.writerow({'source': 'hilic', 'size':os.path.getsize(db_pth), 'diff':os.path.getsize(db_pth)-old_size })
+    old_size = os.path.getsize(db_pth)
 
-#############################################################
-# GNPS
-#############################################################
-libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-GNPS.msp',
+    print("#############################################################")
+    print('# MoNA-export-ReSpect')
+    print("#############################################################")
+    libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-ReSpect.msp',
+                          db_pth=db_pth,
+                          db_type='sqlite',
 
-                      db_pth=db_pth,
-                      db_type='sqlite',
+                          schema='mona',
+                          source='respect',
+                          mslevel=None,
+                          chunk=200)
+    dw.writerow({'source': 'respect', 'size':os.path.getsize(db_pth), 'diff':os.path.getsize(db_pth)-old_size })
+    old_size = os.path.getsize(db_pth)
+    print("#############################################################")
+    print('# Massbank')
+    print("#############################################################")
+    libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-MassBank.msp',
+                          db_pth=db_pth,
+                          db_type='sqlite',
+                          schema='mona',
+                          source='massbank',
+                          mslevel=None,
+                          chunk=200)
+    dw.writerow({'source': 'massbank', 'size':os.path.getsize(db_pth), 'diff':os.path.getsize(db_pth)-old_size })
+    old_size = os.path.getsize(db_pth)
 
-                      schema='mona',
-                      source='gnps',
-                      mslevel=None,
-                      chunk=200)
+    print("#############################################################")
+    print('# lipidblast')
+    print("#############################################################")
+    libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-LipidBlast.msp',
+                          db_pth=db_pth,
+                          db_type='sqlite',
+                          schema='mona',
+                          source='lipidblast',
+                          mslevel=None,
+                          chunk=200)
+    dw.writerow({'source': 'lipidblast', 'size':os.path.getsize(db_pth), 'diff':os.path.getsize(db_pth)-old_size })
+    old_size = os.path.getsize(db_pth)
 
-#############################################################
-# HMDB
-#############################################################
-libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-HMDB.msp',
+    print("#############################################################")
+    print('# MetaboBASE')
+    print("#############################################################")
+    libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-MetaboBASE.msp',
+                          db_pth=db_pth,
+                          db_type='sqlite',
+                          schema='mona',
+                          source='metabobase',
+                          mslevel=None,
+                          chunk=200)
+    dw.writerow({'source': 'metabobase', 'size':os.path.getsize(db_pth), 'diff':os.path.getsize(db_pth)-old_size })
+    old_size = os.path.getsize(db_pth)
 
-                      db_pth=db_pth,
-                      db_type='sqlite',
+    print("#############################################################")
+    print('# MoNA-export-Pathogen_Box')
+    print("#############################################################")
+    libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-Pathogen_Box.msp',
+                          db_pth=db_pth,
+                          db_type='sqlite',
+                          schema='mona',
+                          source='pathogen_box',
+                          mslevel=None,
+                          chunk=200)
+    dw.writerow({'source': 'pathogenbox', 'size':os.path.getsize(db_pth), 'diff':os.path.getsize(db_pth)-old_size })
+    old_size = os.path.getsize(db_pth)
 
-                      schema='mona',
-                      source='hmdb',
-                      mslevel=None,
-                      chunk=200)
-
-
-#############################################################
-# RTX5_Fiehnlib
-#############################################################
-libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-RTX5_Fiehnlib.msp',
-                      db_pth=db_pth,
-                      db_type='sqlite',
-
-                      schema='mona',
-                      source='rtx5_fiehnlib',
-                      mslevel=None,
-                      chunk=200)
-
-
-
-#############################################################
-# MoNA-export-Vaniya-Fiehn_Natural_Products_Library
-#############################################################
-libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-Vaniya-Fiehn_Natural_Products_Library.msp',
-                      db_pth=db_pth,
-                      db_type='sqlite',
-
-                      schema='mona',
-                      source='vaniya_fiehn_natural_products_library',
-                      mslevel=None,
-                      chunk=200)
-
-
-#############################################################
-# Fiehn_HILIC
-#############################################################
-libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-Fiehn_HILIC.msp',
-                      db_pth=db_pth,
-                      db_type='sqlite',
-                      schema='mona',
-                      source='fiehn_hilic',
-                      mslevel=None,
-                      chunk=200)
-
-
-#############################################################
-# MoNA-export-ReSpect
-#############################################################
-libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-ReSpect.msp',
-                      db_pth=db_pth,
-                      db_type='sqlite',
-
-                      schema='mona',
-                      source='respect',
-                      mslevel=None,
-                      chunk=200)
-
-#############################################################
-# Massbank
-#############################################################
-libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-MassBank.msp',
-                      db_pth=db_pth,
-                      db_type='sqlite',
-                      schema='mona',
-                      source='massbank',
-                      mslevel=None,
-                      chunk=200)
-
-
-#############################################################
-# lipidblast
-#############################################################
-libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-LipidBlast.msp',
-                      db_pth=db_pth,
-                      db_type='sqlite',
-                      schema='mona',
-                      source='lipidblast',
-                      mslevel=None,
-                      chunk=200)
+    print("#############################################################")
+    print('# RIKEN_IMS_Oxidized_Phospholipids')
+    print("#############################################################")
+    libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-RIKEN_IMS_Oxidized_Phospholipids.msp',
+                          db_pth=db_pth,
+                          db_type='sqlite',
+                          schema='mona',
+                          source='riken_ims_oxidized_phospholipids',
+                          mslevel=None,
+                          chunk=200)
 
 
-#############################################################
-# MetaboBASE
-#############################################################
-libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-MetaboBASE.msp',
-                      db_pth=db_pth,
-                      db_type='sqlite',
-                      schema='mona',
-                      source='metabobase',
-                      mslevel=None,
-                      chunk=200)
-
-
-#############################################################
-# MoNA-export-Pathogen_Box
-#############################################################
-libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-Pathogen_Box.msp',
-                      db_pth=db_pth,
-                      db_type='sqlite',
-                      schema='mona',
-                      source='pathogen_box',
-                      mslevel=None,
-                      chunk=200)
-
-
-#############################################################
-# RIKEN_IMS_Oxidized_Phospholipids
-#############################################################
-libdata = LibraryData(msp_pth='/media/sf_DATA/mona/MoNA-export-RIKEN_IMS_Oxidized_Phospholipids.msp',
-                      db_pth=db_pth,
-                      db_type='sqlite',
-                      schema='mona',
-                      source='riken_ims_oxidized_phospholipids',
-                      mslevel=None,
-                      chunk=200)
-
+    dw.writerow({'source':'riken','size':os.path.getsize(db_pth), 'diff':os.path.getsize(db_pth)-old_size })
+    old_size = os.path.getsize(db_pth)

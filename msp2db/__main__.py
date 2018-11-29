@@ -12,7 +12,8 @@ def main():
                                 description='''Convert msp to SQLite or MySQL database''',
                                 epilog='''--------------''')
 
-    p.add_argument('-msp_file', dest='msp_file', help='path to the MSP file', required=True)
+    p.add_argument('-msp_pth', dest='msp_pth', help='path to the MSP file (or directory of msp files)', required=True)
+
     p.add_argument('-name', dest='name', help='name of the database', required=True)
     p.add_argument('-source', dest='source', help='Name of data source (e.g. MassBank, LipidBlast)', required=True)
     p.add_argument('-o', dest='out_dir', help='out directory for SQLite database', required=False)
@@ -24,6 +25,7 @@ def main():
     p.add_argument('-schema', dest='schema', help='Type of schema used (by default can use Massbank style or MSP or mona style'
                                                   'msp', default='mona')
 
+    p.add_argument('-msp_file', dest='msp_file', help='(deprecated, please use msp_pth)', required=False)
     args = p.parse_args()
 
     if args.type == 'sqlite':
@@ -41,14 +43,15 @@ def main():
 
         db_pth = None
 
-
-    print(db_pth, args.dt)
+    if args.msp_file:
+        print('msp_file is now deprecated please use msp_pth')
+        return
 
     if not args.mslevel:
         args.mslevel = 0
 
     if args.chunk:
-        libdata = LibraryData(msp_pth=args.msp_file,
+        libdata = LibraryData(msp_pth=args.msp_pth,
 
                               db_pth=db_pth if db_pth else None,
                               db_type=args.type,
@@ -58,7 +61,7 @@ def main():
                               schema=args.schema,
                               chunk=int(args.chunk))
     else:
-        libdata = LibraryData(msp_pth=args.msp_file,
+        libdata = LibraryData(msp_pth=args.msp_pth,
 
                               db_pth=db_pth if db_pth else None,
                               db_type=args.type,
