@@ -27,6 +27,8 @@ def get_meta_regex(schema='mona'):
         meta_parse['origin'] = ['^origin(?:=|:)(.*)$']
         meta_parse['name'] = ['^Name(?:=|:)(.*)$']
         meta_parse['splash'] = ['^splash:(.*)$']
+        meta_parse['retention_time'] = ['^retention.*time(?:=|:)\s*(\d*[.,]?\d*)$']
+        meta_parse['retention_index'] = ['^retention.*index(?:=|:)\s*(\d*[.,]?\d*)$']
 
     elif schema == 'massbank':
         meta_parse['collision_energy'] = ['^AC\$MASS_SPECTROMETRY:\s+COLLISION_ENERGY\s+(.*)$']
@@ -46,6 +48,9 @@ def get_meta_regex(schema='mona'):
         meta_parse['splash'] = ['^PK\$SPLASH:\s+(.*)$']
         meta_parse['origin'] = ['^origin(?:=|:)(.*)$']
         meta_parse['name'] = ['^RECORD_TITLE:\s+(.*)$']
+        meta_parse['retention_time'] = ['^AC\$CHROMATOGRAPHY:\s+RETENTION.*TIME\s+(\d*[.,]?\d*)$']
+        meta_parse['retention_index'] = ['^AC\$CHROMATOGRAPHY:\s+RETENTION.*INDEX\s+(\d*[.,]?\d*)$']
+
 
 
 

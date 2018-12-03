@@ -64,9 +64,10 @@ def create_db(file_pth):
                                    mass_error real,
                                    origin text,
                                    splash text,
+                                   retention_index real, 
+                                   retention_time real,
                                    library_spectra_source_id integer NOT NULL,
                                    inchikey_id text NOT NULL,
-
                                    FOREIGN KEY(library_spectra_source_id) REFERENCES library_spectra_source(id),
                                    FOREIGN KEY(inchikey_id) REFERENCES metab_compound(inchikey_id)
                                    )'''
