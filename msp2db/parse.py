@@ -442,6 +442,9 @@ class LibraryData(object):
         except pcp.TimeoutError as e:
             print(e)
             return 0
+        except pcp.ServerError as e:
+            print(e)
+            return 0
         except URLError as e:
             print(e)
             return 0
