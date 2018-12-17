@@ -285,7 +285,7 @@ class TestCLI(unittest.TestCase):
         # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
 
         infile = os.path.join(os.path.dirname(__file__), 'msp_files',  "massbank", "AC000001.txt")
-        call = "msp2db -msp_pth {} -name test_sqlite_cli -source massbank -o {} -t sqlite -schema massbank".format(infile, dirpath)
+        call = "msp2db --msp_pth {} --source massbank -o {} -t sqlite --schema massbank".format(infile, os.path.join(dirpath, 'test_sqlite_cli.db'))
         print(call)
         os.system(call)
 

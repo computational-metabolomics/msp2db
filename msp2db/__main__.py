@@ -19,14 +19,14 @@ def main():
     p.add_argument('-d', '--delete_tables',  dest='dt', help='delete tables', action='store_true')
     p.add_argument('-l', '--mslevel', dest='mslevel', help='ms level of fragmentation if not detailed in msp file', required=False)
     p.add_argument('-c', '--chunk', dest='chunk', help='Chunks of spectra to parse data (useful to control memory usage)', default=200)
-    p.add_argument('-x', '--schema', dest='schema', help='Type of schema used (by default can use Massbank style or MSP or mona style msp', default='mona')
+    p.add_argument('-x', '--schema', dest='schema', help='Type of schema used (by default is "mona" msp style but can use "massbank" style', default='mona')
 
     args = p.parse_args()
 
     if args.type == 'sqlite':
         db_pth = args.out_pth
         if not os.path.exists(db_pth) or args.dt:
-            create_db(args.out_file)
+            create_db(db_pth)
 
     else:
         if args.dt:
