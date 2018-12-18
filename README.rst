@@ -20,7 +20,7 @@ Command line
 ------------
 ::
 
-    $ msp2db --msp_pth [msp file or directory of msp files] --source [name of source of msp e.g. massbank] -out_pth [out dir]
+    $ msp2db --msp_pth [msp file or directory of msp files] --source [name of source of msp e.g. massbank] --out_pth [out dir]
     $ msp2db --help
 
     usage: PROG [-h] -m MSP_PTH -s SOURCE [-o OUT_PTH] [-t TYPE] [-d] [-l MSLEVEL]
