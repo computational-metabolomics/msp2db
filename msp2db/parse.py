@@ -66,7 +66,7 @@ class LibraryData(object):
         LibraryData object
     """
     def __init__(self, msp_pth, db_pth=None,
-                 mslevel=None, source='unknown', db_type='sqlite', password=None, user=None,
+                 mslevel=None, polarity=None, source='unknown', db_type='sqlite', password=None, user=None,
                  mysql_db_name=None, chunk=200, schema='mona', user_meta_regex=None, user_compound_regex=None,
                  celery_obj=False):
 
@@ -90,6 +90,7 @@ class LibraryData(object):
         self.update_source = True
         self.source = source
         self.mslevel = mslevel
+        self.polarity = polarity
         self.other_names = []
 
         # Either get standard regexs or the user provided regexes
@@ -484,6 +485,9 @@ class LibraryData(object):
         """
         if self.mslevel:
             self.meta_info['ms_level'] = self.mslevel
+
+        if self.polarity:
+            self.meta_info['polarity'] = self.polarity
 
         for k, regexes in six.iteritems(self.meta_regex):
             for reg in regexes:
