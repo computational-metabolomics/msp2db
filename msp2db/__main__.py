@@ -39,7 +39,7 @@ def main():
         args.mslevel = 0
 
     if not args.polarity:
-        args.mslevel = None
+        args.polarity = None
 
     if args.chunk:
         libdata = LibraryData(msp_pth=args.msp_pth,

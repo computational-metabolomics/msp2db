@@ -47,6 +47,7 @@ class LibraryData(object):
         db_pth (str): path to sqlite database (only required when using SQLite database) [default None]
         source (str): Source of the msp files (e.g. massbank) [default 'unknown']
         mslevel (int): If the msp file does not contain the mslevel this can be defined here [default None]
+        polarity (str): If the msp file does not contain the polarity this can be defined here [default None]
         db_type (str): The type of database to submit to (either 'sqlite', 'mysql' or 'django_mysql') [default sqlite]
         user (str): Username for database (only required for non Django mysql databases) [default None]
         password (str): Password for database (only required for non Django mysql databases) [default None]
