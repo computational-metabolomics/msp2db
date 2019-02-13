@@ -113,7 +113,7 @@ class TestSqlite(unittest.TestCase):
 
 
 
-    def _test_example_single_file(self, example_file_pth, name):
+    def _test_example_single_file(self, example_file_pth, name, polarity=None):
         # Parse all example files
         dirpath = tempfile.mkdtemp()
         db_pth = os.path.join(dirpath, name + '.db')
@@ -124,10 +124,36 @@ class TestSqlite(unittest.TestCase):
                               schema='massbank',
                               source='test',
                               mslevel=None,
+                              polarity=polarity,
                               chunk=200)
         return libdata, db_pth
 
     def test_example_single_file_massbank_AC(self):
+
+        libdata, db_pth = self._test_example_single_file(
+            os.path.join(os.path.dirname(__file__), "msp_files", "massbank", "AC000001.txt"), 'AC', 'positive')
+
+        conn = sqlite3.connect(db_pth)
+        cursor = conn.cursor()
+
+        qry = cursor.execute("SELECT * FROM library_spectra_meta")
+        names = sql_column_names(qry)
+
+        for row in cursor:
+            print(row)
+            self.assertEquals(row[names['name']], 'Mellein; LC-ESI-ITFT; MS2; CE: 10; R=17500; [M+H]+')
+            self.assertEquals(row[names['collision_energy']], '10(NCE)')
+            self.assertEquals(row[names['ms_level']], 2)
+            self.assertEquals(row[names['accession']], 'AC000001')
+            self.assertEquals(row[names['resolution']], '17500')
+            self.assertEquals(row[names['polarity']], 'positive')
+            self.assertEquals(row[names['fragmentation_type']], 'HCD')
+            self.assertEquals(row[names['precursor_mz']], 179.0697)
+            self.assertEquals(row[names['precursor_type']], '[M+H]+')
+            self.assertEquals(row[names['instrument_type']], 'LC-ESI-ITFT')
+            self.assertEquals(row[names['instrument']],'Q-Exactive Orbitrap Thermo Scientific')
+            self.assertEquals(row[names['copyright']], 'Copyright (C) 2017')
+            self.assertEquals(row[names['inchikey_id']], 'KWILGNNWGSNMPA-UHFFFAOYSA-N')
 
         libdata, db_pth = self._test_example_single_file(
             os.path.join(os.path.dirname(__file__), "msp_files",  "massbank", "AC000001.txt"), 'AC')

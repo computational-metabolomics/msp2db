@@ -47,6 +47,7 @@ class LibraryData(object):
         db_pth (str): path to sqlite database (only required when using SQLite database) [default None]
         source (str): Source of the msp files (e.g. massbank) [default 'unknown']
         mslevel (int): If the msp file does not contain the mslevel this can be defined here [default None]
+        polarity (str): If the msp file does not contain the polarity this can be defined here [default None]
         db_type (str): The type of database to submit to (either 'sqlite', 'mysql' or 'django_mysql') [default sqlite]
         user (str): Username for database (only required for non Django mysql databases) [default None]
         password (str): Password for database (only required for non Django mysql databases) [default None]
@@ -66,7 +67,7 @@ class LibraryData(object):
         LibraryData object
     """
     def __init__(self, msp_pth, db_pth=None,
-                 mslevel=None, source='unknown', db_type='sqlite', password=None, user=None,
+                 mslevel=None, polarity=None, source='unknown', db_type='sqlite', password=None, user=None,
                  mysql_db_name=None, chunk=200, schema='mona', user_meta_regex=None, user_compound_regex=None,
                  celery_obj=False):
 
@@ -90,6 +91,7 @@ class LibraryData(object):
         self.update_source = True
         self.source = source
         self.mslevel = mslevel
+        self.polarity = polarity
         self.other_names = []
 
         # Either get standard regexs or the user provided regexes
@@ -484,6 +486,9 @@ class LibraryData(object):
         """
         if self.mslevel:
             self.meta_info['ms_level'] = self.mslevel
+
+        if self.polarity:
+            self.meta_info['polarity'] = self.polarity
 
         for k, regexes in six.iteritems(self.meta_regex):
             for reg in regexes:
