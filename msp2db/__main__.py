@@ -59,7 +59,10 @@ def main():
                               source=args.source,
                               mslevel=args.mslevel,
                               polarity=args.polarity,
+<<<<<<< HEAD
                               ignore_compounds=args.ignore_compounds,
+=======
+>>>>>>> master
                               schema=args.schema)
         libdata.insert_data()
 

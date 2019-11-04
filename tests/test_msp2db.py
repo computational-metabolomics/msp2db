@@ -114,6 +114,7 @@ class TestSqlite(unittest.TestCase):
 
 
 
+
     def _test_example_single_file(self, example_file_pth, name,
                                   polarity=None, ignore_compounds=False):
         # Parse all example files
@@ -129,6 +130,7 @@ class TestSqlite(unittest.TestCase):
                               polarity=polarity,
                               chunk=200,
                               ignore_compounds=ignore_compounds)
+
         return libdata, db_pth
 
     def test_example_single_file_massbank_AC(self):
@@ -318,41 +320,41 @@ class TestSqlite(unittest.TestCase):
 
         self.compare_db_d(db_new, db_original)
 
-#
-# class TestCLI(unittest.TestCase):
-#
-#     def compare_db_d(self, d1, d2):
-#         d1 = remove_date_from_metab_compound_d(d1)
-#         d2 = remove_date_from_metab_compound_d(d2)
-#
-#         self.assertEquals(d1['library_spectra_annotations'], d2['library_spectra_annotations'])
-#         self.assertEquals(d1['metab_compound'], d2['metab_compound'])
-#         self.assertEquals(d1['library_spectra_meta'], d2[u'library_spectra_meta'])
-#         self.assertEquals(d1['library_spectra'], d2[u'library_spectra'])
-#
-#     def test_cli(self,):
-#
-#         dirpath = tempfile.mkdtemp()
-#         #dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
-#
-#         infile = os.path.join(os.path.dirname(__file__), 'msp_files',  "massbank", "AC000001.txt")
-#         call = "msp2db --msp_pth {} --source massbank -o {} -t sqlite " \
-#                "--schema massbank".format(infile, os.path.join(dirpath,
-#                                                                'test_sqlite_cli.db'))
-#         print(call)
-#         os.system(call)
-#
-#         db_pth = os.path.join(dirpath, 'test_sqlite_cli.db')
-#
-#         # get original database info
-#         conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 'original_results', 'test_sqlite_cli.db'))
-#         cursor = conn.cursor()
-#         db_original = db_dict(cursor)
-#
-#         conn2 = sqlite3.connect(db_pth)
-#         cursor2 = conn2.cursor()
-#         db_new = db_dict(cursor2)
-#
-#         self.compare_db_d(db_new, db_original)
+
+class TestCLI(unittest.TestCase):
+
+    def compare_db_d(self, d1, d2):
+        d1 = remove_date_from_metab_compound_d(d1)
+        d2 = remove_date_from_metab_compound_d(d2)
+
+        self.assertEquals(d1['library_spectra_annotations'], d2['library_spectra_annotations'])
+        self.assertEquals(d1['metab_compound'], d2['metab_compound'])
+        self.assertEquals(d1['library_spectra_meta'], d2[u'library_spectra_meta'])
+        self.assertEquals(d1['library_spectra'], d2[u'library_spectra'])
+
+    def test_cli(self,):
+
+        dirpath = tempfile.mkdtemp()
+        #dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+
+        infile = os.path.join(os.path.dirname(__file__), 'msp_files',  "massbank", "AC000001.txt")
+        call = "msp2db --msp_pth {} --source massbank -o {} -t sqlite " \
+               "--schema massbank".format(infile, os.path.join(dirpath,
+                                                               'test_sqlite_cli.db'))
+        print(call)
+        os.system(call)
+
+        db_pth = os.path.join(dirpath, 'test_sqlite_cli.db')
+
+        # get original database info
+        conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 'original_results', 'test_sqlite_cli.db'))
+        cursor = conn.cursor()
+        db_original = db_dict(cursor)
+
+        conn2 = sqlite3.connect(db_pth)
+        cursor2 = conn2.cursor()
+        db_new = db_dict(cursor2)
+
+        self.compare_db_d(db_new, db_original)
 
 
