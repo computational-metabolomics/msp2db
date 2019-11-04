@@ -21,7 +21,7 @@ def main():
     p.add_argument('-p', '--polarity', dest='polarity', help='Polarity of fragmentation if not detailed in msp file', required=False)
     p.add_argument('-c', '--chunk', dest='chunk', help='Chunks of spectra to parse data (useful to control memory usage)', default=200)
     p.add_argument('-x', '--schema', dest='schema', help='Type of schema used (by default is "mona" msp style but can use "massbank" style', default='mona')
-    p.add_argument('-y', '--ignore_compounds', dest='include_compounds',help='ignore searching of compounds for each spectra '
+    p.add_argument('-y', '--ignore_compounds', dest='ignore_compounds',help='ignore searching of compounds for each spectra '
                         'based on meta information in the MSP file', action='store_true')
 
     args = p.parse_args()
