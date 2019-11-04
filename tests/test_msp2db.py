@@ -116,7 +116,7 @@ class TestSqlite(unittest.TestCase):
 
 
     def _test_example_single_file(self, example_file_pth, name,
-                                  polarity=None, ignore_compounds=False):
+                                  polarity=None, compound_lookup=True):
         # Parse all example files
         dirpath = tempfile.mkdtemp()
         db_pth = os.path.join(dirpath, name + '.db')
@@ -129,7 +129,7 @@ class TestSqlite(unittest.TestCase):
                               mslevel=None,
                               polarity=polarity,
                               chunk=200,
-                              ignore_compounds=ignore_compounds)
+                              compound_lookup=compound_lookup)
 
         return libdata, db_pth
 
@@ -249,12 +249,12 @@ class TestSqlite(unittest.TestCase):
 
         self.compare_db_d(db_new, db_original)
 
-    def test_example_ignore_compounds_true(self):
+    def test_example_compound_lookup_false(self):
 
         libdata, db_pth = self._test_example_single_file(
             os.path.join(os.path.dirname(__file__), "msp_files", "massbank",
                          "AC000001.txt"), 'AC', 'positive',
-                        ignore_compounds=True)
+                        compound_lookup=False)
 
         d_new = libdata.get_db_dict()
         match = re.search('.*(UNKNOWN).*', str(d_new['metab_compound'][0][0]))
@@ -357,14 +357,13 @@ class TestCLI(unittest.TestCase):
 
         self.compare_db_d(db_new, db_original)
 
-    def test_cli_ignore_comps(self,):
+    def test_cli_compound_lookup_false(self,):
 
         dirpath = tempfile.mkdtemp()
-        # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
 
         infile = os.path.join(os.path.dirname(__file__), 'msp_files',  "massbank", "AC000001.txt")
         call = "msp2db --msp_pth {} --source massbank -o {} -t sqlite " \
-               "--ignore_compounds " \
+               "--ignore_compound_lookup " \
                "--schema massbank".format(infile, os.path.join(dirpath,
                                                                'test_sqlite_cli_ignore_comp.db'))
         print(call)

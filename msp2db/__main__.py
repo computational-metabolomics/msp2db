@@ -21,7 +21,8 @@ def main():
     p.add_argument('-p', '--polarity', dest='polarity', help='Polarity of fragmentation if not detailed in msp file', required=False)
     p.add_argument('-c', '--chunk', dest='chunk', help='Chunks of spectra to parse data (useful to control memory usage)', default=200)
     p.add_argument('-x', '--schema', dest='schema', help='Type of schema used (by default is "mona" msp style but can use "massbank" style', default='mona')
-    p.add_argument('-y', '--ignore_compounds', dest='ignore_compounds',help='ignore searching of compounds for each spectra '
+    p.add_argument('-y', '--ignore_compound_lookup', dest='ignore_compound_lookup',
+                   help='ignore searching of compounds for each spectra '
                         'based on meta information in the MSP file', action='store_true')
 
     args = p.parse_args()
@@ -42,27 +43,28 @@ def main():
     if not args.polarity:
         args.polarity = None
 
-    if args.chunk:
-        libdata = LibraryData(msp_pth=args.msp_pth,
-                              db_pth=db_pth if db_pth else None,
-                              db_type=args.type,
-                              source=args.source,
-                              mslevel=args.mslevel,
-                              polarity=args.polarity,
-                              schema=args.schema,
-                              ignore_compounds=args.ignore_compounds,
-                              chunk=int(args.chunk))
+    if args.ignore_compound_lookup:
+        compound_lookup = False
     else:
-        libdata = LibraryData(msp_pth=args.msp_pth,
-                              db_pth=db_pth if db_pth else None,
-                              db_type=args.type,
-                              source=args.source,
-                              mslevel=args.mslevel,
-                              polarity=args.polarity,
-                              ignore_compounds=args.ignore_compounds,
-                              schema=args.schema)
-        libdata.insert_data()
+        compound_lookup = True
 
+    if args.chunk:
+        chunk = int(args.chunk)
+    else:
+        chunk = None
+
+    libdata = LibraryData(msp_pth=args.msp_pth,
+                          db_pth=db_pth if db_pth else None,
+                          db_type=args.type,
+                          source=args.source,
+                          mslevel=args.mslevel,
+                          polarity=args.polarity,
+                          schema=args.schema,
+                          compound_lookup=compound_lookup,
+                          chunk=chunk)
+
+    if not chunk:
+        libdata.insert_data()
 
 if __name__ == '__main__':
     main()
