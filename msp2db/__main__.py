@@ -19,9 +19,10 @@ def main():
     p.add_argument('-d', '--delete_tables',  dest='dt', help='Delete tables', action='store_true')
     p.add_argument('-l', '--mslevel', dest='mslevel', help='MS level of fragmentation if not detailed in msp file', required=False)
     p.add_argument('-p', '--polarity', dest='polarity', help='Polarity of fragmentation if not detailed in msp file', required=False)
-    
     p.add_argument('-c', '--chunk', dest='chunk', help='Chunks of spectra to parse data (useful to control memory usage)', default=200)
     p.add_argument('-x', '--schema', dest='schema', help='Type of schema used (by default is "mona" msp style but can use "massbank" style', default='mona')
+    p.add_argument('-y', '--ignore_compounds', dest='include_compounds',help='ignore searching of compounds for each spectra '
+                        'based on meta information in the MSP file', action='store_true')
 
     args = p.parse_args()
 
@@ -49,6 +50,7 @@ def main():
                               mslevel=args.mslevel,
                               polarity=args.polarity,
                               schema=args.schema,
+                              ignore_compounds=args.ignore_compounds,
                               chunk=int(args.chunk))
     else:
         libdata = LibraryData(msp_pth=args.msp_pth,
@@ -57,6 +59,7 @@ def main():
                               source=args.source,
                               mslevel=args.mslevel,
                               polarity=args.polarity,
+                              ignore_compounds=args.ignore_compounds,
                               schema=args.schema)
         libdata.insert_data()
 
