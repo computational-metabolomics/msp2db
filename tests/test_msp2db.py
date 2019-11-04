@@ -335,7 +335,7 @@ class TestCLI(unittest.TestCase):
     def test_cli(self,):
 
         dirpath = tempfile.mkdtemp()
-        # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        #dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
 
         infile = os.path.join(os.path.dirname(__file__), 'msp_files',  "massbank", "AC000001.txt")
         call = "msp2db --msp_pth {} --source massbank -o {} -t sqlite " \
