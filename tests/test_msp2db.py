@@ -224,7 +224,7 @@ class TestSqlite(unittest.TestCase):
     def test_example_multi_file(self):
 
         dirpath = tempfile.mkdtemp()
-        dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        #dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
         db_pth = os.path.join(dirpath, 'test_msp_dir.db')
 
         create_db(file_pth=db_pth)
@@ -276,8 +276,8 @@ class TestSqlite(unittest.TestCase):
     def test_mona_files(self):
         self.maxDiff = None
 
-        # dirpath = tempfile.mkdtemp()
-        dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        dirpath = tempfile.mkdtemp()
+        #dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
         db_pth = os.path.join(dirpath, 'test_msp_mona.db')
 
         create_db(file_pth=db_pth)
