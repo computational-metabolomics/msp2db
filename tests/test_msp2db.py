@@ -335,7 +335,7 @@ class TestCLI(unittest.TestCase):
     def test_cli(self,):
 
         dirpath = tempfile.mkdtemp()
-        #dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
 
         infile = os.path.join(os.path.dirname(__file__), 'msp_files',  "massbank", "AC000001.txt")
         call = "msp2db --msp_pth {} --source massbank -o {} -t sqlite " \
@@ -356,5 +356,40 @@ class TestCLI(unittest.TestCase):
         db_new = db_dict(cursor2)
 
         self.compare_db_d(db_new, db_original)
+
+    def test_cli_ignore_comps(self,):
+
+        dirpath = tempfile.mkdtemp()
+        # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+
+        infile = os.path.join(os.path.dirname(__file__), 'msp_files',  "massbank", "AC000001.txt")
+        call = "msp2db --msp_pth {} --source massbank -o {} -t sqlite " \
+               "--ignore_compounds " \
+               "--schema massbank".format(infile, os.path.join(dirpath,
+                                                               'test_sqlite_cli_ignore_comp.db'))
+        print(call)
+        os.system(call)
+
+        db_pth = os.path.join(dirpath, 'test_sqlite_cli_ignore_comp.db')
+
+        conn2 = sqlite3.connect(db_pth)
+        cursor2 = conn2.cursor()
+        d_new = db_dict(cursor2)
+        
+        match = re.search('.*(UNKNOWN).*', str(d_new['metab_compound'][0][0]))
+
+        if match:
+            comp = match.group(1)
+        else:
+            comp = ''
+        self.assertEqual(comp, 'UNKNOWN')
+        self.assertEqual(d_new['metab_compound'][0][1], "unknown name")
+        self.assertEqual(d_new['metab_compound'][0][2], None)
+        self.assertEqual(d_new['metab_compound'][0][3], None)
+        self.assertEqual(d_new['metab_compound'][0][4], None)
+        self.assertEqual(d_new['metab_compound'][0][5], None)
+        self.assertEqual(d_new['metab_compound'][0][6], None)
+        self.assertEqual(d_new['metab_compound'][0][7], None)
+        self.assertEqual(d_new['metab_compound'][0][8], None)
 
 
