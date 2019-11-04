@@ -2,6 +2,7 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
+import re
 import os
 import unittest
 import sqlite3
@@ -113,7 +114,9 @@ class TestSqlite(unittest.TestCase):
 
 
 
-    def _test_example_single_file(self, example_file_pth, name, polarity=None):
+
+    def _test_example_single_file(self, example_file_pth, name,
+                                  polarity=None, ignore_compounds=False):
         # Parse all example files
         dirpath = tempfile.mkdtemp()
         db_pth = os.path.join(dirpath, name + '.db')
@@ -125,7 +128,9 @@ class TestSqlite(unittest.TestCase):
                               source='test',
                               mslevel=None,
                               polarity=polarity,
-                              chunk=200)
+                              chunk=200,
+                              ignore_compounds=ignore_compounds)
+
         return libdata, db_pth
 
     def test_example_single_file_massbank_AC(self):
@@ -140,7 +145,7 @@ class TestSqlite(unittest.TestCase):
         names = sql_column_names(qry)
 
         for row in cursor:
-            print(row)
+
             self.assertEquals(row[names['name']], 'Mellein; LC-ESI-ITFT; MS2; CE: 10; R=17500; [M+H]+')
             self.assertEquals(row[names['collision_energy']], '10(NCE)')
             self.assertEquals(row[names['ms_level']], 2)
@@ -219,7 +224,7 @@ class TestSqlite(unittest.TestCase):
     def test_example_multi_file(self):
 
         dirpath = tempfile.mkdtemp()
-        # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        #dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
         db_pth = os.path.join(dirpath, 'test_msp_dir.db')
 
         create_db(file_pth=db_pth)
@@ -229,7 +234,6 @@ class TestSqlite(unittest.TestCase):
         libdata = LibraryData(msp_pth=dir_pth,
                               db_pth=db_pth,
                               db_type='sqlite',
-
                               schema='massbank',
                               source='test',
                               mslevel=None,
@@ -245,12 +249,35 @@ class TestSqlite(unittest.TestCase):
 
         self.compare_db_d(db_new, db_original)
 
+    def test_example_ignore_compounds_true(self):
+
+        libdata, db_pth = self._test_example_single_file(
+            os.path.join(os.path.dirname(__file__), "msp_files", "massbank",
+                         "AC000001.txt"), 'AC', 'positive',
+                        ignore_compounds=True)
+
+        d_new = libdata.get_db_dict()
+        match = re.search('.*(UNKNOWN).*', str(d_new['metab_compound'][0][0]))
+        if match:
+            comp = match.group(1)
+        else:
+            comp = ''
+        self.assertEqual(comp, 'UNKNOWN')
+        self.assertEqual(d_new['metab_compound'][0][1], "unknown name")
+        self.assertEqual(d_new['metab_compound'][0][2], None)
+        self.assertEqual(d_new['metab_compound'][0][3], None)
+        self.assertEqual(d_new['metab_compound'][0][4], None)
+        self.assertEqual(d_new['metab_compound'][0][5], None)
+        self.assertEqual(d_new['metab_compound'][0][6], None)
+        self.assertEqual(d_new['metab_compound'][0][7], None)
+        self.assertEqual(d_new['metab_compound'][0][8], None)
+
 
     def test_mona_files(self):
         self.maxDiff = None
 
         dirpath = tempfile.mkdtemp()
-        # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        #dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
         db_pth = os.path.join(dirpath, 'test_msp_mona.db')
 
         create_db(file_pth=db_pth)
@@ -308,10 +335,12 @@ class TestCLI(unittest.TestCase):
     def test_cli(self,):
 
         dirpath = tempfile.mkdtemp()
-        # dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
+        #dirpath = os.path.join(os.path.dirname(__file__), 'original_results')
 
         infile = os.path.join(os.path.dirname(__file__), 'msp_files',  "massbank", "AC000001.txt")
-        call = "msp2db --msp_pth {} --source massbank -o {} -t sqlite --schema massbank".format(infile, os.path.join(dirpath, 'test_sqlite_cli.db'))
+        call = "msp2db --msp_pth {} --source massbank -o {} -t sqlite " \
+               "--schema massbank".format(infile, os.path.join(dirpath,
+                                                               'test_sqlite_cli.db'))
         print(call)
         os.system(call)
 

@@ -60,6 +60,7 @@ class LibraryData(object):
                                 regexes can be used [default None]
         user_compound_regex (dict): For other MSP files not derived from either MoNA or MassBank a custom dictionary of
                                     regexes can be used [default None]
+        ignore_compounds (boolean): Include compound lookup
         celery_obj (boolean): If using Django a Celery task object can be used to keep track on ongoing tasks
                               [default False]
 
@@ -69,7 +70,7 @@ class LibraryData(object):
     def __init__(self, msp_pth, db_pth=None,
                  mslevel=None, polarity=None, source='unknown', db_type='sqlite', password=None, user=None,
                  mysql_db_name=None, chunk=200, schema='mona', user_meta_regex=None, user_compound_regex=None,
-                 celery_obj=False):
+                 ignore_compounds=False, celery_obj=False):
 
         # get the database connection (either sqlite, mysql or Django mysql)
         conn = get_connection(db_type, db_pth, user, password, mysql_db_name)
@@ -111,7 +112,8 @@ class LibraryData(object):
         self._get_current_ids()
 
         # parse the file(s)
-        self._parse_files(msp_pth, chunk, db_type, celery_obj=celery_obj)
+        self._parse_files(msp_pth, chunk, db_type, celery_obj=celery_obj,
+                          ignore_compounds=ignore_compounds)
 
     def _get_current_ids(self, source=True, meta=True, spectra=True, spectra_annotation=True):
         """Get the current id for each table in the database
@@ -163,7 +165,8 @@ class LibraryData(object):
                 self.current_id_spectra_annotation = 1
 
 
-    def _parse_files(self, msp_pth, chunk, db_type, celery_obj=False):
+    def _parse_files(self, msp_pth, chunk, db_type, celery_obj=False,
+                     ignore_compounds=False):
         """Parse the MSP files and insert into database
 
         Args:
@@ -172,6 +175,8 @@ class LibraryData(object):
             chunk (int): Chunks of spectra to parse data (useful to control memory usage) [required]
             celery_obj (boolean): If using Django a Celery task object can be used to keep track on ongoing tasks
                               [default False]
+            ignore_compounds (boolean): ignore compound lookup
+
         """
 
         if os.path.isdir(msp_pth):
@@ -187,15 +192,19 @@ class LibraryData(object):
                     # each file is processed separately but we want to still process in chunks so we save the number
                     # of spectra currently being processed with the c variable
                     with open(msp_file_pth, "r") as f:
-                        c = self._parse_lines(f, chunk, db_type, celery_obj, c)
+                        c = self._parse_lines(f, chunk, db_type, celery_obj,
+                                              c,
+                                              ignore_compounds=ignore_compounds)
         else:
             self.num_lines = line_count(msp_pth)
             with open(msp_pth, "r") as f:
-                self._parse_lines(f, chunk, db_type, celery_obj)
+                self._parse_lines(f, chunk, db_type, celery_obj,
+                                  ignore_compounds=ignore_compounds)
 
         self.insert_data(remove_data=True, db_type=db_type)
 
-    def _parse_lines(self, f, chunk, db_type, celery_obj=False, c=0):
+    def _parse_lines(self, f, chunk, db_type, celery_obj=False, c=0,
+                     ignore_compounds=False):
         """Parse the MSP files and insert into database
 
         Args:
@@ -206,6 +215,7 @@ class LibraryData(object):
                               [default False]
             c (int): Number of spectra currently processed (will reset to 0 after that chunk of spectra has been
                      inserted into the database
+            ignore_compounds (bool): Ignore compound lookup
         """
         old = 0
 
@@ -216,7 +226,7 @@ class LibraryData(object):
             if i == 0:
                 old = self.current_id_meta
 
-            self._update_libdata(line)
+            self._update_libdata(line, ignore_compounds)
 
             if self.current_id_meta > old:
                 old = self.current_id_meta
@@ -233,11 +243,12 @@ class LibraryData(object):
                 c = 0
         return c
 
-    def _update_libdata(self, line):
+    def _update_libdata(self, line, ignore_compounds=False):
         """Update the library meta data from the current line being parsed
 
         Args:
             line (str): The current line of the of the file being parsed
+            ignore_compounds (bool): Ignore compound lookup
         """
         ####################################################
         # parse MONA Comments line
@@ -256,7 +267,8 @@ class LibraryData(object):
         # check the current line for both general meta data
         # and compound information
         self._parse_meta_info(line)
-        self._parse_compound_info(line)
+        if not ignore_compounds:
+            self._parse_compound_info(line)
 
         ####################################################
         # End of meta data
