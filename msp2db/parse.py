@@ -267,8 +267,7 @@ class LibraryData(object):
         # check the current line for both general meta data
         # and compound information
         self._parse_meta_info(line)
-        if compound_lookup:
-            self._parse_compound_info(line)
+        self._parse_compound_info(line)
 
         ####################################################
         # End of meta data
@@ -278,8 +277,8 @@ class LibraryData(object):
         # into the database
         if self.collect_meta and (re.match('^Num Peaks(.*)$', line, re.IGNORECASE) or re.match('^PK\$PEAK:(.*)', line,
                 re.IGNORECASE) or re.match('^PK\$ANNOTATION(.*)', line, re.IGNORECASE)):
-
-            self._store_compound_info()
+            if compound_lookup:
+                self._store_compound_info()
 
             self._store_meta_info()
 
