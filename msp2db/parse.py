@@ -398,7 +398,7 @@ class LibraryData(object):
     def _parse_spectra_annotation(self, line):
         """Parse and store the spectral annotation details
         """
-        if re.match('^PK\$NUM_PEAK(.*)', line, re.IGNORECASE):
+        if re.match('^PK\$NUM.*PEAK(.*)', line, re.IGNORECASE):
             self.start_spectra_annotation = False
             return
 
