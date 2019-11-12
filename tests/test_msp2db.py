@@ -137,8 +137,8 @@ class TestSqlite(unittest.TestCase):
         libdata, db_pth = self._test_example_single_file(
             os.path.join(os.path.dirname(__file__), "msp_files", 'msnpy_non_merged.msp'),
             'test',
-            'positive'
-        )
+            'positive',
+            compound_lookup=True)
 
         conn = sqlite3.connect(db_pth)
         cursor = conn.cursor()

@@ -279,6 +279,8 @@ class LibraryData(object):
                 re.IGNORECASE) or re.match('^PK\$ANNOTATION(.*)', line, re.IGNORECASE)):
             if compound_lookup:
                 self._store_compound_info()
+            else:
+                self.compound_info['inchikey_id'] = 'UNKNOWN_' + str(uuid.uuid4())
 
             self._store_meta_info()
 
