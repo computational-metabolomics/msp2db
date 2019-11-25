@@ -267,8 +267,7 @@ class LibraryData(object):
         # check the current line for both general meta data
         # and compound information
         self._parse_meta_info(line)
-        if compound_lookup:
-            self._parse_compound_info(line)
+        self._parse_compound_info(line)
 
         ####################################################
         # End of meta data
@@ -278,8 +277,10 @@ class LibraryData(object):
         # into the database
         if self.collect_meta and (re.match('^Num Peaks(.*)$', line, re.IGNORECASE) or re.match('^PK\$PEAK:(.*)', line,
                 re.IGNORECASE) or re.match('^PK\$ANNOTATION(.*)', line, re.IGNORECASE)):
-
-            self._store_compound_info()
+            if compound_lookup:
+                self._store_compound_info()
+            else:
+                self.compound_info['inchikey_id'] = 'UNKNOWN_' + str(uuid.uuid4())
 
             self._store_meta_info()
 
@@ -399,7 +400,7 @@ class LibraryData(object):
     def _parse_spectra_annotation(self, line):
         """Parse and store the spectral annotation details
         """
-        if re.match('^PK\$NUM_PEAK(.*)', line, re.IGNORECASE):
+        if re.match('^PK\$NUM.*PEAK(.*)', line, re.IGNORECASE):
             self.start_spectra_annotation = False
             return
 

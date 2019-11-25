@@ -115,8 +115,7 @@ class TestSqlite(unittest.TestCase):
 
 
 
-    def _test_example_single_file(self, example_file_pth, name,
-                                  polarity=None, compound_lookup=True):
+    def _test_example_single_file(self, example_file_pth, name, polarity=None, compound_lookup=True):
         # Parse all example files
         dirpath = tempfile.mkdtemp()
         db_pth = os.path.join(dirpath, name + '.db')
@@ -132,6 +131,26 @@ class TestSqlite(unittest.TestCase):
                               compound_lookup=compound_lookup)
 
         return libdata, db_pth
+
+    def test_example_msnpy_output(self):
+        # Parse all example files
+        libdata, db_pth = self._test_example_single_file(
+            os.path.join(os.path.dirname(__file__), "msp_files", 'msnpy_non_merged.msp'),
+            'test',
+            'positive',
+            compound_lookup=True)
+
+        conn = sqlite3.connect(db_pth)
+        cursor = conn.cursor()
+
+        qry = cursor.execute("SELECT * FROM library_spectra_meta")
+        names = sql_column_names(qry)
+
+        for row in cursor:
+
+            self.assertEquals(row[names['name']], 'header 1_1 FTMS + p NSI d Full ms2 137.05@hcd40.00 [50.00-150.00] | msnpy_convert_id 1')
+
+
 
     def test_example_single_file_massbank_AC(self):
 
@@ -257,20 +276,8 @@ class TestSqlite(unittest.TestCase):
                         compound_lookup=False)
 
         d_new = libdata.get_db_dict()
-        match = re.search('.*(UNKNOWN).*', str(d_new['metab_compound'][0][0]))
-        if match:
-            comp = match.group(1)
-        else:
-            comp = ''
-        self.assertEqual(comp, 'UNKNOWN')
-        self.assertEqual(d_new['metab_compound'][0][1], "unknown name")
-        self.assertEqual(d_new['metab_compound'][0][2], None)
-        self.assertEqual(d_new['metab_compound'][0][3], None)
-        self.assertEqual(d_new['metab_compound'][0][4], None)
-        self.assertEqual(d_new['metab_compound'][0][5], None)
-        self.assertEqual(d_new['metab_compound'][0][6], None)
-        self.assertEqual(d_new['metab_compound'][0][7], None)
-        self.assertEqual(d_new['metab_compound'][0][8], None)
+
+        self.assertEqual(d_new['metab_compound'], [])
 
 
     def test_mona_files(self):
@@ -374,21 +381,8 @@ class TestCLI(unittest.TestCase):
         conn2 = sqlite3.connect(db_pth)
         cursor2 = conn2.cursor()
         d_new = db_dict(cursor2)
-        
-        match = re.search('.*(UNKNOWN).*', str(d_new['metab_compound'][0][0]))
+        self.assertEqual(d_new['metab_compound'], [])
 
-        if match:
-            comp = match.group(1)
-        else:
-            comp = ''
-        self.assertEqual(comp, 'UNKNOWN')
-        self.assertEqual(d_new['metab_compound'][0][1], "unknown name")
-        self.assertEqual(d_new['metab_compound'][0][2], None)
-        self.assertEqual(d_new['metab_compound'][0][3], None)
-        self.assertEqual(d_new['metab_compound'][0][4], None)
-        self.assertEqual(d_new['metab_compound'][0][5], None)
-        self.assertEqual(d_new['metab_compound'][0][6], None)
-        self.assertEqual(d_new['metab_compound'][0][7], None)
-        self.assertEqual(d_new['metab_compound'][0][8], None)
+
 
 
