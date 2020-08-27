@@ -556,21 +556,23 @@ class LibraryData(object):
             insert_query_m(self.compound_info_all, columns=cn, conn=self.conn, table='metab_compound',
                            db_type=db_type)
 
-        self.meta_info_all = _make_sql_compatible(self.meta_info_all)
+        if self.meta_info_all:
+            self.meta_info_all = _make_sql_compatible(self.meta_info_all)
 
-        cn = 'id,' + ', '.join(self.meta_info.keys()) + ',library_spectra_source_id, inchikey_id'
+            cn = 'id,' + ', '.join(self.meta_info.keys()) + ',library_spectra_source_id, inchikey_id'
 
-        insert_query_m(self.meta_info_all, columns=cn, conn=self.conn, table='library_spectra_meta',
+            insert_query_m(self.meta_info_all, columns=cn, conn=self.conn, table='library_spectra_meta',
                        db_type=db_type)
 
+        if self.spectra_all:
+            cn = "id, mz, i, other, library_spectra_meta_id"
+            insert_query_m(self.spectra_all, columns=cn, conn=self.conn, table='library_spectra', db_type=db_type)
 
-        cn = "id, mz, i, other, library_spectra_meta_id"
-        insert_query_m(self.spectra_all, columns=cn, conn=self.conn, table='library_spectra', db_type=db_type)
+
         if self.spectra_annotation_all:
             cn = "id, mz, tentative_formula, mass_error, library_spectra_meta_id"
             insert_query_m(self.spectra_annotation_all, columns=cn, conn=self.conn,
                            table='library_spectra_annotation', db_type=db_type)
-
 
         # self.conn.close()
         if remove_data:
