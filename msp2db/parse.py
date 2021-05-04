@@ -460,6 +460,9 @@ class LibraryData(object):
         except pcp.ServerError as e:
             print(e)
             return 0
+        except pcp.PubChemHTTPError as e:
+            print(e)
+            return 0
         except URLError as e:
             print(e)
             return 0
